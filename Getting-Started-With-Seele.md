@@ -42,46 +42,53 @@ go get -u -v github.com/seeleteam/go-seele/...
    (`Notes: you can follow` [Join Seele Network](Join-Seele-TestNet.html) `to join Seele Network`)
 <span id="node1">
 
-	{
-	  "basic":{
-	    "name": "seele node1",
-	    "version": "1.0",
-	    "dataDir": "node1",
-	    "address": "0.0.0.0:55027",
-	    "coinbase": "0x010117ee8edfd14a1925e45e4cb698f195651b5a136e69ee9b394b7e8166cb1f"
-	  },
-	  "p2p": {
-	    "privateKey": "0x8c5fe84f836732ae7935e70ed7f578851fabf533d327a36b4e9fc49b455aa721",
-	    "staticNodes": [],
-	    "address": "0.0.0.0:39007",
-	    "networkID": 1
-	  },
-	  "log": {
-	    "isDebug": true,
-	    "printLog": false
-	  },
-	  "httpServer": {
-	    "address": "127.0.0.1:65027",
-	    "crosssorgins": [
-	      "*"
-	    ],
-	    "whiteHost": [
-	      "*"
-	    ]
-	  },
-	  "wsserver": {
-	    "address": "127.0.0.1:8080",
-	    "pattern": "/ws"
-	  },
-	  "genesis": {
-	    "accounts":{
-	      "0x010171048615cfef6d03e10df133200a4266d3a8856795dd7e8873e300ecfbe4":100,
-	      "0x01014a36b60fbd2bf80b1f9da08d98b11166075a595622fedca4435ec35533e0":200
-	    },
-	    "difficult":10000000,
-	    "shard":1
-	  }
-	}
+{
+  "basic":{
+    "name": "seele node1",
+    "version": "1.0",
+    "dataDir": "node1",
+    "address": "0.0.0.0:8027",
+    "coinbase": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
+    "algorithm": "sha256"
+  },
+  "p2p": {
+    "privateKey": "0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479",
+    "staticNodes": [],
+    "address": "0.0.0.0:8057",
+    "networkID": "seele"
+  },
+  "log": {
+    "isDebug": true,
+    "printLog": true
+  },
+  "httpServer": {
+    "address": "0.0.0.0:8037",
+    "crossorigins": [
+      "*"
+    ],
+    "whiteHost": [
+      "*"
+    ]
+  },
+  "wsserver": {
+    "address": "0.0.0.0:8047",
+    "crossorigins": [
+      "*"
+    ]
+  },
+  "metrics": {
+    "address": "0.0.0.0:8087",
+    "duration": 10,
+    "database": "influxdb",
+    "username": "test",
+    "password": "test123"
+  },
+  "genesis": {
+    "difficult":8000000,
+    "shard":1,
+    "timestamp":1539742676
+  }
+}
 
 </span>
 
