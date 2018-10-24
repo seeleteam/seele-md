@@ -141,46 +141,51 @@ This method submits a transaction to the node.
 #### Parameters
 
 - `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
-- `from`:`types.Transaction.Data.From` - transaction 'from' address
-- `to`:`types.Transaction.Data.To` - transaction 'to' address
-- `amount`:`types.Transaction.Data.Amount` - transaction amount
-- `fee`:`types.Transaction.Data.Fee` - transaction fee
-- `payload`:`types.Transaction.Data.Payload` - transaction payload
-- `nonce`:`types.Transaction.Data.AccountNonce` - transaction nonce
-
+- `from`:`string` - transaction 'from' address
+- `to`:`string` - transaction 'to' address
+- `amount`:`uint64` - transaction amount
+- `price`:`uint64` - transaction gas price in Fan (default: "10")
+- `gas`:`uint64` - maximum gas for transaction (default: 200000)
+- `payload`:`string` - transaction payload
+- `nonce`:`int` - transaction nonce
 
 #### Returns
 
 - `Hash`:`string` - transaction hash
-- `From`:`types.Transaction.Data.From` - transaction 'from' address
-- `To`:`types.Transaction.Data.To` - transaction 'to' address
-- `Amount`:`types.Transaction.Data.Amount` - transaction amount
-- `AccountNonce`:`types.Transaction.Data.AccountNonce` - transaction nonce
-- `Fee`:`types.Transaction.Data.Fee` - transaction fee
-- `Timestamp`:`int` - Time stamp
-- `Payload`:`types.Transaction.Data.Payload` - transaction payload
+- `From`:`string` - transaction 'from' address
+- `To`:`string` - transaction 'to' address
+- `Amount`:`uint64` - transaction amount
+- `AccountNonce`:`int` - transaction nonce
+- `GasPrice`:`uint64` - transaction gasprice
+- `GasLimit`:`uint64` - transaction gaslimit
+- `Timestamp`:`uint64` - Time stamp
+- `Payload`:`string` - transaction payload
 - `Sig`:`string` - transaction signature
 
 #### Example
 ```js
 // Request
-client sendtx --amount 10000 --fee 1 --from .keystore-shard1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 --to 0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71
+client sendtx --amount 10000 --price 1 --gas 2 --from .keystore-shard-1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 --to 0xb286933bccbec9ca1cd92257d12d12ebab9b1201
 
 // Result:
+Please input your key file password: 
+account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 current nonce: 0, sending nonce: 0
+transaction sent successfully
 {
-        "Hash": "0x02c240f019adc8b267b82026aef6b677c67867624e2acc1418149e7f8083ba0e",
-        "Data": {
-                "From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "To": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71",
-                "Amount": 10000,
-                "AccountNonce": 0,
-                "Fee": 1,
-                "Timestamp": 0,
-                "Payload": ""
-        },
-        "Signature": {
-                "Sig": "71r/IIg8ObGLYf0yRQiJ/vTw/3MZv2KNP8YSBZPixyxzT+FmP3+MN9GzAECV6aGo0oIzVaq+XGXyGW5R9BsV/AE="
-        }
+	"Hash": "0x9c0e2565b8a0b33c3f69aa6eb9bad4a86c3925a1fe12272e2082091b9b1c5609",
+	"Data": {
+		"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
+		"To": "0xb286933bccbec9ca1cd92257d12d12ebab9b1201",
+		"Amount": 10000,
+		"AccountNonce": 0,
+		"GasPrice": 1,
+		"GasLimit": 21000,
+		"Timestamp": 0,
+		"Payload": ""
+	},
+	"Signature": {
+		"Sig": "N8XzJ/GEpU73dpzW5t5WShmVPFb8gQOrInGdypul8aBaDakmhbZ2rdqekA5bWslHQBfsoafeMukF5b7A1/6JWQA="
+	}
 }
 ```
 ***
@@ -282,7 +287,8 @@ This method is used to obtain the block content based on block height or block h
 - `transactions`:`array` - transaction array
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
@@ -305,6 +311,9 @@ client getblock --height 10368 --fulltx=true
 
 // Result
 {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
         "debts": [
             {
                 "Hash": "0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e",
@@ -320,113 +329,134 @@ client getblock --height 10368 --fulltx=true
         ],
         "hash": "0x000002069d9de64bad509239e2a121afbf7de183576457a1d1fb077d19fa3e8c",
         "header": {
-                "CreateTimestamp": 1539050098,
-                "Creator": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "DebtHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-                "Difficulty": 6563003,
-                "ExtraData": "",
-                "Height": 10368,
-                "Nonce": 17825487295277270000,
-                "PreviousBlockHash": "0x000001cba2c0b82402b3d2d2ad49f50ca0b21aee18c8123486377b2ec93aa0e0",
-                "ReceiptHash": "0x02fa1d68e7bbf0b833f6e8719efb11b32c7f760e4ae050a4f9b58b8dd8ad1620",
-                "StateHash": "0x8af14975f636ace27571cfcdcd9a1a1b4a5b15228977cf6207e82f63abf96ffd",
-                "TxDebtHash": "0x58d7c36b25a715f5076ccb878940920f6bb333ab142287452509f881103960d2",
-                "TxHash": "0xdb00575ff0cc0de89bd6c1799d37e5f600687963785176ca76e81bebfde6a03f"
+            "PreviousBlockHash": "0x000001cba2c0b82402b3d2d2ad49f50ca0b21aee18c8123486377b2ec93aa0e0",
+            "Creator": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
+            "StateHash": "0x8af14975f636ace27571cfcdcd9a1a1b4a5b15228977cf6207e82f63abf96ffd",
+            "TxHash": "0xdb00575ff0cc0de89bd6c1799d37e5f600687963785176ca76e81bebfde6a03f",
+            "ReceiptHash": "0x02fa1d68e7bbf0b833f6e8719efb11b32c7f760e4ae050a4f9b58b8dd8ad1620",
+            "TxDebtHash": "0x58d7c36b25a715f5076ccb878940920f6bb333ab142287452509f881103960d2",
+            "DebtHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "Difficulty": 6563003,
+            "Height": 10368,
+            "CreateTimestamp": 1539050098,
+            "Nonce": 17825487295277268182,
+            "ExtraData": ""
         },
         "totalDifficulty": 68985339754,
         "transactions": [
-                {
-                        "accountNonce": 0,
-                        "amount": 150000000,
-                        "fee": 0,
-                        "from": "0x0000000000000000000000000000000000000000",
-                        "hash": "0x5c5c72b14ff8599cdd70c85c090ff74d4db0a5e2a9dbb5a702c31200de8245ae",
-                        "payload": "",
-                        "timestamp": 1539050098,
-                        "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
-                },
-                {
-                        "accountNonce": 9,
-                        "amount": 10000,
-                        "fee": 1,
-                        "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                        "hash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
-                        "payload": "",
-                        "timestamp": 0,
-                        "to": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831"
-                }
+            {
+                "accountNonce": 0,
+                "amount": 150000000,
+                "from": "0x0000000000000000000000000000000000000000",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x6fb17b265260caed33b4e8f58ad84b508dd8950b9bc93dae8518fc96912f76bb",
+                "payload": "",
+                "timestamp": 1539931510,
+                "to": "0xd5a145191b7ca9cb4f3dc850e426c1e853d2a9f1"
+            },
+            {
+                "accountNonce": 280,
+                "amount": 10000,
+                "from": "0xec759db47a65f6537d630517f6cd3ca39c6f93d1",
+                "gasLimit": 21000,
+                "gasPrice": 1,
+                "hash": "0xf526dc404145cd409601e951fec4f2222f3abf578381cdaaea9db3a791a79cbd",
+                "payload": "",
+                "timestamp": 0,
+                "to": "0xa00d22dc3624d4696eff8d1641b442f79c3379b1"
+            }
         ],
         "txDebts": [
-                {
-                        "Data": {
-                                "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-                                "Amount": 10000,
-                                "Code": "",
-                                "Fee": 0,
-                                "Shard": 2,
-                                "TxHash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62"
-                        },
-                        "Hash": "0xe1c24a636a7c27aea7c384f6eb61eb49168129105f4c081ffa8ca7e77198b3f6"
+            {
+                "Hash": "0xe1c24a636a7c27aea7c384f6eb61eb49168129105f4c081ffa8ca7e77198b3f6",
+                "Data": {
+                    "TxHash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
+                    "Shard": 2,
+                    "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
+                    "Amount": 10000,
+                    "Fee": 0,
+                    "Code": ""
                 }
+            }
         ]
+    }
 }
 // Request
 client getblock --hash 0x000002069d9de64bad509239e2a121afbf7de183576457a1d1fb077d19fa3e8c --fulltx=true
 
 // Result
 {
-        "debts": [],
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "debts": [
+            {
+                "Hash": "0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e",
+                "Data": {
+                    "TxHash": "0x58752f8aeb2c69dd2c32059d3ad8b2d3d860c6d92aa2b3b30ff985e564f60fae",
+                    "Shard": 2,
+                    "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
+                    "Amount": 10000,
+                    "Fee": 0,
+                    "Code": ""
+                }
+            }
+        ],
         "hash": "0x000002069d9de64bad509239e2a121afbf7de183576457a1d1fb077d19fa3e8c",
         "header": {
-                "CreateTimestamp": 1539050098,
-                "Creator": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "DebtHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-                "Difficulty": 6563003,
-                "ExtraData": "",
-                "Height": 10368,
-                "Nonce": 17825487295277270000,
-                "PreviousBlockHash": "0x000001cba2c0b82402b3d2d2ad49f50ca0b21aee18c8123486377b2ec93aa0e0",
-                "ReceiptHash": "0x02fa1d68e7bbf0b833f6e8719efb11b32c7f760e4ae050a4f9b58b8dd8ad1620",
-                "StateHash": "0x8af14975f636ace27571cfcdcd9a1a1b4a5b15228977cf6207e82f63abf96ffd",
-                "TxDebtHash": "0x58d7c36b25a715f5076ccb878940920f6bb333ab142287452509f881103960d2",
-                "TxHash": "0xdb00575ff0cc0de89bd6c1799d37e5f600687963785176ca76e81bebfde6a03f"
+            "PreviousBlockHash": "0x000001cba2c0b82402b3d2d2ad49f50ca0b21aee18c8123486377b2ec93aa0e0",
+            "Creator": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
+            "StateHash": "0x8af14975f636ace27571cfcdcd9a1a1b4a5b15228977cf6207e82f63abf96ffd",
+            "TxHash": "0xdb00575ff0cc0de89bd6c1799d37e5f600687963785176ca76e81bebfde6a03f",
+            "ReceiptHash": "0x02fa1d68e7bbf0b833f6e8719efb11b32c7f760e4ae050a4f9b58b8dd8ad1620",
+            "TxDebtHash": "0x58d7c36b25a715f5076ccb878940920f6bb333ab142287452509f881103960d2",
+            "DebtHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+            "Difficulty": 6563003,
+            "Height": 10368,
+            "CreateTimestamp": 1539050098,
+            "Nonce": 17825487295277268182,
+            "ExtraData": ""
         },
         "totalDifficulty": 68985339754,
         "transactions": [
-                {
-                        "accountNonce": 0,
-                        "amount": 150000000,
-                        "fee": 0,
-                        "from": "0x0000000000000000000000000000000000000000",
-                        "hash": "0x5c5c72b14ff8599cdd70c85c090ff74d4db0a5e2a9dbb5a702c31200de8245ae",
-                        "payload": "",
-                        "timestamp": 1539050098,
-                        "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
-                },
-                {
-                        "accountNonce": 9,
-                        "amount": 10000,
-                        "fee": 1,
-                        "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                        "hash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
-                        "payload": "",
-                        "timestamp": 0,
-                        "to": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831"
-                }
+            {
+                "accountNonce": 0,
+                "amount": 150000000,
+                "from": "0x0000000000000000000000000000000000000000",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x6fb17b265260caed33b4e8f58ad84b508dd8950b9bc93dae8518fc96912f76bb",
+                "payload": "",
+                "timestamp": 1539931510,
+                "to": "0xd5a145191b7ca9cb4f3dc850e426c1e853d2a9f1"
+            },
+            {
+                "accountNonce": 280,
+                "amount": 10000,
+                "from": "0xec759db47a65f6537d630517f6cd3ca39c6f93d1",
+                "gasLimit": 21000,
+                "gasPrice": 1,
+                "hash": "0xf526dc404145cd409601e951fec4f2222f3abf578381cdaaea9db3a791a79cbd",
+                "payload": "",
+                "timestamp": 0,
+                "to": "0xa00d22dc3624d4696eff8d1641b442f79c3379b1"
+            }
         ],
         "txDebts": [
-                {
-                        "Data": {
-                                "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-                                "Amount": 10000,
-                                "Code": "",
-                                "Fee": 0,
-                                "Shard": 2,
-                                "TxHash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62"
-                        },
-                        "Hash": "0xe1c24a636a7c27aea7c384f6eb61eb49168129105f4c081ffa8ca7e77198b3f6"
+            {
+                "Hash": "0xe1c24a636a7c27aea7c384f6eb61eb49168129105f4c081ffa8ca7e77198b3f6",
+                "Data": {
+                    "TxHash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
+                    "Shard": 2,
+                    "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
+                    "Amount": 10000,
+                    "Fee": 0,
+                    "Code": ""
                 }
+            }
         ]
+    }
 }
 ```
 ***
@@ -681,7 +711,8 @@ This method is used to obtain the transaction content based on block height and 
 
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
@@ -695,14 +726,15 @@ client gettxinblock --hash 0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930
 
 // Result
 {
-	"accountNonce": 3,
-	"amount": 10000,
-	"fee": 1,
-	"from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-	"hash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
-	"payload": "",
-	"timestamp": 0,
-	"to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
+        "accountNonce": 0,
+        "amount": 150000000,
+        "from": "0x0000000000000000000000000000000000000000",
+        "gasLimit": 0,
+        "gasPrice": 0,
+        "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
+        "payload": "",
+        "timestamp": 1540178976,
+        "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
 }
 ```
 ***
@@ -726,7 +758,8 @@ This method returns tx information by hash.
 - `status`:`string` - transaction status
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
@@ -737,24 +770,25 @@ This method returns tx information by hash.
 #### Example
 ```js
 // Request
-client gettxbyhash --hash 0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff
+client gettxbyhash --hash 0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e
 
 // Result
 {
-	"blockHash": "0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922",
-	"blockHeight": 4202,
-	"status": "block",
-	"transaction": {
-		"accountNonce": 3,
-		"amount": 10000,
-		"fee": 1,
-		"from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-		"hash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
-		"payload": "",
-		"timestamp": 0,
-		"to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
-	},
-	"txIndex": 1
+        "blockHash": "0x0000009c753570436b0bdd4ea1b9cfb1611f181f7aae82d4ba265761c50c8479",
+        "blockHeight": 3608,
+        "status": "block",
+        "transaction": {
+                "accountNonce": 0,
+                "amount": 150000000,
+                "from": "0x0000000000000000000000000000000000000000",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
+                "payload": "",
+                "timestamp": 1540178976,
+                "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
+        },
+        "txIndex": 0
 }
 ```
 ***
@@ -764,12 +798,13 @@ This method is used to obtain the receipt contents based on transaction hash.
 
 | Type | Template|
 |-------|-------|
-| Console | `client getreceipt --hash <string> -a <rpc address>` |
+| Console | `client getreceipt --hash <string> --abi <string> -a <rpc address>` |
 
 #### Parameters
 
 - `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 - `hash`:`string` - hash value in hex
+- `abi`:`string` - the abi file of contract
 
 #### Returns
 
@@ -784,17 +819,17 @@ This method is used to obtain the receipt contents based on transaction hash.
 #### Example
 ```js
 // Request
-client getreceipt --hash 0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff
+client getreceipt --hash 0x9c0e2565b8a0b33c3f69aa6eb9bad4a86c3925a1fe12272e2082091b9b1c5609
 
 // Result
 {
 	"contract": "0x",
 	"failed": false,
-	"poststate": "0xdd0b0fc6605bbb2e76b8c22ccd466ea5eaa1a80e4860fbdf971be58ded3d782b",
+	"poststate": "0xef59ced1b06d3ec77aa5c3b0fa1bd7cdd83890961f49d06aabe0a2d57583dd3b",
 	"result": "0x",
-	"totalFee": 1,
-	"txhash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
-	"usedGas": 0
+	"totalFee": 21000,
+	"txhash": "0x9c0e2565b8a0b33c3f69aa6eb9bad4a86c3925a1fe12272e2082091b9b1c5609",
+	"usedGas": 21000
 }
 ```
 ***

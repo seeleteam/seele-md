@@ -89,7 +89,7 @@ node start -c configpath --miner stop
 
 ### Start mining with Seele Full Client
 
-If you already have a Seele full node, you can use the full node client to start and manage your Node Miner [Create a Full Node Client](Getting-Started-With-Seele.html#create-a-full-node-client) will help you on how to acquire a full client node。
+If you already have a Seele full node, you can use the full node client to start and manage your Node Miner [Create a Full Node Client](Getting-Started-With-Seele.html#create-a-full-node-client) will help you on how to acquire a full client node.
 
 #### Example
 
