@@ -328,7 +328,8 @@ This method is used to obtain the block content based on block height or block h
 - `transactions`:`array` - transaction array
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
@@ -387,22 +388,24 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlock","params":["",103
             {
                 "accountNonce": 0,
                 "amount": 150000000,
-                "fee": 0,
                 "from": "0x0000000000000000000000000000000000000000",
-                "hash": "0x5c5c72b14ff8599cdd70c85c090ff74d4db0a5e2a9dbb5a702c31200de8245ae",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x6fb17b265260caed33b4e8f58ad84b508dd8950b9bc93dae8518fc96912f76bb",
                 "payload": "",
-                "timestamp": 1539050098,
-                "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
+                "timestamp": 1539931510,
+                "to": "0xd5a145191b7ca9cb4f3dc850e426c1e853d2a9f1"
             },
             {
-                "accountNonce": 9,
+                "accountNonce": 280,
                 "amount": 10000,
-                "fee": 1,
-                "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "hash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
+                "from": "0xec759db47a65f6537d630517f6cd3ca39c6f93d1",
+                "gasLimit": 21000,
+                "gasPrice": 1,
+                "hash": "0xf526dc404145cd409601e951fec4f2222f3abf578381cdaaea9db3a791a79cbd",
                 "payload": "",
                 "timestamp": 0,
-                "to": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831"
+                "to": "0xa00d22dc3624d4696eff8d1641b442f79c3379b1"
             }
         ],
         "txDebts": [
@@ -465,7 +468,8 @@ This method is used to obtain the block content based on block hash.
 - `transactions`:`array` - transaction array
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
@@ -524,22 +528,24 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":[
             {
                 "accountNonce": 0,
                 "amount": 150000000,
-                "fee": 0,
                 "from": "0x0000000000000000000000000000000000000000",
-                "hash": "0x5c5c72b14ff8599cdd70c85c090ff74d4db0a5e2a9dbb5a702c31200de8245ae",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x6fb17b265260caed33b4e8f58ad84b508dd8950b9bc93dae8518fc96912f76bb",
                 "payload": "",
-                "timestamp": 1539050098,
-                "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
+                "timestamp": 1539931510,
+                "to": "0xd5a145191b7ca9cb4f3dc850e426c1e853d2a9f1"
             },
             {
-                "accountNonce": 9,
+                "accountNonce": 280,
                 "amount": 10000,
-                "fee": 1,
-                "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "hash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
+                "from": "0xec759db47a65f6537d630517f6cd3ca39c6f93d1",
+                "gasLimit": 21000,
+                "gasPrice": 1,
+                "hash": "0xf526dc404145cd409601e951fec4f2222f3abf578381cdaaea9db3a791a79cbd",
                 "payload": "",
                 "timestamp": 0,
-                "to": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831"
+                "to": "0xa00d22dc3624d4696eff8d1641b442f79c3379b1"
             }
         ],
         "txDebts": [
@@ -602,7 +608,8 @@ This method is used to obtain the block content based on block height.
 - `transactions`:`array` - transaction array
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
@@ -661,22 +668,24 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params"
             {
                 "accountNonce": 0,
                 "amount": 150000000,
-                "fee": 0,
                 "from": "0x0000000000000000000000000000000000000000",
-                "hash": "0x5c5c72b14ff8599cdd70c85c090ff74d4db0a5e2a9dbb5a702c31200de8245ae",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x6fb17b265260caed33b4e8f58ad84b508dd8950b9bc93dae8518fc96912f76bb",
                 "payload": "",
-                "timestamp": 1539050098,
-                "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
+                "timestamp": 1539931510,
+                "to": "0xd5a145191b7ca9cb4f3dc850e426c1e853d2a9f1"
             },
             {
-                "accountNonce": 9,
+                "accountNonce": 280,
                 "amount": 10000,
-                "fee": 1,
-                "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "hash": "0x0b30a6edf95a16933a0a77ffd3eb15680d4e3cb79466f21c1181c013a68eae62",
+                "from": "0xec759db47a65f6537d630517f6cd3ca39c6f93d1",
+                "gasLimit": 21000,
+                "gasPrice": 1,
+                "hash": "0xf526dc404145cd409601e951fec4f2222f3abf578381cdaaea9db3a791a79cbd",
                 "payload": "",
                 "timestamp": 0,
-                "to": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831"
+                "to": "0xa00d22dc3624d4696eff8d1641b442f79c3379b1"
             }
         ],
         "txDebts": [
@@ -960,7 +969,8 @@ This method is used to obtain the transaction content based on block height or h
 
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
@@ -977,14 +987,15 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockInde
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "accountNonce": 3,
-        "amount": 10000,
-        "fee": 1,
-        "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-        "hash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
+        "accountNonce": 0,
+        "amount": 150000000,
+        "from": "0x0000000000000000000000000000000000000000",
+        "gasLimit": 0,
+        "gasPrice": 0,
+        "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
         "payload": "",
-        "timestamp": 0,
-        "to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
+        "timestamp": 1540178976,
+        "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
     }
 }
 ```
@@ -1007,7 +1018,8 @@ This method is used to obtain the transaction content based on block height and 
 
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
@@ -1024,14 +1036,15 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeig
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "accountNonce": 3,
-        "amount": 10000,
-        "fee": 1,
-        "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-        "hash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
+        "accountNonce": 0,
+        "amount": 150000000,
+        "from": "0x0000000000000000000000000000000000000000",
+        "gasLimit": 0,
+        "gasPrice": 0,
+        "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
         "payload": "",
-        "timestamp": 0,
-        "to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
+        "timestamp": 1540178976,
+        "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
     }
 }
 ```
@@ -1054,7 +1067,8 @@ This method is used to obtain the transaction content based on block hash and tr
 
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
@@ -1071,14 +1085,15 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHash
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "accountNonce": 3,
-        "amount": 10000,
-        "fee": 1,
-        "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-        "hash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
+        "accountNonce": 0,
+        "amount": 150000000,
+        "from": "0x0000000000000000000000000000000000000000",
+        "gasLimit": 0,
+        "gasPrice": 0,
+        "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
         "payload": "",
-        "timestamp": 0,
-        "to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
+        "timestamp": 1540178976,
+        "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
     }
 }
 ```
@@ -1103,7 +1118,8 @@ This method returns transaction information by hash.
 - `status`:`string` - transaction status
 - `accountNonce`:`unit64` - account nonce
 - `amount`:`Int` - transaction amount
-- `fee`:`Int` - transaction fee
+- `gasLimit`:`Int` - transaction gas limit
+- `gasPrice`:`Int` - transaction gas price
 - `from`:`string` - transaction provider
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
@@ -1121,20 +1137,21 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","pa
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "blockHash": "0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922",
-        "blockHeight": 4202,
+        "blockHash": "0x0000009c753570436b0bdd4ea1b9cfb1611f181f7aae82d4ba265761c50c8479",
+        "blockHeight": 3608,
         "status": "block",
         "transaction": {
-            "accountNonce": 3,
-            "amount": 10000,
-            "fee": 1,
-            "from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-            "hash": "0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff",
-            "payload": "",
-            "timestamp": 0,
-            "to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
+                "accountNonce": 0,
+                "amount": 150000000,
+                "from": "0x0000000000000000000000000000000000000000",
+                "gasLimit": 0,
+                "gasPrice": 0,
+                "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
+                "payload": "",
+                "timestamp": 1540178976,
+                "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
         },
-        "txIndex": 1
+        "txIndex": 0
     }
 }
 ```
@@ -1151,6 +1168,7 @@ This method is used to obtain the receipt contents based on transaction hash.
 ##### Parameters
 
 - `hash`:`string` - hash value in hex
+- `abi`:`string` - the abi file of contract
 
 ##### Returns
 
