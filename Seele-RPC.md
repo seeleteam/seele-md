@@ -47,6 +47,7 @@ Currently, there are several RPCs with different namespaces：
 |[Call](#call)| &#x2713; || &#x2713; ||
 |GetLogs(Being Written)| &#x2713; || &#x2713; ||
 |[GeneratePayload](#generatepayload)| &#x2713; || &#x2713; ||
+|[EstimateGas](#estimategas)| &#x2713; || &#x2713; ||
 
 - [txpool](#txpool)
 
@@ -732,7 +733,7 @@ This method is used to execute a given transaction on a statedb of a given block
 
 ##### Example
 When using the example below, the contract must be deployed first. The solidity code file:
-```solidity
+```
 pragma solidity ^0.4.0;
 
 contract SimpleStorage {
@@ -789,7 +790,7 @@ TODO
 
 ##### Example
 When using the example below, the contract must be deployed first. The solidity code file:
-```solidity
+```
 pragma solidity ^0.4.0;
 
 contract simple_storage_1 {
@@ -852,6 +853,59 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"seele_generatePayload","params":
     "jsonrpc": "2.0",
     "id": 1,
     "result": "0x60fe47b10000000000000000000000000000000000000000000000000000000000000001"
+}
+```
+***
+
+#### EstimateGas
+
+This method Estimate the gas of a transaction.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"seele_estimateGas","params":[string],"id":1}` |
+
+##### Parameters
+
+- `Hash`:`string` - transaction hash
+- `Data`:`json` - transaction data
+- `From`:`string` - transaction sender
+- `To`:`string` - transaction receiver
+- `Amount`:`uint64` - amount value, unit is fan
+- `GasPrice`:`uint64` - transaction gas price in Fan
+- `GasLimit`:`uint64` - maximum gas for transaction
+- `Payload`:`string` - transaction payload
+- `AccountNonce`:`uint64` - transaction nonce
+
+##### Returns
+
+- `result`:`bool` - transaction send result
+
+##### Example
+```js
+// Request
+curl -X POST --data'{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{
+	"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32",
+	"Data": {
+		"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
+		"To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
+		"Amount": 20000,
+		"AccountNonce": 1,
+		"GasPrice": 10,
+		"GasLimit": 200000,
+		"Timestamp": 0,
+		"Payload": ""
+	},
+	"Signature": {
+		"Sig": "cqBn3pdgPbqCrqN1LXbgbWpiRJvXY/VNiqnMeN9X7oliSn5NNA345ChP0xBL6hejpk4mClZgq3hbA8obavHVUgA="
+	}
+}],"id":1}' localhost:8037
+
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": 42000
 }
 ```
 ***

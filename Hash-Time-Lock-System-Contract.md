@@ -1,5 +1,9 @@
 # Hash Time Lock System Contract
+
+Please read [Hash Time Lock Contract introduction](https://github.com/seeleteam/labs/wiki/Hash-Time-Lock-Contract) for detail.
+
 ## Tutorial for Hash Time Lock (HTLC) System Contract
+
 ### Home
 - [Introduction](#introduction)
 - [View Commands](#view-commands)
