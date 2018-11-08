@@ -8,7 +8,7 @@
 ### Compile the contract simulator
 
 The code is in `https://github.com/seeleteam/go-seele`
-```git
+```
 git clone https://github.com/seeleteam/go-seele.git
 
 cd go-seele/cmd/vm
@@ -21,7 +21,7 @@ Copy the solc compiler to this path, and copy the solidity file in it too.
 #### Smart contract source code: 
 
 SimpleStorage.sol:
-```solidity 
+```
 pragma solidity ^0.4.0;
 
 contract SimpleStorage {
@@ -83,7 +83,7 @@ The following demonstration is done using the online version.
 #### 2. Compile Contract
 
 Prepare the smart contract source code: 
-```solidity 
+```
 pragma solidity ^0.4.0;
 
 contract SimpleStorage {
@@ -169,7 +169,7 @@ Similar to set function, click on the get button.
 If the log shows up in the log field then means the function call is successful.
 ![](https://raw.githubusercontent.com/wangff15386/seele-photo/master/photo/simulator%20remix/11.png)
 Click on the log line item for detail.
-![](https://raw.githubusercontent.com/wangff15386/seele-photo/master/photo/simulator%20remix/12.png)
+![](https://raw.githubusercontent.com/wangff15386/seele-photo/master/simulator%20remix/12.png)
 Copy the content from the input field.
 ```
 0x6d4ce63c

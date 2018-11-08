@@ -1,6 +1,1178 @@
 # Seele Client
 Seele comes with a client which has support for all management APIs described here.
 
+## Command Line Options
+
+### Full Node Client
+```
+client -h
+NAME:
+   client - interact with a full node process
+
+USAGE:
+   client [global options] command [command options] [arguments...]
+
+AUTHOR:
+   seeleteam <dev@seelenet.com>
+
+COMMANDS:
+     call              call contract
+     deckeyfile        Decrypt key file
+     domain            system domain name commands
+     dumpheap          dump heap for profiling, return the file path
+     getbalance        get balance info
+     getblock          get block by height or hash
+     getblockheight    get block height
+     getblocktxcount   get block transaction count by block height or block hash
+     getdebtbyhash     get debt by debt hash
+     getdebts          get pending debts
+     getinfo           get node info
+     getlogs           get logs
+     getnonce          get account nonce
+     getpendingtxs     get pending transactions
+     getreceipt        get receipt by transaction hash
+     getshardnum       get account shard number
+     gettxbyhash       get transaction by transaction hash
+     gettxinblock      get transaction by block height or block hash with index of the transaction in the block
+     gettxpoolcontent  get transaction pool contents
+     gettxpoolcount    get transaction pool transaction count
+     htlc              Hash time lock contract commands
+     key               generate key with or without shard number
+     miner             miner commands
+     p2p               p2p commands
+     payload           generate the payload according to the abi file and method name and args
+     savekey           save private key to a keystore file
+     sendtx            send transaction to node
+     sign              generate a signed transaction and print it out
+     subchain          system sub chain commands
+     help, h           Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --help, -h  show help
+```
+
+```
+client call -h
+NAME:
+   client call - call contract
+
+USAGE:
+   client call [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --to value                 to address
+   --payload value            transaction payload info
+   --height value             block height (default: -1)
+```
+
+```
+client deckeyfile -h
+NAME:
+   client deckeyfile - Decrypt key file
+
+USAGE:
+   client deckeyfile [command options] [arguments...]
+
+OPTIONS:
+   --file value  key store file name (default: ".keystore")
+```
+
+```
+client domain -h
+NAME:
+   client domain - system domain name commands
+
+USAGE:
+   client domain command [command options] [arguments...]
+
+COMMANDS:
+     owner     get the domain name owner
+     register  register a domain name
+
+OPTIONS:
+   --help, -h  show help
+```
+
+```
+client domain owner -h
+NAME:
+   client domain owner - get the domain name owner
+
+USAGE:
+   client domain owner [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --name value               domain or subchain name
+   --nonce value              transaction nonce (default: 0)
+```
+
+```
+client domain register -h
+NAME:
+   client domain register - register a domain name
+
+USAGE:
+   client domain register [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --name value               domain or subchain name
+   --nonce value              transaction nonce (default: 0)
+```
+
+```
+client dumpheap -h
+NAME:
+   client dumpheap - dump heap for profiling, return the file path
+
+USAGE:
+   client dumpheap [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --file value               heap dump file name, default heap.dump (default: "heap.dump")
+   --gc                       GC before heap dump, default false
+```
+
+```
+client getbalance -h
+NAME:
+   client getbalance - get balance info
+
+USAGE:
+   client getbalance [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --account value            account address
+```
+
+```
+client getblock -h
+NAME:
+   client getblock - get block by height or hash
+
+USAGE:
+   client getblock [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --height value             block height (default: -1)
+   --fulltx, -f               whether print full transaction info
+```
+
+```
+client getblockheight -h
+NAME:
+   client getblockheight - get block height
+
+USAGE:
+   client getblockheight [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client getblocktxcount -h
+NAME:
+   client getblocktxcount - get block transaction count by block height or block hash
+
+USAGE:
+   client getblocktxcount [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --height value             block height (default: -1)
+```
+
+```
+client getdebtbyhash -h
+NAME:
+   client getdebtbyhash - get debt by debt hash
+
+USAGE:
+   client getdebtbyhash [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+```
+
+```
+client getdebts -h
+NAME:
+   client getdebts - get pending debts
+
+USAGE:
+   client getdebts [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client getinfo -h
+NAME:
+   client getinfo - get node info
+
+USAGE:
+   client getinfo [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client getlogs -h
+NAME:
+   client getlogs - get logs
+
+USAGE:
+   client getlogs [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --height value             block height (default: -1)
+   --contract value           contract code in hex
+   --topic value              topic
+```
+
+```
+client getnonce -h
+NAME:
+   client getnonce - get account nonce
+
+USAGE:
+   client getnonce [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --account value            account address
+```
+
+```
+client getpendingtxs -h
+NAME:
+   client getpendingtxs - get pending transactions
+
+USAGE:
+   client getpendingtxs [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client getreceipt -h
+NAME:
+   client getreceipt - get receipt by transaction hash
+
+USAGE:
+   client getreceipt [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --abi value                the abi file of contract
+```
+
+```
+client getshardnum -h
+NAME:
+   client getshardnum - get account shard number
+
+USAGE:
+   client getshardnum [command options] [arguments...]
+
+OPTIONS:
+   --account value     account address
+   --privatekey value  private key for account
+```
+
+```
+client gettxbyhash -h
+NAME:
+   client gettxbyhash - get transaction by transaction hash
+
+USAGE:
+   client gettxbyhash [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+```
+
+```
+client gettxinblock -h
+NAME:
+   client gettxinblock - get transaction by block height or block hash with index of the transaction in the block
+
+USAGE:
+   client gettxinblock [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --height value             block height (default: -1)
+   --index value              transaction index, start with 0 (default: 0)
+```
+
+```
+client gettxpoolcontent -h
+NAME:
+   client gettxpoolcontent - get transaction pool contents
+
+USAGE:
+   client gettxpoolcontent [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client gettxpoolcount -h
+NAME:
+   client gettxpoolcount - get transaction pool transaction count
+
+USAGE:
+   client gettxpoolcount [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client htlc -h
+NAME:
+   client htlc - Hash time lock contract commands
+
+USAGE:
+   client htlc command [command options] [arguments...]
+
+COMMANDS:
+     create    create HTLC
+     decode    decode HTLC contract information
+     get       get HTLC information
+     key       generate preimage key and key hash
+     refund    refund from HTLC
+     time      generate unix timestamp
+     withdraw  withdraw from HTLC
+
+OPTIONS:
+   --help, -h  show help
+```
+
+```
+client htlc create -h
+NAME:
+   client htlc create - create HTLC
+
+USAGE:
+   client htlc create [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --to value                 to address
+   --amount value             amount value, unit is fan
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --nonce value              transaction nonce (default: 0)
+   --hash value               hash value in hex
+   --time value               time lock in the HTLC (default: 0)
+```
+
+```
+client htlc decode -h
+NAME:
+   client htlc decode - decode HTLC contract information
+
+USAGE:
+   client htlc decode [command options] [arguments...]
+
+OPTIONS:
+   --payload value  transaction payload info
+```
+
+```
+client htlc get -h
+NAME:
+   client htlc get - get HTLC information
+
+USAGE:
+   client htlc get [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --hash value               hash value in hex
+```
+
+```
+client htlc key -h
+NAME:
+   client htlc key - generate preimage key and key hash
+
+USAGE:
+   client htlc key [arguments...]
+```
+
+```
+client htlc refund -h
+NAME:
+   client htlc refund - refund from HTLC
+
+USAGE:
+   client htlc refund [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --nonce value              transaction nonce (default: 0)
+   --hash value               hash value in hex
+```
+
+```
+client htlc time -h
+NAME:
+   client htlc time - generate unix timestamp
+
+USAGE:
+   client htlc time [command options] [arguments...]
+
+OPTIONS:
+   --time value  time lock in the HTLC (default: 0)
+```
+
+```
+client htlc withdraw -h
+NAME:
+   client htlc withdraw - withdraw from HTLC
+
+USAGE:
+   client htlc withdraw [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --nonce value              transaction nonce (default: 0)
+   --hash value               hash value in hex
+   --preimage value           preimage of hash in the HTLC
+```
+
+```
+client key -h
+NAME:
+   client key - generate key with or without shard number
+
+USAGE:
+   client key [command options] [arguments...]
+
+OPTIONS:
+   --shard value  shard number (default: 0)
+```
+
+```
+client miner -h
+NAME:
+   client miner - miner commands
+
+USAGE:
+   client miner command [command options] [arguments...]
+
+COMMANDS:
+     getcoinbase  get miner coinbase
+     hashrate     get hashrate
+     setcoinbase  set miner coinbase
+     setthreads   set miner thread number
+     start        start miner
+     status       get miner status
+     stop         stop miner
+     threads      get thread number
+
+OPTIONS:
+   --help, -h  show help
+```
+
+```
+client miner getcoinbase -h
+NAME:
+   client miner getcoinbase - get miner coinbase
+
+USAGE:
+   client miner getcoinbase [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client miner hashrate -h
+NAME:
+   client miner hashrate - get hashrate
+
+USAGE:
+   client miner hashrate [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client miner setcoinbase -h
+NAME:
+   client miner setcoinbase - set miner coinbase
+
+USAGE:
+   client miner setcoinbase [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --coinbase value           miner coinbase in hex
+```
+
+```
+client miner setthreads -h
+NAME:
+   client miner setthreads - set miner thread number
+
+USAGE:
+   client miner setthreads [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --threads value            miner threads (default: 0)
+```
+
+```
+client miner start -h
+NAME:
+   client miner start - start miner
+
+USAGE:
+   client miner start [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client miner status -h
+NAME:
+   client miner status - get miner status
+
+USAGE:
+   client miner status [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client miner stop -h
+NAME:
+   client miner stop - stop miner
+
+USAGE:
+   client miner stop [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client p2p -h
+NAME:
+   client p2p - p2p commands
+
+USAGE:
+   client p2p command [command options] [arguments...]
+
+COMMANDS:
+     netversion       get current net version
+     networkid        get current network id
+     peers            get p2p peer connections
+     peersinfo        get p2p peers information
+     protocolversion  get seele protocol version
+
+OPTIONS:
+   --help, -h  show help
+```
+
+```
+client p2p netversion -h
+NAME:
+   client p2p netversion - get current net version
+
+USAGE:
+   client p2p netversion [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client p2p networkid -h
+NAME:
+   client p2p networkid - get current network id
+
+USAGE:
+   client p2p networkid [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client p2p peers -h
+NAME:
+   client p2p peers - get p2p peer connections
+
+USAGE:
+   client p2p peers [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client p2p peersinfo -h
+NAME:
+   client p2p peersinfo - get p2p peers information
+
+USAGE:
+   client p2p peersinfo [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client p2p protocolversion -h
+NAME:
+   client p2p protocolversion - get seele protocol version
+
+USAGE:
+   client p2p protocolversion [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+client payload -h
+NAME:
+   client payload - generate the payload according to the abi file and method name and args
+
+USAGE:
+   client payload [command options] [arguments...]
+
+OPTIONS:
+   --abi value     the abi file of contract
+   --method value  the method name of contract
+   --args value    the parameters of contract method
+```
+
+```
+client savekey -h
+NAME:
+   client savekey - save private key to a keystore file
+
+USAGE:
+   client savekey [command options] [arguments...]
+
+OPTIONS:
+   --privatekey value  private key for account
+   --file value        key store file name (default: ".keystore")
+```
+
+```
+client sendtx -h
+NAME:
+   client sendtx - send transaction to node
+
+USAGE:
+   client sendtx [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --to value                 to address
+   --amount value             amount value, unit is fan
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --payload value            transaction payload info
+   --nonce value              transaction nonce (default: 0)
+```
+
+```
+client sign -h
+NAME:
+   client sign - generate a signed transaction and print it out
+
+USAGE:
+   client sign [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --privatekey value         private key for account
+   --to value                 to address
+   --amount value             amount value, unit is fan
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --payload value            transaction payload info
+   --nonce value              transaction nonce (default: 0)
+```
+
+```
+client subchain -h
+NAME:
+   client subchain - system sub chain commands
+
+USAGE:
+   client subchain command [command options] [arguments...]
+
+COMMANDS:
+     config    generate sub chain config file
+     query     query sub chain
+     register  register a sub chain
+
+OPTIONS:
+   --help, -h  show help
+```
+
+```
+client subchain config -h
+NAME:
+   client subchain config - generate sub chain config file
+
+USAGE:
+   client subchain config [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --coinbase value           miner coinbase in hex
+   --privatekey value         private key for account
+   --name value               domain or subchain name
+   --output value, -o value   subchain config file path
+   --shard value              shard number (default: 0)
+   --node value, -n value     subchain static node, for example:-n address:port -n address:prot
+```
+
+```
+client subchain query -h
+NAME:
+   client subchain query - query sub chain
+
+USAGE:
+   client subchain query [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --nonce value              transaction nonce (default: 0)
+   --name value               domain or subchain name
+```
+
+```
+client subchain register -h
+NAME:
+   client subchain register - register a sub chain
+
+USAGE:
+   client subchain register [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --nonce value              transaction nonce (default: 0)
+   --file value               subchain json file path
+```
+
+### Light Node Client
+
+```
+light -h
+NAME:
+   light - interact with a light node process
+
+USAGE:
+   light [global options] command [command options] [arguments...]
+
+AUTHOR:
+   seeleteam <dev@seelenet.com>
+
+COMMANDS:
+     deckeyfile        Decrypt key file
+     getbalance        get balance info
+     getblock          get block by height or hash
+     getblockheight    get block height
+     getblocktxcount   get block transaction count by block height or block hash
+     getnonce          get account nonce
+     getpendingtxs     get pending transactions
+     getreceipt        get receipt by transaction hash
+     getshardnum       get account shard number
+     gettxbyhash       get transaction by transaction hash
+     gettxinblock      get transaction by block height or block hash with index of the transaction in the block
+     gettxpoolcontent  get transaction pool contents
+     gettxpoolcount    get transaction pool transaction count
+     key               generate key with or without shard number
+     p2p               p2p commands
+     payload           generate the payload according to the abi file and method name and args
+     savekey           save private key to a keystore file
+     sendtx            send transaction to node
+     sign              generate a signed transaction and print it out
+     help, h           Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --help, -h  show help
+```
+
+```
+light deckeyfile -h
+NAME:
+   light deckeyfile - Decrypt key file
+
+USAGE:
+   light deckeyfile [command options] [arguments...]
+
+OPTIONS:
+   --file value  key store file name (default: ".keystore")
+```
+
+```
+light getbalance -h
+NAME:
+   light getbalance - get balance info
+
+USAGE:
+   light getbalance [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --account value            account address
+```
+
+```
+light getblock -h
+NAME:
+   light getblock - get block by height or hash
+
+USAGE:
+   light getblock [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --height value             block height (default: -1)
+   --fulltx, -f               whether print full transaction info
+```
+
+```
+light getblockheight -h
+NAME:
+   light getblockheight - get block height
+
+USAGE:
+   light getblockheight [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light getblocktxcount -h
+NAME:
+   light getblocktxcount - get block transaction count by block height or block hash
+
+USAGE:
+   light getblocktxcount [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --height value             block height (default: -1)
+```
+
+```
+light getnonce -h
+NAME:
+   light getnonce - get account nonce
+
+USAGE:
+   light getnonce [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --account value            account address
+```
+
+```
+light getpendingtxs -h
+NAME:
+   light getpendingtxs - get pending transactions
+
+USAGE:
+   light getpendingtxs [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light getreceipt -h
+NAME:
+   light getreceipt - get receipt by transaction hash
+
+USAGE:
+   light getreceipt [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --abi value                the abi file of contract
+```
+
+```
+light getshardnum -h
+NAME:
+   light getshardnum - get account shard number
+
+USAGE:
+   light getshardnum [command options] [arguments...]
+
+OPTIONS:
+   --account value     account address
+   --privatekey value  private key for account
+```
+
+```
+light gettxbyhash -h
+NAME:
+   light gettxbyhash - get transaction by transaction hash
+
+USAGE:
+   light gettxbyhash [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+```
+
+```
+light gettxinblock -h
+NAME:
+   light gettxinblock - get transaction by block height or block hash with index of the transaction in the block
+
+USAGE:
+   light gettxinblock [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --hash value               hash value in hex
+   --height value             block height (default: -1)
+   --index value              transaction index, start with 0 (default: 0)
+```
+
+```
+light gettxpoolcontent -h
+NAME:
+   light gettxpoolcontent - get transaction pool contents
+
+USAGE:
+   light gettxpoolcontent [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light gettxpoolcount -h
+NAME:
+   light gettxpoolcount - get transaction pool transaction count
+
+USAGE:
+   light gettxpoolcount [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light key -h
+NAME:
+   light key - generate key with or without shard number
+
+USAGE:
+   light key [command options] [arguments...]
+
+OPTIONS:
+   --shard value  shard number (default: 0)
+```
+
+```
+light p2p -h
+NAME:
+   light p2p - p2p commands
+
+USAGE:
+   light p2p command [command options] [arguments...]
+
+COMMANDS:
+     netversion       get current net version
+     networkid        get current network id
+     peers            get p2p peer connections
+     peersinfo        get p2p peers information
+     protocolversion  get seele protocol version
+
+OPTIONS:
+   --help, -h  show help
+```
+
+```
+light p2p netversion -h
+NAME:
+   light p2p netversion - get current net version
+
+USAGE:
+   light p2p netversion [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light p2p networkid -h
+NAME:
+   light p2p networkid - get current network id
+
+USAGE:
+   light p2p networkid [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light p2p peers -h
+NAME:
+   light p2p peers - get p2p peer connections
+
+USAGE:
+   light p2p peers [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light p2p peersinfo -h
+NAME:
+   light p2p peersinfo - get p2p peers information
+
+USAGE:
+   light p2p peersinfo [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light p2p protocolversion -h
+NAME:
+   light p2p protocolversion - get seele protocol version
+
+USAGE:
+   light p2p protocolversion [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+```
+
+```
+light payload -h
+NAME:
+   light payload - generate the payload according to the abi file and method name and args
+
+USAGE:
+   light payload [command options] [arguments...]
+
+OPTIONS:
+   --abi value     the abi file of contract
+   --method value  the method name of contract
+   --args value    the parameters of contract method
+```
+
+```
+light savekey -h
+NAME:
+   light savekey - save private key to a keystore file
+
+USAGE:
+   light savekey [command options] [arguments...]
+
+OPTIONS:
+   --privatekey value  private key for account
+   --file value        key store file name (default: ".keystore")
+```
+
+```
+light sendtx -h
+NAME:
+   light sendtx - send transaction to node
+
+USAGE:
+   light sendtx [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --from value               key file of the sender
+   --to value                 to address
+   --amount value             amount value, unit is fan
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --payload value            transaction payload info
+   --nonce value              transaction nonce (default: 0)
+```
+
+```
+light sign -h
+NAME:
+   light sign - generate a signed transaction and print it out
+
+USAGE:
+   light sign [command options] [arguments...]
+
+OPTIONS:
+   --address value, -a value  address for client to request (default: "127.0.0.1:8027")
+   --privatekey value         private key for account
+   --to value                 to address
+   --amount value             amount value, unit is fan
+   --price value              transaction gas price in Fan (default: "10")
+   --gas value                maximum gas for transaction (default: 200000)
+   --payload value            transaction payload info
+   --nonce value              transaction nonce (default: 0)
+```
+
 ## JSON-RPC Support
 | Type | Supported? |
 |-------|:------------:|
@@ -43,7 +1215,8 @@ Default port:
 |[Miner GetCoinbase](#miner-getcoinbase)| &#x2713; ||
 |[Miner SetThreads](#miner-setthreads)| &#x2713; ||
 |[Miner SetCoinbase](#miner-setcoinbase)| &#x2713; ||
-|[Miner GetEngineInfo](#miner-getengineinfo)| &#x2713; ||
+|[Miner Hashrate](#miner-hashrate)| &#x2713; ||
+|[Miner Threads](#miner-threads)| &#x2713; ||
 |[GetTxPoolContent](#gettxpoolcontent)| &#x2713; | &#x2713; |
 |[GetTxPoolTxCount](#gettxpooltxcount)| &#x2713; | &#x2713; |
 |[GetPendingTransactions](#getpendingtransactions)| &#x2713; | &#x2713; |
@@ -552,7 +1725,7 @@ This method is used to execute a given transaction on a statedb of a given block
 
 #### Example
 When using the example below, the contract must be deployed first. The solidity code file:
-```solidity
+```
 pragma solidity ^0.4.0;
 
 contract SimpleStorage {
@@ -610,7 +1783,7 @@ This method gets the event logs by block height, the contract address, and the e
 
 #### Example
 When using the example below, the contract must be deployed first. The solidity code file:
-```solidity
+```
 pragma solidity ^0.4.0;
 
 contract simple_storage_1 {
@@ -903,7 +2076,7 @@ This method returns the information of peer nodes.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
@@ -954,7 +2127,7 @@ This method returns the number of peer nodes.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
@@ -980,7 +2153,7 @@ This method returns the network version.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
@@ -1006,7 +2179,7 @@ This method returns the protocol version.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
@@ -1032,7 +2205,7 @@ This method returns the network id.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
@@ -1050,24 +2223,24 @@ seele
 
 ### Miner Start
 
-This method starts the miner with an input number of threads.
+This method starts the miner.
 
 | Type | Template|
 |-------|-------|
-| Console | `client miner start --threads <miner threads num> -a <rpc address>` |
+| Console | `client miner start -a <rpc address>` |
 
 #### Parameters
 
-- `threads`:`int` - number of threads
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
-none
+true or false
 
 #### Example
 ```js
 // Request
-client miner start --threads 2
+client miner start
 
 // Result
 true
@@ -1084,11 +2257,11 @@ This method stops the miner.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
-none
+true or false
 
 #### Example
 ```js
@@ -1110,11 +2283,11 @@ This method returns the miner's status.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
-none
+"Running" or "Stopped"
 
 #### Example
 ```js
@@ -1136,7 +2309,7 @@ This method is used to obtain the coinbase of miner consensus.
 
 #### Parameters
 
-none
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 
 #### Returns
 
@@ -1162,11 +2335,12 @@ This method is used to set the threads of miner consensus.
 
 #### Parameters
 
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 - `threads`:`int` - miner threads (default: 0)
 
 #### Returns
 
-- `result`:`int` - threads
+true or false
 
 #### Example
 ```js
@@ -1188,11 +2362,12 @@ This method is used to set the coinbase
 
 #### Parameters
 
+- `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 - `coinbase`:`string` coinbase of the miner
 
 #### Returns
 
-- none
+true or false
 
 #### Example
 ```js
@@ -1204,13 +2379,13 @@ true
 ```
 ***
 
-### Miner GetEngineInfo
+### Miner Hashrate
 
-This method returns engine information of miner
+This method returns hashrate information of miner
 
 | Type | Template|
 |-------|-------|
-| Console | `client getengineinfo -a <rpc address>` |
+| Console | `client hashrate -a <rpc address>` |
 
 #### Parameters
 
@@ -1218,18 +2393,41 @@ This method returns engine information of miner
 
 #### Returns
 
-- none
+- hashrate
 
 #### Example
 ```js
 // Request
-client getengineinfo
+client hashrate
 
 // Result
-{
-	"hashrate": 495812.2433994204,
-	"threads": 1
-}
+392363
+```
+***
+
+### Miner Threads
+
+This method returns threads number of miner
+
+| Type | Template|
+|-------|-------|
+| Console | `client threads -a <rpc address>` |
+
+#### Parameters
+
+- `address, a`:`string` address for client to request (default: "127.0.0.1:8027")
+
+#### Returns
+
+- threads num
+
+#### Example
+```js
+// Request
+client threads
+
+// Result
+2
 ```
 ***
 
@@ -1445,6 +2643,35 @@ client key
 // Result
 public key:  0xf66b94477311556da1767e267e0a5782045eea61
 private key: 0x52117b49022b246ee3921a7ff6771df065594a0dde555e40d8ce940a3ecfb654
+```
+***
+
+### Deckeyfile
+
+This method is used to deckey key file to public key and private key.
+
+| Type | Template|
+|-------|-------|
+| Console | `client deckeyfile --file <string>` |
+
+#### Parameters
+
+- `file`:`string` private key file
+
+#### Returns
+
+- `public key`:`string` - public key
+- `private key`:`string` - private key
+
+#### Example
+```js
+// Request
+client deckeyfile --file .keystore-shard-1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21
+
+// Result
+Please input your key file password: 
+public key:  0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21
+private key: 0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479
 ```
 ***
 

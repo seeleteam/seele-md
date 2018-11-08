@@ -20,19 +20,19 @@ go get -u -v github.com/seeleteam/go-seele/...
 - commands:
   - On Windows:
     - Running a Singular Node：
-      - In the cmd window, run: `node start -c .\config\node1.json`
+      - In the cmd window, run: `node start -c .\config\node1.json [--accounts .\config\accounts.json]`
       - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
     - Running Multiple Nodes：
-      - In one cmd window, run: `node start -c .\config\node1.json`
-      - In a second cmd window, run: `node start -c .\config\node2.json`
+      - In one cmd window, run: `node start -c .\config\node1.json [--accounts .\config\accounts.json]`
+      - In a second cmd window, run: `node start -c .\config\node2.json [--accounts .\config\accounts.json]`
 
   - On Linux & Mac:
     - Running a Singular Node：
-      - On terminal, run: `./node start -c ./config/node1.json`
+      - On terminal, run: `./node start -c ./config/node1.json [--accounts ./config/accounts.json]`
       - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
     - Running Multiple Nodes：
-      - In one terminal window, run: `./node start -c ./config/node1.json`
-      - In another terminal window, run: `./node start -c ./config/node2.json`
+      - In one terminal window, run: `./node start -c ./config/node1.json [--accounts ./config/accounts.json]`
+      - In another terminal window, run: `./node start -c ./config/node2.json [--accounts ./config/accounts.json]`
 
     Note: in the config file under the seeleteam/go-seele/cmd/node path, there are 4 different module configurations that you can choose from to start your node. 
 
@@ -40,8 +40,9 @@ go get -u -v github.com/seeleteam/go-seele/...
   
    You can choose your own custom module configurations and not use the default module configurations to start your node. The custom configurations are below:
    (`Notes: you can follow` [Join Seele Network](Join-Seele-TestNet.html) `to join Seele Network`)
-<span id="node1">
 
+node1.json:
+```
 {
   "basic":{
     "name": "seele node1",
@@ -89,8 +90,23 @@ go get -u -v github.com/seeleteam/go-seele/...
     "timestamp":1539742676
   }
 }
+```
 
-</span>
+accounts.json:
+```
+{
+  "0x007d1b1ea335e8e4a74c0be781d828dc7db934b1": 1000000000000,
+  "0x0a57a2714e193b7ac50475ce625f2dcfb483d741": 1000000000000,
+  "0x2a23825407740fa7163069257c57452c4d4fc3d1": 1000000000000,
+  "0x2a87b6504cd00af95a83b9887112016a2a991cf1": 1000000000000,
+  "0x3b691130ec4166bfc9ec7240217fc8d08903cf21": 1000000000000,
+  "0x4eea165e9266f20bf6e5e08e0c11d38e8fc02661": 1000000000000,
+  "0x4fb7c8b0287378f0cf8b5a9262bf3ef7e101f8d1": 1000000000000,
+  "0xec759db47a65f6537d630517f6cd3ca39c6f93d1": 1000000000000,
+  "0xfaf78f23293cc537154c275c874ede0f8c8b8801": 1000000000000,
+  "0xfbe506bdaf256682551873290d0a794d51bac4d1": 1000000000000
+}
+```
 
 <table> <tbody>
 <tr>
@@ -233,20 +249,20 @@ go get -u -v github.com/seeleteam/go-seele/...
 
 - Help:
 
-```js
-To run：client -h
-
+```
+client -h
 NAME:
-   client.exe - interact with a full node process
+   client - interact with a full node process
 
 USAGE:
-   client.exe [global options] command [command options] [arguments...]
+   client [global options] command [command options] [arguments...]
 
 AUTHOR:
    seeleteam <dev@seelenet.com>
 
 COMMANDS:
      call              call contract
+     deckeyfile        Decrypt key file
      domain            system domain name commands
      dumpheap          dump heap for profiling, return the file path
      getbalance        get balance info
@@ -295,18 +311,18 @@ GLOBAL OPTIONS:
 - Help:
 
 ```js
-To run：light -h
-
+light -h
 NAME:
-   light.exe - interact with a light node process
+   light - interact with a light node process
 
 USAGE:
-   light.exe [global options] command [command options] [arguments...]
+   light [global options] command [command options] [arguments...]
 
 AUTHOR:
    seeleteam <dev@seelenet.com>
 
 COMMANDS:
+     deckeyfile        Decrypt key file
      getbalance        get balance info
      getblock          get block by height or hash
      getblockheight    get block height
@@ -334,33 +350,10 @@ GLOBAL OPTIONS:
 ## Three common scene commands:
 
 - Prepare:
-  - The commands mentioned next, if you don't know how to use it, please check the [Seele documentation](../index.html) in detail.
-  - For convenience, A is From address on shard 1.
 
-    generate A account:
-    
-  ```js
-  // Request
-  node key --shard 1
+  [How to create an account](How-To-Create-An-Account.html) will help you to get a Seele account.
 
-  // Response
-  public key:  0xb4153ca4090a11af1984cdf20b0d0cbed5ff97a1
-  private key: 0x28f74ba46964f6bd09be55654d58eacea72b57449d5636a8c347c15a9104fbc3
-  ```
-  
-    Sometimes you may need to generate the from address keyfile, command:
-    
-  ```js
-  // Request
-  client savekey --privatekey 0x28f74ba46964f6bd09be55654d58eacea72b57449d5636a8c347c15a9104fbc3 --file .keystore-shard1
-
-  // Response
-  Password:
-  Repeat password:
-  store key successful
-  ```
-
-### 1. Tranfer
+### 1. Transfer
 
   - Of course, you need a rich account to transfer money (for example, 10 fans) to A.    
     > Use the following example need to add the `--accounts` parameter when you need to start the node, command:`node start -c ./config/node1.json --accounts ./config/accounts.json`
@@ -426,7 +419,7 @@ By the way, if tx is not packed by the miner or the miner is packing, you may se
 ```
 
 ### 2. Deploy contract
-  - For the sake of convenience, use A deploy the `simple_storage.sol` contract.
+  - For the sake of convenience, use A deploy the `simple_storage.sol` contract.[Using the contract simulator](Using-the-contract-simulator.html) will help you to get the contract binary data.
 
 ```js
   // Request
