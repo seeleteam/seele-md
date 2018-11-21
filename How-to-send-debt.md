@@ -1,5 +1,7 @@
 # How To Send Debt
 
+- The different between transaction and debt is that transaction happened in two accounts on the same shard,debt happened in two accounts on different shards.
+
 You should have two accounts on different shards.[Here](How-to-send-debt.html) will help you to get the accounts.
 
 ## 1. Transfer
@@ -68,7 +70,7 @@ By the way, if tx is not packed by the miner or the miner is packing, you may se
 
 ## 2. Get debt
 
-  - When the transaction got over 100 blocks confirmed, you will get the pending debt on shard 2.
+  - When the transaction got over 120 blocks confirmed, you will get the pending debt on shard 2.
 
 ```
 client getdebts --address 127.0.0.1:8028
