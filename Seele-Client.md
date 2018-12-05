@@ -153,6 +153,8 @@ USAGE:
 OPTIONS:
    --address value, -a value  address for client to request (default: "127.0.0.1:8027")
    --account value            account address
+   --hash value               hash value in hex
+   --height value             block height or current block height for negative value (default: -1)
 ```
 
 ```
@@ -259,6 +261,8 @@ USAGE:
 OPTIONS:
    --address value, -a value  address for client to request (default: "127.0.0.1:8027")
    --account value            account address
+   --hash value               hash value in hex
+   --height value             block height or current block height for negative value (default: -1)
 ```
 
 ```
@@ -870,6 +874,8 @@ USAGE:
 OPTIONS:
    --address value, -a value  address for client to request (default: "127.0.0.1:8027")
    --account value            account address
+   --hash value               hash value in hex
+   --height value             block height or current block height for negative value (default: -1)
 ```
 
 ```
@@ -914,7 +920,7 @@ OPTIONS:
 ```
 
 ```
-light getnonce -h
+./light getnonce -h
 NAME:
    light getnonce - get account nonce
 
@@ -924,6 +930,8 @@ USAGE:
 OPTIONS:
    --address value, -a value  address for client to request (default: "127.0.0.1:8027")
    --account value            account address
+   --hash value               hash value in hex
+   --height value             block height or current block height for negative value (default: -1)
 ```
 
 ```
@@ -1189,60 +1197,61 @@ Default port:
 ## Client Command List
 | Command | Full | Light |
 |-------|:-------:|:-------:|
-|[GetInfo](#getinfo)| &#x2713; ||
-|[GetBalance](#getbalance)| &#x2713; | &#x2713; |
-|[AddTx](#addtx)| &#x2713; | &#x2713; |
-|[GetAccountNonce](#getaccountnonce)| &#x2713; | &#x2713; |
-|[GetBlockHeight](#getblockheight)| &#x2713; | &#x2713; |
-|[GetBlock](#getblock)| &#x2713; | &#x2713; |
-|[SaveKey](#savekey)| &#x2713; | &#x2713; |
-|[GetAccountShardNum](#getaccountshardnum)| &#x2713; | &#x2713; |
 |[Call](#call)| &#x2713; ||
-|GetLogs (Being Written)| &#x2713; ||
-|[GetBlockTransactionCount](#getblocktransactioncount)| &#x2713; | &#x2713; |
-|[GetTransactionByBlockIndex](#gettransactionbyblockindex)| &#x2713; | &#x2713; |
-|[GetTransactionByHash](#gettransactionbyhash)| &#x2713; | &#x2713; |
-|[GetReceiptByTxHash](#getreceiptbytxhash)| &#x2713; | &#x2713; |
-|[GetDebtByHash](#getdebtbyhash)| &#x2713; ||
-|[GetPeersInfo](#getpeersinfo)| &#x2713; | &#x2713; |
-|[GetPeerCount](#getpeercount)| &#x2713; | &#x2713; |
-|[GetNetworkVersion](#getnetworkversion)| &#x2713; | &#x2713; |
-|[GetProtocolVersion](#getprotocolversion)| &#x2713; | &#x2713; |
-|[GetNetworkID](#getnetworkid)| &#x2713; | &#x2713; |
-|[Miner Start](#miner-start)| &#x2713; ||
-|[Miner Stop](#miner-stop)| &#x2713; ||
-|[Miner Status](#miner-status)| &#x2713; ||
-|[Miner GetCoinbase](#miner-getcoinbase)| &#x2713; ||
-|[Miner SetThreads](#miner-setthreads)| &#x2713; ||
-|[Miner SetCoinbase](#miner-setcoinbase)| &#x2713; ||
-|[Miner Hashrate](#miner-hashrate)| &#x2713; ||
-|[Miner Threads](#miner-threads)| &#x2713; ||
-|[GetTxPoolContent](#gettxpoolcontent)| &#x2713; | &#x2713; |
-|[GetTxPoolTxCount](#gettxpooltxcount)| &#x2713; | &#x2713; |
-|[GetPendingTransactions](#getpendingtransactions)| &#x2713; | &#x2713; |
-|[GetPendingDebts](#getpendingdebts)| &#x2713; ||
-|[DumpHeap](#dumpheap)| &#x2713; ||
-|[Key](#key)| &#x2713; | &#x2713; |
-|[Sign](#sign)| &#x2713; | &#x2713; |
-|[GeneratePayload](#generatepayload)| &#x2713; | &#x2713; |
 |[CreateHTLC](#createhtlc)| &#x2713; ||
 |[DecodeHTLC](#decodehtlc)| &#x2713; ||
-|[GetHTLC](#gethtlc)| &#x2713; ||
+|[DumpHeap](#dumpheap)| &#x2713; ||
 |[GenerateHTLCKey](#generatehtlckey)| &#x2713; ||
-|[RefundFromHTLC](#refundfromhtlc)| &#x2713; ||
 |[GenerateHTLCStamptime](#generatehtlcstamptime)| &#x2713; ||
-|[WithdrawFromHTLC](#withdrawfromhtlc)| &#x2713; ||
-|[RegisterDomainName](#registerdomainname)| &#x2713; ||
+|[GeneratePayload](#generatepayload)| &#x2713; | &#x2713; |
+|[GetAccountNonce](#getaccountnonce)| &#x2713; | &#x2713; |
+|[GetAccountShardNum](#getaccountshardnum)| &#x2713; | &#x2713; |
+|[GetBalance](#getbalance)| &#x2713; | &#x2713; |
+|[GetBlock](#getblock)| &#x2713; | &#x2713; |
+|[GetBlockHeight](#getblockheight)| &#x2713; | &#x2713; |
+|[GetBlockTransactionCount](#getblocktransactioncount)| &#x2713; | &#x2713; |
+|[GetDebtByHash](#getdebtbyhash)| &#x2713; ||
 |[GetDomainNameOwner](#getdomainnameowner)| &#x2713; ||
+|[GetHTLC](#gethtlc)| &#x2713; ||
+|[GetInfo](#getinfo)| &#x2713; ||
+|[GetLogs](#getlogs)| &#x2713; ||
+|[GetNetworkID](#getnetworkid)| &#x2713; | &#x2713; |
+|[GetNetworkVersion](#getnetworkversion)| &#x2713; | &#x2713; |
+|[GetPeerCount](#getpeercount)| &#x2713; | &#x2713; |
+|[GetPeersInfo](#getpeersinfo)| &#x2713; | &#x2713; |
+|[GetPendingDebts](#getpendingdebts)| &#x2713; ||
+|[GetPendingTransactions](#getpendingtransactions)| &#x2713; | &#x2713; |
+|[GetProtocolVersion](#getprotocolversion)| &#x2713; | &#x2713; |
+|[GetReceiptByTxHash](#getreceiptbytxhash)| &#x2713; | &#x2713; |
+|[GetTransactionByBlockIndex](#gettransactionbyblockindex)| &#x2713; | &#x2713; |
+|[GetTransactionByHash](#gettransactionbyhash)| &#x2713; | &#x2713; |
+|[GetTxPoolContent](#gettxpoolcontent)| &#x2713; | &#x2713; |
+|[GetTxPoolTxCount](#gettxpooltxcount)| &#x2713; | &#x2713; |
+|[Key](#key)| &#x2713; | &#x2713; |
+|[Miner GetCoinbase](#miner-getcoinbase)| &#x2713; ||
+|[Miner Hashrate](#miner-hashrate)| &#x2713; ||
+|[Miner SetCoinbase](#miner-setcoinbase)| &#x2713; ||
+|[Miner SetThreads](#miner-setthreads)| &#x2713; ||
+|[Miner Start](#miner-start)| &#x2713; ||
+|[Miner Status](#miner-status)| &#x2713; ||
+|[Miner Stop](#miner-stop)| &#x2713; ||
+|[Miner Threads](#miner-threads)| &#x2713; ||
+|[RefundFromHTLC](#refundfromhtlc)| &#x2713; ||
+|[RegisterDomainName](#registerdomainname)| &#x2713; ||
+|[SaveKey](#savekey)| &#x2713; | &#x2713; |
+|[SendTx](#sendtx)| &#x2713; | &#x2713; |
+|[Sign](#sign)| &#x2713; | &#x2713; |
+|[WithdrawFromHTLC](#withdrawfromhtlc)| &#x2713; ||
 |GenSubChainCfgFile (Being Written)| &#x2713; ||
 |QuerySubChain (Being Written)| &#x2713; ||
 |RegisterSubChain (Being Written)| &#x2713; ||
+
 ### GetInfo
 This method returns node information.
 
 | Type | Template|
 |-------|-------|
-| Console | `client getinfo -a <rpc address>` |
+| Console | `client getinfo -a <address>` |
 
 #### Parameters
 
@@ -1278,12 +1287,14 @@ This method returns the account balance. If the account flag is null, the node a
 
 | Type | Template|
 |-------|-------|
-| Console | `client getbalance --account 0x<public address> -a <rpc address>` |
+| Console | `client getbalance --account <string> -a <address>` |
 
 #### Parameters
 
 - `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 - `account`:`string` - wallet address
+- `hash`:`string` - hash value in hex
+- `height`:`uint64` - block height or current block height for negative value (default: -1)
 
 #### Returns
 
@@ -1303,13 +1314,13 @@ client getbalance --account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21
 ```
 ***
 
-### AddTx
+### SendTx
 
 This method submits a transaction to the node.
 
 | Type | Template|
 |-------|-------|
-| Console | `client sendtx --amount 10000 --fee 1 --from keyfile --to <string> -a <rpc address> ` |
+| Console | `client sendtx --amount 10000 --from <keyfile> --to <string> -a <address> ` |
 
 #### Parameters
 
@@ -1375,6 +1386,8 @@ This method is used to obtain the nonce of the address.
 
 - `address, a`:`string` - address for client to request (default: "127.0.0.1:8027")
 - `account`:`string` - wallet address
+- `hash`:`string` - hash value in hex
+- `height`:`uint64` - block height or current block height for negative value (default: -1)
 
 #### Returns
 
@@ -1786,23 +1799,20 @@ When using the example below, the contract must be deployed first. The solidity 
 ```
 pragma solidity ^0.4.0;
 
-contract simple_storage_1 {
-    uint storedData=23;
-    
-    event getLog(address addr, string message);
-    event getLog1(string message);
-    event getLog2(string message);
+contract SimpleStorage {
+    uint storedData;
+    event getX(uint,uint);
 
-    function set(uint x) public{
-        getLog1("set getLog1");
-        getLog2("set getLog2");
-        storedData=x;
+    function SimpleStorage() public{
+        storedData = 5;
     }
-    
-    function get() constant public returns(uint) {
-        getLog(msg.sender, "get getLog");
-        getLog1("get getLog1");
-        set(16);
+
+    function set(uint x) public {
+        storedData = x;
+    }
+
+    function get() public returns (uint) {
+        emit getX(1,2);
         return storedData;
     }
 }
@@ -2688,8 +2698,9 @@ This method is used to sign data with your private key.
 - `address, a`:`string` address for client to request (default: "127.0.0.1:8027")
 - `privatekey`:`string` private key
 - `to`:`string` public address of the receiver
-- `amount`:`unit64` the amount of the transferred coins
-- `fee`:`unit64` transaction fee
+- `amount`:`uint64` the amount of the transferred coins
+- `price`:`int64` transaction gas price in Fan (default: "10")
+- `gas`:`int64` maximum gas for transaction (default: 200000)
 - `payload`:`string` transaction payload
 - `nonce`:`int` transaction nonce
 
@@ -2701,7 +2712,8 @@ This method is used to sign data with your private key.
 - `To`:`string` transaction receiver
 - `Amount`:`string` public address of the receiver
 - `AccountNonce`:`unit64`  account nonce
-- `Fee`:`string` transaction fee
+- `price`:`int64` transaction gas price in Fan (default: "10")
+- `gas`:`int64` maximum gas for transaction (default: 200000)
 - `Timestamp`:`string` transaction timestamp
 - `Payload`:`string` transaction payload
 - `Signature`:`string` transaction signature
@@ -2710,24 +2722,25 @@ This method is used to sign data with your private key.
 #### Example
 ```js
 // Request
-client sign --amount 20000 --fee 1 --nonce 7 --privatekey 0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479 --to 0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831
+client sign --amount 20000 --nonce 1 --privatekey 0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479 --to 0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831
 
 // Result
-account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 current nonce: 7, sending nonce: 7
+account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 current nonce: 0, sending nonce: 1
 {
-        "Hash": "0x9ba03f6c4fcbe61a19f1721ec46c3f9dd3db91d236083a33b17396220c4accea",
-        "Data": {
-                "From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-                "To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-                "Amount": 20000,
-                "AccountNonce": 7,
-                "Fee": 1,
-                "Timestamp": 0,
-                "Payload": ""
-        },
-        "Signature": {
-                "Sig": "BFkYL2KdCsoXl/njQs+v9/rwj3c5DVAMjfGTF7P6IdxiL1ra/NpLG/cM2HabPgqD1lV8PBjBy6UAmHuNxz5M1gA="
-        }
+	"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32",
+	"Data": {
+		"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
+		"To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
+		"Amount": 20000,
+		"AccountNonce": 1,
+		"GasPrice": 10,
+		"GasLimit": 200000,
+		"Timestamp": 0,
+		"Payload": ""
+	},
+	"Signature": {
+		"Sig": "cqBn3pdgPbqCrqN1LXbgbWpiRJvXY/VNiqnMeN9X7oliSn5NNA345ChP0xBL6hejpk4mClZgq3hbA8obavHVUgA="
+	}
 }
 ```
 ***
