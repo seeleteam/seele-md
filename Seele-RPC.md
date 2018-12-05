@@ -52,27 +52,27 @@ Currently, there are several RPCs with different namespaces：
 - [txpool](#txpool)
 
 | Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
-|[GetBlockTransactionCount](#getblocktransactioncount)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTransactionCountByHeight](#getblocktransactioncountbyheight)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTransactionCountByHash](#getblocktransactioncountbyhash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionByBlockIndex](#gettransactionbyblockindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionByBlockHeightAndIndex](#gettransactionbyblockheightandindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionByBlockHashAndIndex](#gettransactionbyblockhashandindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetReceiptByTransactionHash](#getreceiptbytxhash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTxByHash](#gettransactionbyhash)| &#x2713; | &#x2713; | &#x2713; ||
+|-------------------------------|:-------:|:-------:|:-------:|:-------:|
+|[GetBlockTxCount](#getblocktxcount)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetBlockTxCountByHeight](#getblocktxcountbyheight)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetBlockTxNumberByHash](#getblocktxnumberbyhash)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTxByBlockIndex](#gettxbyblockindex)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTxByBlockHeightAndIndex](#gettxbyblockheightandindex)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTxByBlockHashAndIndex](#gettxbyblockhashandindex)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetReceiptByTxHash](#getreceiptbytxhash)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTxByHash](#gettxbyhash)| &#x2713; | &#x2713; | &#x2713; ||
 |[GetDebtByHash](#getdebtbyhash)| &#x2713; ||| &#x2713; |
 
 - [download](#download)
 
 | Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
+|-------------|:-------:|:-------:|:-------:|:-------:|
 |[GetStatus](#getstatus)| &#x2713; ||| &#x2713; |
 
 - [network](#network)
 
 | Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
+|---------------------------|:-------:|:-------:|:-------:|:-------:|
 |[GetPeersInfo](#getpeersinfo)| &#x2713; | &#x2713; || &#x2713; |
 |[GetPeerCount](#getpeercount)| &#x2713; | &#x2713; || &#x2713; |
 |[GetNetworkVersion](#getnetworkversion)| &#x2713; | &#x2713; || &#x2713; |
@@ -94,11 +94,11 @@ Currently, there are several RPCs with different namespaces：
 - [debug](#debug)
 
 | Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
+|-----------------------------|:-------:|:-------:|:-------:|:-------:|
 |[PrintBlock](#printblock)| &#x2713; ||| &#x2713; |
 |[GetTxPoolContent](#gettxpoolcontent)| &#x2713; | &#x2713; || &#x2713; |
 |[GetTxPoolTxCount](#gettxpooltxcount)| &#x2713; | &#x2713; || &#x2713; |
-|[GetPendingTransactions](#getpendingtransactions)| &#x2713; | &#x2713; || &#x2713; |
+|[GetPendingTxs](#getpendingtxs)| &#x2713; | &#x2713; || &#x2713; |
 |[GetPendingDebts](#getpendingdebts)| &#x2713; ||| &#x2713; |
 |[DumpHeap](#dumpheap)| &#x2713; ||| &#x2713; |
 |[GetTPS](#gettps)| &#x2713; ||| &#x2713; |
@@ -106,7 +106,7 @@ Currently, there are several RPCs with different namespaces：
 - [monitor](#monitor)
 
 | Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
+|-----------------|:-------:|:-------:|:-------:|:-------:|
 |[NodeInfo](#nodeinfo)| &#x2713; || &#x2713; ||
 |[NodeStats](#nodestats)| &#x2713; || &#x2713; ||
 
@@ -914,7 +914,7 @@ curl -X POST --data'{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{
 RPC collection provided for internal use for transaction pool inquiry manipulation.
 ***
 
-#### GetBlockTransactionCount
+#### GetBlockTxCount
 
 This method is used to obtain the number of transactions in the transaction pool based on block height or hash.
 
@@ -945,7 +945,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount"
 ```
 ***
 
-#### GetBlockTransactionCountByHeight
+#### GetBlockTxCountByHeight
 
 This method is used to obtain the number of transactions in the transaction pool based on block height.
 
@@ -975,7 +975,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountB
 ```
 ***
 
-#### GetBlockTransactionCountByHash
+#### GetBlockTxNumberByHash
 
 This method is used to obtain the number of transactions in the transaction pool based on block hash.
 
@@ -1005,7 +1005,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount"
 ```
 ***
 
-#### GetTransactionByBlockIndex
+#### GetTxByBlockIndex
 
 This method is used to obtain the transaction content based on block height or hash and transaction index.
 
@@ -1055,7 +1055,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockInde
 ```
 ***
 
-#### GetTransactionByBlockHeightAndIndex
+#### GetTxByBlockHeightAndIndex
 
 This method is used to obtain the transaction content based on block height and transaction index.
 
@@ -1104,7 +1104,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeig
 ```
 ***
 
-#### GetTransactionByBlockHashAndIndex
+#### GetTxByBlockHashAndIndex
 
 This method is used to obtain the transaction content based on block hash and transaction index.
 
@@ -1153,7 +1153,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHash
 ```
 ***
 
-#### GetTransactionByHash
+#### GetTxByHash
 
 This method returns transaction information by hash.
 
@@ -1939,7 +1939,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolTxCount","params"
 ```
 ***
 
-#### GetPendingTransactions
+#### GetPendingTxs
 
 This method is used to obtain pending transactions in the transaction pool.
 

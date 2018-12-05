@@ -2,7 +2,7 @@
 
 - The different between transaction and debt is that transaction happened in two accounts on the same shard,debt happened in two accounts on different shards.
 
-You should have two accounts on different shards.[Here](How-to-send-debt.html) will help you to get the accounts.
+You should have two accounts on different shards.[Here](How-To-Create-An-Account.html) will help you to get the accounts.
 
 ## 1. Transfer
 
