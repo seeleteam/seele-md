@@ -5,17 +5,17 @@
 
 Currently, Seele provides CPU Miner.
 
-***Attention***，If you want to do mining on Seele，please make sure you are running the Seele Node on the Main-Net，and has to be run as full node.If you are not familiar with Seele，please read [Getting Started With Seele](Getting-Started-With-Seele.html).
+***Attention***，If you want to do mining on Seele，please make sure you are running the Seele Node(full node) on the Main-Net. If you are not familiar with Seele，please read [Getting Started With Seele](Getting-Started-With-Seele.html).
 
 ### Start mining on Seele Node
 
-You could start mining at the same time when Seele Node is starting，[Setting Up a Node](Getting-Started-With-Seele.html#setting-up-a-node) will help you on how to build a Node and start Seele Node.
+WHen Seele NOde starts, you could start mining at the same time. [Setting Up a Node](Getting-Started-With-Seele.html#setting-up-a-node) will help you on how to build a Node and start Seele Node.
 
 Seele Node provides the `--miner, -m` command line parameter to specify whether to start mining when Node starts. The default is to start. If you don't want to mine, you can use `--miner stop` when starting Node. The Seele Node also provides the `--threads` command line argument to set the number of threads used by the Miner started by Node.
 
 #### Example
 
-<b>A configuration file is required at start of Seele Node, and the format of the configuration file is referenced [configpath](#configpath)</b>.
+<b>A configuration file is required at the start of Seele Node, and the format of the configuration file is referenced to [configpath](#configpath)</b>.
 
 ##### configpath
 ```sh
@@ -89,7 +89,7 @@ node start -c configpath --miner stop
 
 ### Start mining with Seele Full Client
 
-If you already have a Seele full node, you can use the full node client to start and manage your Node Miner [Create a Full Node Client](Getting-Started-With-Seele.html#create-a-full-node-client) will help you on how to acquire a full client node.
+If you already have a Seele full node running, you can use the full node client to start and manage your Node miner [Create a Full Node Client](Getting-Started-With-Seele.html#create-a-full-node-client) will help you on how to acquire a full client node.
 
 #### Example
 
@@ -140,7 +140,7 @@ client miner getcoinbase
 Sets Seele Node Miner Coinbase:
 
 ```js
-client miner setcoinbase "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
+client miner setcoinbase --coinbase "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
 
 true
 ```

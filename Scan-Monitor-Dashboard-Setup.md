@@ -5,15 +5,25 @@
 ### 1.	Install Required Tools
 #### 1）	Install Node
 ```bash
-yum install node
+Redhat/CentOS:
+sudo yum install node
+sudo yum install npm
+
+Ubuntu:
+sudo apt install nodejs
+sudo apt install npm
 ```
 #### 2）	Install pm2
 ```bash
-yum install pm2
+npm install pm2 -g
 ```
 #### 3）	Install nginx
 ```bash
+Redhat/CentOS:
 yum install nginx
+
+Ubuntu:
+sudo apt install nginx
 ```
 ### 2.	Deploy a Monitor
 #### 1)	Download the monitor source code

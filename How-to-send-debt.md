@@ -1,18 +1,20 @@
 # How To Send Debt
 
-- The different between transaction and debt is that transaction happened in two accounts on the same shard,debt happened in two accounts on different shards.
+- The difference between transactions and debts is that transactions happen between two accounts on the same shard while debts happen between two accounts on different shards.
 
-You should have two accounts on different shards.[Here](How-To-Create-An-Account.html) will help you to get the accounts.
+You should have two accounts on different shards. [Here](How-To-Create-An-Account.html) will help you to get the accounts.
 
 ## 1. Transfer
 
-  - You need a rich account to transfer money (for example, 100000 fan) from shard1 account to shard2 account.
+  - You need an account with value to transfer money (for example, 100000 fan) from shard1 account to shard2 account.
 ```
 shard1 account: 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21
 shard2 account: 0xd228e1dd02bdce9656b8e195a77e0da0b70daea1
 ```
 
 ```js
+In go-seele/cmd/client
+
 // Request
 client sendtx --from .keystore-shard1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 --to 0xd228e1dd02bdce9656b8e195a77e0da0b70daea1 --amount 100000
 Please input your key file password:
@@ -65,7 +67,7 @@ client getreceipt --hash 0x07d874cad8305bdcb813221425725d0c4ce651a20420e98cc0e91
 }
 ```
 
-The result of `"failed": false`row, indicating that the transfer was successful.
+The result of `"failed": false`row indicats that the transfer was successful.
 By the way, if tx is not packed by the miner or the miner is packing, you may see`get error when call rpc leveldb: not found`. Don't worry, just wait for servals seconds, or you can use `client gettxbyhash` to query tx `status`.
 
 ## 2. Get debt
@@ -90,7 +92,7 @@ client getdebts --address 127.0.0.1:8028
 ]
 ```
 
-  - Few second later, the debt will be packed by shard 2 new block.
+  - Few second later, the debt will be packed by a new block in shard 2.
 
 ```
 client getdebtbyhash --hash 0x5ecc232012ae6a1cfe9ab88ca38583872c0bc0b2e1da4e987f5dc98cbde8c0f1 --address 127.0.0.1:8028
