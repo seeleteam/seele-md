@@ -3095,7 +3095,7 @@ This method is used to withdraw from HTLC.
 - `Fee`:`unit64` transaction fee
 - `Timestamp`:`unit64` transaction timestamp
 - `Payload`:`string` transaction payload
-- `Signature`:`string` transaction signature
+- `Signature`: this `string` transaction signature
 - `Sig`:`string` transaction sig
 - `hash`:`string` get hash
 - `preimage`:`string`  preimage of hash in the HTLC
@@ -3282,7 +3282,7 @@ This method is used to query sub chain.
 
 #### Parameters
 
-- `address, a`:`string` address for client to request (default: "127.0.0.1:8027")
+- `address, a`:`string` address for client to request (default: "127.0.0.1:8027") The default address for ./client is 127.0.0.1:8027 which does not work for every shard.
 - `from`:`string` key file of the sender
 - `fee`:`unit64` transaction fee
 - `nonce`:`int` transaction nonce (default: 0)

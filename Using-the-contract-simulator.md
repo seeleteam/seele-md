@@ -21,7 +21,10 @@ Copy the solc compiler to this path, and copy the solidity file in it too.
 #### Smart contract source code: 
 
 SimpleStorage.sol:
+
 ```
+This example is only compatible with solidity 0.4.0
+
 pragma solidity ^0.4.0;
 
 contract SimpleStorage {
@@ -41,7 +44,7 @@ contract SimpleStorage {
 
 ```
 // Request
-vm create -f simpleStorage.sol
+./vm create -f simpleStorage.sol
 
 // Response
 Succeed to create contract!

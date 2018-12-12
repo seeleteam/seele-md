@@ -3,28 +3,30 @@
 ## Setting Up a Node
 
 - Preparations: 
-  - Install [Go v1.10](https://golang.org/doc/install) or higher, [Git](https://git-scm.com/downloads), and the [C compiler](#gcc-install-newbie-guide). 
+  - Install [Go v1.10](https://golang.org/doc/install) or higher, [Git](https://git-scm.com/downloads), and the [C compiler](#gcc-install-newbie-guide)(if you have not installed GO, Git or C compiler please follow README). 
   - Clone the go-seele repository to the [GOPATH](https://github.com/golang/go/wiki/SettingGOPATH) directory :
 `
 go get -u -v github.com/seeleteam/go-seele/...
 `
-  - In `seeleteam\go-seele\cmd\node`, run: `go build`; if you are running this for the first time a node executable object will appear. 
-- Running a Node: 
+- In `seeleteam\go-seele\cmd\node`, run: `go build`; if you are running this for the first time a node executable object will appear. 
+ 
+Something you may need to know before running a node:
 
-> 1. If you run into the error related to "genesis block hash mismatch", follow the solution located [here](#genesis-block-hash-mismatch).
-> 2. If you want to run a light node, just replace node1.json with light_node1.json. Of course, don't forget to start a full node before you do this.
-> 3. Unless otherwise stated, the nodes mentioned below refer to the full node.
+ 1. If you run into the error related to "genesis block hash mismatch", follow the solution located [here](#genesis-block-hash-mismatch).
+ 2. If you want to run a light node, just replace node1.json with light_node1.json. Of course, don't forget to start a full node before you do this.
+ 3. Unless otherwise stated, the nodes mentioned below refer to the full node.
 
 
+Running a Node:
 
-- commands:
+- In go-seele/cmd/node:
   - On Windows:
-    - Running a Singular Node：
-      - In the cmd window, run: `node start -c .\config\node1.json [--accounts .\config\accounts.json]`
+    - Running a Single Node：
+      - In the cmd window, run: `node start -c .\config\node1.json --accounts .\config\accounts.json`
       - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
     - Running Multiple Nodes：
-      - In one cmd window, run: `node start -c .\config\node1.json [--accounts .\config\accounts.json]`
-      - In a second cmd window, run: `node start -c .\config\node2.json [--accounts .\config\accounts.json]`
+      - In one cmd window, run: `node start -c .\config\node1.json --accounts .\config\accounts.json`
+      - In a second cmd window, run: `node start -c .\config\node2.json --accounts .\config\accounts.json`
 
   - On Linux & Mac:
     - Running a Singular Node：
@@ -238,7 +240,7 @@ accounts.json:
 ## Create a Full Node Client:
 		
 - Preparations:
-  - Install go v1.10 or higher and the C compiler. 
+  - Install go v1.10 or higher and the C compiler (if you haven't install GO, Git or C compiler please follow README). 
   - In `seeleteam\go-seele\cmd\client`, run: `go build`. If you are running this for the first time, a client executable object will appear.
 
 - Running a Full Node Client:
@@ -347,7 +349,7 @@ GLOBAL OPTIONS:
    --help, -h  show help
 ```
 
-## Three common scene commands:
+## Three common-used commands:
 
 - Prepare:
 
@@ -355,14 +357,18 @@ GLOBAL OPTIONS:
 
 ### 1. Transfer
 
-  - Of course, you need a rich account to transfer money (for example, 10 fans) to A.    
-    > Use the following example need to add the `--accounts` parameter when you need to start the node, command:`node start -c ./config/node1.json --accounts ./config/accounts.json`
+  - Of course, you need an account with money in it to transfer money (for example, 10 fans) to A.    
+    > Use the following example need to add the `--accounts` parameter when you need to start the node, In seeleteam/go-seele/cmd/node:
+    command:`node start -c ./config/node1.json --accounts ./config/accounts.json`
 
 ```js
-  // Request
+  // Request (if not given value,  default value will be : gasprice = 10, gaslimit = 21000)
   client sendtx --amount 10000 --price 1 --gas 2 --from .keystore-shard-1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 --to 0xb286933bccbec9ca1cd92257d12d12ebab9b1201
 
-  // Response
+  // Response (If we want use coherent name as savekey step in “How To Create An Account”, it is recommended to use .keystore-shard1& It is .keystore-shard1 not .keystore-shard-1)
+  
+  In seeleteam/go-seele/cmd/node: 
+
   Please input your key file password: 
   account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 current nonce: 0, sending nonce: 0
   transaction sent successfully
@@ -419,7 +425,7 @@ By the way, if tx is not packed by the miner or the miner is packing, you may se
 ```
 
 ### 2. Deploy contract
-  - For the sake of convenience, use A deploy the `simple_storage.sol` contract.[Using the contract simulator](Using-the-contract-simulator.html) will help you to get the contract binary data.
+  - For the sake of convenience, use A to deploy the `simple_storage.sol` contract. [Using the contract simulator](Using-the-contract-simulator.html) will help you to get the contract binary data.
 
 ```js
   // Request
