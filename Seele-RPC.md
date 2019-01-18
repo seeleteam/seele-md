@@ -3,6 +3,10 @@ JSON is a lightweight data exchange format. It can represent numbers, strings, o
 
 JSON-RPC is a stateless, lightweight Remote Procedure Call (RPC) protocol. It defines several data structures and the relevant rules to handle them. JSON-RPC is transmission-agnostic, because it can be used in situations like process, socket, HTTP, or different message transmission environments. It uses JSON(RFC 4627) as the data format.
 
+## Curl Examples Explained
+The curl options below might return a response where the node complains about the content type, this is because the --data option sets the content type to application/x-www-form-urlencoded . If your node does complain, manually set the header by placing -H "Content-Type: application/json" at the start of the call.
+
+
 ## JSON-RPC Support
 | Type | Supported? |
 |-------|:------------:|
@@ -138,7 +142,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":1}' localhost:8037
+curl  -X POST --data '{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":1}' localhost:8037
 
 // Result
 {
@@ -157,16 +161,17 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":
 
 #### GetBalance
 
-This method returns the account balance.
+This method returns the account balance give the account address.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBalance","params":[string],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_getBalance","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
 - `Account`:`string` - account
-
+- `hexHash`:`string` - hex form of a block hash, set to "" for the latest balance
+- `height` :`uint64` - height of a block, set to -1 for the latest balance
 ##### Returns
 
 - `Account`:`string` - account
@@ -175,7 +180,7 @@ This method returns the account balance.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":1}' localhost:8037
+curl  -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -195,19 +200,25 @@ This method submits a transaction to the node.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_addTx","params":[string],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_addTx","params":[types.Transaction],"id":1}` |
 
 ##### Parameters
 
-- `Hash`:`string` - transaction hash
-- `Data`:`json` - transaction data
-- `From`:`string` - transaction sender
-- `To`:`string` - transaction receiver
-- `Amount`:`uint64` - amount value, unit is fan
-- `Fee`:`uint64` - transaction fee
-- `Payload`:`string` - transaction payload
-- `AccountNonce`:`uint64` - transaction nonce
-
+- `tx`:`types.Transaction` - transaction struct (client command `sign` could be used to get transaction hash and signature)
+  - `Hash`:`string` - transaction hash
+  - `Data`:`json` - transaction data
+    - `From`:`string` - transaction sender
+    - `To`:`string` - transaction receiver
+    - `Amount`:`uint64` - amount value, unit is fan
+    - `Fee`:`uint64` - transaction fee
+    - `Payload`:`string` - transaction payload
+    - `AccountNonce`:`uint64` - transaction nonce
+  - `Signature` : `crypto.Signature` - transaction signature struct
+   ```
+  type Signature struct {
+	   Sig []byte // [R || S || V] format signature in 65 bytes.
+  }
+```
 ##### Returns
 
 - `result`:`bool` - transaction send result
@@ -215,7 +226,7 @@ This method submits a transaction to the node.
 ##### Example
 ```js
 // Request
-curl -X POST --data'{"jsonrpc":"2.0","method":"seele_addTx","params":[{"Hash": "0xe2648efdfe6eb6a1d4beb2461e2dff3ee9584fb14bc3ae15b38f612c617e12ae","Data": {"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","To":"0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831","Amount": 20000,"AccountNonce":21,"Fee": 1,"Timestamp": 0,"Payload": ""},"Signature":{"Sig":"RnlFViK1RAUs9UB5WCesa6W5f9qmuFvqnM7W+9W1iUwsPIguyUI1S0fm8ysrJ4ZeL/Hx/GFEq5FGn1guvySVPQE="}}],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"seele_addTx","params":[{"Hash": "0x3393e5566cb905d714599f2f888ecc6d223b83403887460fa5b2771e89a0436e","Data": {"From": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21","To":"0x2a87b6504cd00af95a83b9887112016a2a991cf1","Amount": 1,"AccountNonce":0,"Fee": 0,"GasPrice":10, "GasLimit":21000},"Signature":{"Sig":"fAvgVTXDyJZbfv07NYBK4aSolfY4ycBPQRwnQFpHRMc7ooOZw27U50o4TBoRelYX3QCRyvKpbxVlxhu7AnSB6QE="}}],"id":1}' localhost:8037
 
 // Result
 {
@@ -438,7 +449,7 @@ This method is used to obtain the block content based on block hash.
 ##### Parameters
 
 - `hash`:`string` - block hash
-- `fulltx, f`:`bool` - whether to include detailed transaction information 
+- `fulltx, f`:`bool` - whether to include detailed transaction information
 
 ##### Returns
 
@@ -578,7 +589,7 @@ This method is used to obtain the block content based on block height.
 ##### Parameters
 
 - `height`:`string` - block height
-- `fulltx, f`:`boll` - whether to include detailed transaction information 
+- `fulltx, f`:`boll` - whether to include detailed transaction information
 
 ##### Returns
 
@@ -742,7 +753,6 @@ contract SimpleStorage {
     function set(uint x) {
         storedData=x;
     }
-    
     function get() constant returns(uint) {
         return storedData;
     }
@@ -795,7 +805,6 @@ pragma solidity ^0.4.0;
 
 contract simple_storage_1 {
     uint storedData=23;
-    
     event getLog(address addr, string message);
     event getLog1(string message);
     event getLog2(string message);
@@ -805,7 +814,6 @@ contract simple_storage_1 {
         getLog2("set getLog2");
         storedData=x;
     }
-    
     function get() constant public returns(uint) {
         getLog(msg.sender, "get getLog");
         getLog1("get getLog1");
