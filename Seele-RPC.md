@@ -180,7 +180,7 @@ This method returns the account balance give the account address.
 ##### Example
 ```js
 // Request
-curl  -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -218,7 +218,8 @@ This method submits a transaction to the node.
   type Signature struct {
 	   Sig []byte // [R || S || V] format signature in 65 bytes.
   }
-```
+  ```
+
 ##### Returns
 
 - `result`:`bool` - transaction send result
@@ -309,7 +310,7 @@ This method is used to obtain the block content based on block height or block h
 
 - `hash`:`string` - block hash
 - `height`:`string` - block height
-- `fulltx, f`:`bool` - whether to include detailed transaction information 
+- `fulltx, f`:`bool` - whether to include detailed transaction information
 
 ##### Returns
 
@@ -753,6 +754,7 @@ contract SimpleStorage {
     function set(uint x) {
         storedData=x;
     }
+
     function get() constant returns(uint) {
         return storedData;
     }
@@ -805,6 +807,7 @@ pragma solidity ^0.4.0;
 
 contract simple_storage_1 {
     uint storedData=23;
+
     event getLog(address addr, string message);
     event getLog1(string message);
     event getLog2(string message);
@@ -814,6 +817,7 @@ contract simple_storage_1 {
         getLog2("set getLog2");
         storedData=x;
     }
+
     function get() constant public returns(uint) {
         getLog(msg.sender, "get getLog");
         getLog1("get getLog1");
@@ -1387,7 +1391,7 @@ none
 - `protocols`:`mao` - node collection, key is the node name
 - `version`:`struct` - node protocal
 - `difficulty`:`struct` - node difficulty
-- `head`:`struct` - current block hash of the node 
+- `head`:`struct` - current block hash of the node
 
 ##### Example
 ```js
