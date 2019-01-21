@@ -248,7 +248,7 @@ This method is used to obtain the account nonce.
 
 ##### Parameters
 
-- `account`:`string` - wallet address
+- `account`:`string` - account
 - `hexHash`:`string` - hex form of a block hash, set to "" for the latest nonce
 - `height` :`uint64` - height of a block, set to -1 for the latest nonce
 ##### Returns
