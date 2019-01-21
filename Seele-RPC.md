@@ -305,7 +305,7 @@ This method is used to obtain the block content based on block height or block h
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlock","params":[GetBlockByHeightRequest],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_getBlock","params":[string,string,bool],"id":1}` |
 
 ##### Parameters
 
@@ -446,7 +446,7 @@ This method is used to obtain the block content based on block hash.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":[GetBlockByHeightRequest],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":[string,bool],"id":1}` |
 
 ##### Parameters
 
