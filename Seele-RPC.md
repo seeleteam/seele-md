@@ -244,12 +244,13 @@ This method is used to obtain the account nonce.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":[string],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
 - `account`:`string` - wallet address
-
+- `hexHash`:`string` - hex form of a block hash, set to "" for the latest nonce
+- `height` :`uint64` - height of a block, set to -1 for the latest nonce
 ##### Returns
 
 - `result`:`uint64` - account nonce
@@ -257,7 +258,7 @@ This method is used to obtain the account nonce.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
 
 // Result
 {
