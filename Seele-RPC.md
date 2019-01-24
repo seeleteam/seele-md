@@ -586,12 +586,12 @@ This method is used to obtain the block content based on block height.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[GetBlockByHeightRequest],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[string,bool],"id":1}` |
 
 ##### Parameters
 
 - `height`:`string` - block height
-- `fulltx, f`:`boll` - whether to include detailed transaction information
+- `fulltx, f`:`bool` - whether to include detailed transaction information
 
 ##### Returns
 
