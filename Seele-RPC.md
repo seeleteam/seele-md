@@ -876,49 +876,34 @@ This method Estimate the gas of a transaction.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_estimateGas","params":[string],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"seele_estimateGas","params":[types.Transaction],"id":1}` |
 
 ##### Parameters
 
 - `Hash`:`string` - transaction hash
 - `Data`:`json` - transaction data
-- `From`:`string` - transaction sender
-- `To`:`string` - transaction receiver
-- `Amount`:`uint64` - amount value, unit is fan
-- `GasPrice`:`uint64` - transaction gas price in Fan
-- `GasLimit`:`uint64` - maximum gas for transaction
-- `Payload`:`string` - transaction payload
-- `AccountNonce`:`uint64` - transaction nonce
+  - `From`:`string` - transaction sender
+  - `To`:`string` - transaction receiver
+  - `Amount`:`uint64` - amount value, unit is fan
+  - `GasPrice`:`uint64` - transaction gas price in Fan
+  - `GasLimit`:`uint64` - maximum gas for transaction
+  - `Payload`:`string` - transaction payload
+  - `AccountNonce`:`uint64` - transaction nonce
 
 ##### Returns
 
-- `result`:`bool` - transaction send result
+- `result`:uint64 - gas amount
 
 ##### Example
 ```js
 // Request
-curl -X POST --data'{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{
-	"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32",
-	"Data": {
-		"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-		"To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-		"Amount": 20000,
-		"AccountNonce": 1,
-		"GasPrice": 10,
-		"GasLimit": 200000,
-		"Timestamp": 0,
-		"Payload": ""
-	},
-	"Signature": {
-		"Sig": "cqBn3pdgPbqCrqN1LXbgbWpiRJvXY/VNiqnMeN9X7oliSn5NNA345ChP0xBL6hejpk4mClZgq3hbA8obavHVUgA="
-	}
-}],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32","Data": {"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831","Amount": 20000,"AccountNonce": 1,"GasPrice": 10,"GasLimit": 200000,"Payload": ""}}],"id":1}' localhost:8037
 
 // Result
 {
     "jsonrpc": "2.0",
     "id": 1,
-    "result": 42000
+    "result": 63000
 }
 ```
 ***
@@ -927,13 +912,13 @@ curl -X POST --data'{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{
 RPC collection provided for internal use for transaction pool inquiry manipulation.
 ***
 
-#### GetBlockTxCount
+#### GetBlockTransactionCount
 
 This method is used to obtain the number of transactions in the transaction pool based on block height or hash.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":[int64],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":[string,int64],"id":1}` |
 
 ##### Parameters
 
@@ -942,7 +927,7 @@ This method is used to obtain the number of transactions in the transaction pool
 
 ##### Returns
 
-- `result`:`int` - transactions number
+- `result`:`int` - transactions count
 
 ##### Example
 ```js
@@ -958,7 +943,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount"
 ```
 ***
 
-#### GetBlockTxCountByHeight
+#### GetBlockTransactionCountByHeight
 
 This method is used to obtain the number of transactions in the transaction pool based on block height.
 
@@ -972,7 +957,7 @@ This method is used to obtain the number of transactions in the transaction pool
 
 ##### Returns
 
-- `result`:`int` - transactions number
+- `result`:`int` - transactions count
 
 ##### Example
 ```js
@@ -988,13 +973,13 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountB
 ```
 ***
 
-#### GetBlockTxNumberByHash
+#### GetBlockTransactionCountByHash
 
 This method is used to obtain the number of transactions in the transaction pool based on block hash.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":[string],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1002,13 +987,12 @@ This method is used to obtain the number of transactions in the transaction pool
 
 ##### Returns
 
-- `result`:`int` - transactions number
+- `result`:`int` - transactions count
 
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922"],"id":1}' localhost:8037
-
+curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037
 // Result
 {
     "jsonrpc": "2.0",
