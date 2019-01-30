@@ -57,14 +57,14 @@ Currently, there are several RPCs with different namespaces：
 
 | Command | Full | Light | public | private |
 |-------------------------------|:-------:|:-------:|:-------:|:-------:|
-|[GetBlockTxCount](#getblocktxcount)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTxCountByHeight](#getblocktxcountbyheight)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTxNumberByHash](#getblocktxnumberbyhash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTxByBlockIndex](#gettxbyblockindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTxByBlockHeightAndIndex](#gettxbyblockheightandindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTxByBlockHashAndIndex](#gettxbyblockhashandindex)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetBlockTransactionCount](#getblocktransactioncount)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetBlockTransactionCountByHeight](#getblockTransactioncountbyheight)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetBlockTransactionCountByHash](#getBlockTransactionCountByHash)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTransactionByBlockIndex](#getTransactionbyblockindex)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTransactionByBlockHeightAndIndex](#getTransactionbyblockheightandindex)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTransactionByBlockHashAndIndex](#getTransactionbyblockhashandindex)| &#x2713; | &#x2713; | &#x2713; ||
 |[GetReceiptByTxHash](#getreceiptbytxhash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTxByHash](#gettxbyhash)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTransactionByHash](#getTransactionbyhash)| &#x2713; | &#x2713; | &#x2713; ||
 |[GetDebtByHash](#getdebtbyhash)| &#x2713; ||| &#x2713; |
 
 - [download](#download)
@@ -1319,9 +1319,7 @@ This method returns synchronization information.
 | RPC | `{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}` |
 
 ##### Parameters
-
-- `input`:`interface{}` - getStatus input
-- `result`:`map[string]interface{}` - getStatus result
+none
 
 ##### Returns
 
@@ -1333,7 +1331,7 @@ This method returns synchronization information.
 
 ##### Example
 ```js
-This method should be invoked by go function.
+// This method should be invoked by go function.
 ```
 ***
 
@@ -1360,13 +1358,13 @@ none
 - `id`:`string` - node ID
 - `caps`:`array` - peer node protocol and version array
 - `network`:`struct` - network access address collection
-- `localAddress`:`string` - local address
-- `remoteAddress`:`string` - remote address
-- `protocols`:`mao` - node collection, key is the node name
-- `version`:`struct` - node protocal
-- `difficulty`:`struct` - node difficulty
-- `head`:`struct` - current block hash of the node
-
+  - `localAddress`:`string` - local address
+  - `remoteAddress`:`string` - remote address
+- `protocols`:`map` - node collection, key is the node name
+  - `version`:`int` - node protocal
+  - `difficulty`:`big.Int` - node difficulty
+  - `head`:`string` - current block hash of the node
+- `shard`:`uint` - shard id of the node
 ##### Example
 ```js
 // Request
@@ -1377,23 +1375,37 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"network_getPeersInfo","params":[
     "jsonrpc": "2.0",
     "id": 2,
     "result": [
-              	{
-              		"caps": [
-              			"lightSeele/1",
-              			"seele/1"
-              		],
-              		"id": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-              		"network": {
-              			"localAddress": "127.0.0.1:55239",
-              			"remoteAddress": "127.0.0.1:8058"
-              		},
-              		"protocols": {
-              			"lightSeele": "handshake",
-              			"seele": "handshake"
-              		},
-              		"shard": 2
-              	}
-              ]
+        {
+            "id": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
+            "caps": [
+                "lightSeele_1/1",
+                "lightSeele_2/1",
+                "seele/1"
+            ],
+            "network": {
+                "localAddress": "127.0.0.1:54652",
+                "remoteAddress": "127.0.0.1:8058"
+            },
+            "protocols": {
+                "lightSeele_1": {
+                    "version": 1,
+                    "difficulty": 54618694483,
+                    "head": "0000040c0c7af9b83736210e0f177998e61d2ec8b314fd2d4f49b8a11c4a28b7"
+                },
+                "lightSeele_2": {
+                    "version": 1,
+                    "difficulty": 2395409154,
+                    "head": "0000030e2940702b853faa83f01cf34d7324de11ad0e52b4f33851c41e41ecf0"
+                },
+                "seele": {
+                    "version": 1,
+                    "difficulty": 2395409154,
+                    "head": "0000030e2940702b853faa83f01cf34d7324de11ad0e52b4f33851c41e41ecf0"
+                }
+            },
+            "shard": 2
+        }
+    ]
 }
 ```
 ***
@@ -1428,7 +1440,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"network_getPeerCount","params":[
 ```
 ***
 
-#### GetNetworkVersion
+#### GetNetVersion
 
 This method returns the network version.
 
@@ -1442,7 +1454,7 @@ none
 
 ##### Returns
 
-- `result`:`float64` - version number
+- `result`:`string` - version number
 
 ##### Example
 ```js
