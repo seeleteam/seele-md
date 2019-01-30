@@ -79,7 +79,7 @@ Currently, there are several RPCs with different namespaces：
 |---------------------------|:-------:|:-------:|:-------:|:-------:|
 |[GetPeersInfo](#getpeersinfo)| &#x2713; | &#x2713; || &#x2713; |
 |[GetPeerCount](#getpeercount)| &#x2713; | &#x2713; || &#x2713; |
-|[GetNetworkVersion](#getnetworkversion)| &#x2713; | &#x2713; || &#x2713; |
+|[GetNetVersion](#getnetversion)| &#x2713; | &#x2713; || &#x2713; |
 |[GetProtocolVersion](#getprotocolversion)| &#x2713; | &#x2713; || &#x2713; |
 |[GetNetworkID](#getnetworkid)| &#x2713; | &#x2713; || &#x2713; |
 
@@ -1331,7 +1331,21 @@ none
 
 ##### Example
 ```js
-// This method should be invoked by go function.
+// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}' localhost:8037
+
+//Result
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+        "Status": "NotSyncing",
+        "Duration": "",
+        "StartNum": 0,
+        "Amount": 0,
+        "Downloaded": 0
+    }
+}
 ```
 ***
 
