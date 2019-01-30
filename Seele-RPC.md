@@ -1002,13 +1002,13 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountB
 ```
 ***
 
-#### GetTxByBlockIndex
+#### GetTransactionByBlockIndex
 
 This method is used to obtain the transaction content based on block height or hash and transaction index.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockIndex","params":[GetTxByBlockHeightAndIndexRequest],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockIndex","params":[string,int,int],"id":1}` |
 
 ##### Parameters
 
@@ -1026,7 +1026,6 @@ This method is used to obtain the transaction content based on block height or h
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
-- `timestamp`:`string` - transaction timestamp
 
 ##### Example
 ```js
@@ -1045,20 +1044,19 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockInde
         "gasPrice": 0,
         "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
         "payload": "",
-        "timestamp": 1540178976,
         "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
     }
 }
 ```
 ***
 
-#### GetTxByBlockHeightAndIndex
+#### GetTransactionByBlockHeightAndIndex
 
 This method is used to obtain the transaction content based on block height and transaction index.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeightAndIndex","params":[GetTxByBlockHeightAndIndexRequest],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeightAndIndex","params":[int,int],"id":1}` |
 
 ##### Parameters
 
@@ -1075,7 +1073,6 @@ This method is used to obtain the transaction content based on block height and 
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
-- `timestamp`:`string` - transaction timestamp
 
 ##### Example
 ```js
@@ -1094,20 +1091,19 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeig
         "gasPrice": 0,
         "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
         "payload": "",
-        "timestamp": 1540178976,
         "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
     }
 }
 ```
 ***
 
-#### GetTxByBlockHashAndIndex
+#### GetTransactionByBlockHashAndIndex
 
 This method is used to obtain the transaction content based on block hash and transaction index.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHashAndIndex","params":[GetTxByBlockHeightAndIndexRequest],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHashAndIndex","params":[string,int],"id":1}` |
 
 ##### Parameters
 
@@ -1124,7 +1120,6 @@ This method is used to obtain the transaction content based on block hash and tr
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
-- `timestamp`:`string` - transaction timestamp
 
 ##### Example
 ```js
@@ -1143,20 +1138,19 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHash
         "gasPrice": 0,
         "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
         "payload": "",
-        "timestamp": 1540178976,
         "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
     }
 }
 ```
 ***
 
-#### GetTxByHash
+#### GetTransactionByHash
 
 This method returns transaction information by hash.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":[hash],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1175,13 +1169,12 @@ This method returns transaction information by hash.
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
-- `timestamp`:`int64` - transaction timestamp
 - `txIndex`:`int` - transaction index in block
 
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":[0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff"],"id":1}' localhost:8037
 
 // Result
 {
@@ -1199,7 +1192,6 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","pa
                 "gasPrice": 0,
                 "hash": "0x473ea3667d073491d5896a93fcf84d7dd822988d07482f21e7a875787539e62e",
                 "payload": "",
-                "timestamp": 1540178976,
                 "to": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
         },
         "txIndex": 0
@@ -1214,7 +1206,7 @@ This method is used to obtain the receipt contents based on transaction hash.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":[string],"id":1}` |
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":[string,string],"id":1}` |
 
 ##### Parameters
 
@@ -1234,7 +1226,7 @@ This method is used to obtain the receipt contents based on transaction hash.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff"],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff","""],"id":1}' localhost:8037
 
 // Result
 {
@@ -1255,7 +1247,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","para
 
 #### GetDebtByHash
 
-This method is used to obtain the receipt contents based on transaction hash.
+This method is used to obtain the debt contents based on debt hash.
 
 | Type | Template|
 |-------|-------|
@@ -1263,53 +1255,50 @@ This method is used to obtain the receipt contents based on transaction hash.
 
 ##### Parameters
 
-- `hash`:`string` - hash value in hex
+- `hash`:`string` - debt hash value in hex
 
 ##### Returns
 
 - `blockHash`:`string` - block hash of the debt on
 - `blockHeight`:`int64` - block height of the debt on
 - `debt`:`json` - debt json
-- `Data`:`json` - debt data
-- `Account`:`string` - debt account
-- `Amount`:`int64` - debt amount
-- `Code`:`string` - debt code
-- `Fee`:`int64` - debt fee
-- `Shard`:`int` - shard number of seele node where debts on
-- `TxHash`:`string` - txhash in debt
-- `Hash`:`string` - debts hash
-- `debtIndex`:`json` - debt index json
-- `BlockHash`:`string` - block hash of the debt on
-- `Index`:`string` - debt index of the block debts
+  - `Hash`:`string` - debt hash
+  - `Data`:`json` - debt data
+    - `TxHash`:`string` - txhash in debt
+    - `From`:`string` - address of the sender
+    - `Nonce`: `uint64` - nonce of From address
+    - `Account`:`string` - debt account
+    - `Amount`:`int64` - debt amount
+    - `Price`:`int64` - debt price
+    - `Code`:`string` - debt contract code
+- `debtIndex`:`int` - debt index of the block debts
 - `status`:`string` - debt status
 
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":[0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e],"id":1}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":["0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e"],"id":1}' localhost:8037
 
 // Result
 {
     "jsonrpc": "2.0",
     "id": 1,
     "result": {
-        "blockHash": "0x000001a8946d75258f9e269d516e797779ca6bd4b190c701f81456c60958c688",
-        "blockHeight": 1112,
+        "blockHash": "0x000001fb7817c8d9eeaa9bbed6670f8db62b605ad174f561e74afc60ac18c97b",
+        "blockHeight": 170,
         "debt": {
-            "Hash": "0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e",
+            "Hash": "0xa0089462915e0a1b99ce3d75f6b51cdd5caf9a52691f327c9a27d222e0e38d57",
             "Data": {
-                "TxHash": "0x58752f8aeb2c69dd2c32059d3ad8b2d3d860c6d92aa2b3b30ff985e564f60fae",
-                "Shard": 2,
-                "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-                "Amount": 10000,
-                "Fee": 0,
+                "TxHash": "0xf7288fbc1ab3bea992dd5f311644f220b1accf8011f59df4778ca526843d1f68",
+                "From": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21",
+                "Nonce": 100,
+                "Account": "0x007d1b1ea335e8e4a74c0be781d828dc7db934b1",
+                "Amount": 88,
+                "Price": 10,
                 "Code": ""
             }
         },
-        "debtIndex": {
-            "BlockHash": "0x000001a8946d75258f9e269d516e797779ca6bd4b190c701f81456c60958c688",
-            "Index": 0
-        },
+        "debtIndex": 0,
         "status": "block"
     }
 }
