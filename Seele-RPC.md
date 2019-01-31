@@ -93,8 +93,8 @@ Currently, there are several RPCs with different namespaces：
 |[GetCoinbase](#getcoinbase)| &#x2713; ||| &#x2713; |
 |[SetThreads](#setthreads)| &#x2713; ||| &#x2713; |
 |[SetCoinbase](#setcoinbase)| &#x2713; ||| &#x2713; |
-|[GetEngineInfo](#getengineinfo)| &#x2713; ||| &#x2713; |
-
+|[GetThreads](#getthreads)| &#x2713; ||&#x2713;||
+|[GetHashrate](#gethashrate)| &#x2713; ||&#x2713;||
 - [debug](#debug)
 
 | Command | Full | Light | public | private |
@@ -1656,7 +1656,7 @@ none
 
 ##### Example
 ```js
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner.GetCoinbase","params":[],"id":2}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"miner.getCoinbase","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1676,7 +1676,7 @@ This method is used to set the threads of miner consensus.
 
 ##### Parameters
 
-- `threads`:`int` - miner threads (default: 0)
+- `threads`:`int` - miner threads
 
 ##### Returns
 
@@ -1685,7 +1685,7 @@ This method is used to set the threads of miner consensus.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setThreads","params":[],"id":2}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setThreads","params":[4],"id":2}' localhost:8037
 
 // Result
 {
@@ -1715,7 +1715,7 @@ This method is used to set the coinbase
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setcoinbase","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":2}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setCoinbase","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":2}' localhost:8037
 
 // Result
 {
@@ -1726,13 +1726,13 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setcoinbase","params":["0x
 ```
 ***
 
-#### GetEngineInfo
+#### GetThreads
 
-This method returns engine information of miner
+This method is used to get the threads of miner consensus.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_getEngineInfo","params":[],"id":2}` |
+| RPC | `{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -1740,18 +1740,48 @@ none
 
 ##### Returns
 
-- `hashrate`:`float64` - hashrate
-- `threads`:`int` - miner threads
+- `result`:`int` - miner threads
 
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_getEngineInfo","params":[],"id":2}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}' localhost:8037
 
 // Result
 {
-	"hashrate": 495812.2433994204,
-	"threads": 1
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": 2
+}
+```
+***
+
+#### GetHashrate
+
+This method is used to get the current hashrate (Rate1).
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"miner_getHashrate","params":[],"id":2}` |
+
+##### Parameters
+
+none
+
+##### Returns
+
+- `result`:`uint64` - hashrate
+
+##### Example
+```js
+// Request
+curl -X POST --data '{"jsonrpc":"2.0","method":"miner_getHashrate","params":[],"id":2}' localhost:8037
+
+// Result
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": 200064
 }
 ```
 ***
