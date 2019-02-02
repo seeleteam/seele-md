@@ -1806,39 +1806,43 @@ This method is used to print block information in dump format based on block hei
 
 - `HeaderHash`:`string` - block header hash
 - `Header`:`json` - block header
-- `PreviousBlockHash`:`string` - previous block hash
-- `Creator`:`string` - block creator
-- `StateHash`:`string` - state hash
-- `TxHash`:`string` - transactions hash
-- `ReceiptHash`:`string` - receipts hash
-- `TxDebtHash`:`string` - transaction debts hash
-- `DebtHash`:`string` - debts hash
-- `Difficulty`:`string` - block td
-- `Height`:`int64` - block height
-- `CreateTimestamp`:`string` - create timestamp
-- `Nonce`:`int64` - block nonce
-- `ExtraData`:`string` - extra data
+  - `PreviousBlockHash`:`string` - previous block hash
+  - `Creator`:`string` - block creator
+  - `StateHash`:`string` - state hash
+  - `TxHash`:`string` - transactions hash
+  - `ReceiptHash`:`string` - receipts hash
+  - `TxDebtHash`:`string` - transaction debts hash
+  - `DebtHash`:`string` - debts hash
+  - `Difficulty`:`big.Int` - block td
+  - `Height`:`uint64` - block height
+  - `CreateTimestamp`:`big.Int` - create timestamp
+  - `Witness`:`string` - block nonce
+  - `Consensus`:`int` - 0 for POW consensus
+  - `ExtraData`:`string` - extra data
 - `Transactions`:`array` - transactions on block
-- `Hash`:`string` - transaction hash
-- `Data`:`string` - transaction data
-- `From`:`string` - amount sender
-- `To`:`string` - amount receiver
-- `Amount`:`int64` - transaction amount
-- `AccountNonce`:`int64` - account nonce
-- `Fee`:`int64` - transaction fee
-- `Timestamp`:`int64` - transaction timestamp
-- `Payload`:`string` - payload
-- `Signature`:`json` - transaction signature json
-- `Sig`:`string` - transaction sig
+  - `Hash`:`string` - transaction hash
+  - `Data`:`string` - transaction data
+    - `Type`:`int` - transaction type, 0 for regular type, 1 for reward type
+    - `From`:`string` - amount sender
+    - `To`:`string` - amount receiver
+    - `Amount`:`int64` - transaction amount
+    - `AccountNonce`:`int64` - account nonce
+    - `GasPrice`:`int64` - transaction gas price
+    - `GasLimit`:`int64` - maximum gas for contract creation/execution
+    - `Timestamp`:`int64` - transaction timestamp
+    - `Payload`:`string` - payload
+    - `Signature`:`json` - transaction signature json
+      - `Sig`:`string` - transaction sig
 - `Debts`:`array` - dump format of block information
-- `Hash`:`string` - debts hash
-- `Data`:`json` - debts data
-- `TxHash`:`string` - txhash in debt
-- `Shard`:`int` - shard number of seele node where debts on
-- `Account`:`array` - debt account
-- `Amount`:`int64` - debt amount
-- `Fee`:`int64` - debt fee
-- `Code`:`string` - debt code
+  - `Hash`:`string` - debts hash
+  - `Data`:`json` - debts data
+    - `TxHash`:`string` - txhash in debt
+    - `From`:`string` - sender address
+    - `Nonce`:`int64` - sender nonce
+    - `Account`:`string` - debt account
+    - `Amount`:`int64` - debt amount
+    - `Price`:`int64` - debt gas price
+    - `Code`:`string` - debt code
 
 ##### Example
 ```js
