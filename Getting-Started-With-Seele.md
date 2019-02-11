@@ -6,9 +6,9 @@
   - Install [Go v1.10](https://golang.org/doc/install) or higher, [Git](https://git-scm.com/downloads), and the [C compiler](#gcc-install-newbie-guide)(if you have not installed GO, Git or C compiler please follow README). 
   - Clone the go-seele repository to the [GOPATH](https://github.com/golang/go/wiki/SettingGOPATH) directory :
 `
-go get -u -v github.com/seeleteam/go-seele/...
+go get -u -v github.com\seeleteam\go-seele\...
 `
-- In `seeleteam/go-seele/cmd/node`, run: `go build`; if you are running this for the first time a node executable object will appear. 
+- In `seeleteam\go-seele\cmd\node`, run: `go build`; if you are running this for the first time a node executable object will appear. 
  
 		Something you may need to know before running a node:
 
