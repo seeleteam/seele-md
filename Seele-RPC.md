@@ -1892,7 +1892,8 @@ none
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
 - `timestamp`:`string` - transaction timestamp
-- `fee`:`int` - transaction fee
+- `GasPrice`:`int64` - transaction gas price
+- `GasLimit`:`int64` - transaction gas limit
 
 ##### Example
 ```js
@@ -1901,21 +1902,20 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolContent","params"
 
 // Result
 {
-    "jsonrpc":"2.0",
-    "id":2,
-    "result":{
-        "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21": [
-        		{
-        			"accountNonce": 4,
-        			"amount": 10000,
-        			"fee": 1,
-        			"from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-        			"hash": "0x1d9579c07e8cbcab36efdd810d2ebd27585c1b79eb379afde5e077c22ad46e44",
-        			"payload": "",
-        			"timestamp": 0,
-        			"to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
-        		}
-        	]
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+        "0x3b691130ec4166bfc9ec7240217fc8d08903cf21": [
+            {
+                "accountNonce": 102,
+                "amount": 1,
+                "from": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21",
+                "gasLimit": 21000,
+                "gasPrice": 10,
+                "hash": "0x1a4eb0f6754ef9b973c084f9b285296d616bd36cb9e3707e743d38db9edc7e8f",
+                "payload": "",
+                "to": "0x2a87b6504cd00af95a83b9887112016a2a991cf1"
+            }
         ]
     }
 }
