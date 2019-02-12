@@ -102,7 +102,7 @@ Currently, there are several RPCs with different namespaces：
 |[PrintBlock](#printblock)| &#x2713; ||| &#x2713; |
 |[GetTxPoolContent](#gettxpoolcontent)| &#x2713; | &#x2713; || &#x2713; |
 |[GetTxPoolTxCount](#gettxpooltxcount)| &#x2713; | &#x2713; || &#x2713; |
-|[GetPendingTxs](#getpendingtxs)| &#x2713; | &#x2713; || &#x2713; |
+|[GetPendingTransactions](#getpendingtransactions)| &#x2713; | &#x2713; || &#x2713; |
 |[GetPendingDebts](#getpendingdebts)| &#x2713; ||| &#x2713; |
 |[DumpHeap](#dumpheap)| &#x2713; ||| &#x2713; |
 |[GetTPS](#gettps)| &#x2713; ||| &#x2713; |
@@ -1892,8 +1892,8 @@ none
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
 - `timestamp`:`string` - transaction timestamp
-- `GasPrice`:`int64` - transaction gas price
-- `GasLimit`:`int64` - transaction gas limit
+- `gasPrice`:`int64` - transaction gas price
+- `gasLimit`:`int64` - transaction gas limit
 
 ##### Example
 ```js
@@ -1952,7 +1952,7 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolTxCount","params"
 ```
 ***
 
-#### GetPendingTxs
+#### GetPendingTransactions
 
 This method is used to obtain pending transactions in the transaction pool.
 
@@ -1972,8 +1972,8 @@ none
 - `to`:`string` - transaction receiver
 - `hash`:`string` - transaction hash
 - `payload`:`array` - transaction payload
-- `timestamp`:`string` - transaction timestamp
-- `fee`:`int` - transaction fee
+- `gasPrice`:`int64` - transaction gas price
+- `gasLimit`:`int64` - transaction gas limit
 
 ##### Example
 ```js
@@ -1985,17 +1985,17 @@ curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingTransactions","p
     "jsonrpc": "2.0",
     "id": 2,
     "result": [
-              	{
-              		"accountNonce": 6,
-              		"amount": 10000,
-              		"fee": 1,
-              		"from": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21",
-              		"hash": "0x4ad5843af174d32e31b54ef81ddcbfeec43f4eb5d01885dfe9828f9ce907fb80",
-              		"payload": "",
-              		"timestamp": 0,
-              		"to": "0x16fba5fcb9bc4ee7c3b7fed667e41c9a0248da71"
-              	}
-              ]
+        {
+            "accountNonce": 102,
+            "amount": 1,
+            "from": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21",
+            "gasLimit": 21000,
+            "gasPrice": 10,
+            "hash": "0x1a4eb0f6754ef9b973c084f9b285296d616bd36cb9e3707e743d38db9edc7e8f",
+            "payload": "",
+            "to": "0x2a87b6504cd00af95a83b9887112016a2a991cf1"
+        }
+    ]
 }
 ```
 ***
@@ -2014,14 +2014,16 @@ none
 
 ##### Returns
 
+- `Hash`:`string` - debt hash
 - `Data`:`json` - debt data
-- `Account`:`array` - debt account
-- `Amount`:`int64` - debt amount
-- `Code`:`string` - debt code
-- `Fee`:`int64` - debt fee
-- `Shard`:`int` - shard number of seele node where debts on
-- `TxHash`:`string` - txhash in debt
-- `Hash`:`string` - debts hash
+  - `TxHash`:`string` - txhash in debt
+  - `From`:`string` - sender address
+  - `Nonce`:`int64` - sender nonce
+  - `Account`:`string` - debt account
+  - `Amount`:`int64` - debt amount
+  - `Code`:`string` - debt code
+  - `Price`:`int64` - debt gas price
+
 
 ##### Example
 ```js
@@ -2029,19 +2031,24 @@ none
 curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingDebts","params":[],"id":2}' localhost:8037
 
 // Result
-[
+{
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": [
         {
-                "Data": {
-                        "Account": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831",
-                        "Amount": 10000,
-                        "Code": "",
-                        "Fee": 0,
-                        "Shard": 2,
-                        "TxHash": "0x049305964eac1c62b19f0a6a0841b1d24683c4c4f9a3f23c69c87dcca9ec3e28"
-                },
-                "Hash": "0xdcf8489c27e934c3f289c4a1d843b86dbd3445e8943903613ce640d7fb043e87"
+            "Hash": "0x6ec5638d0f8dd0b57cce6b787b7b973203802975d12dc057696ff089ed51d78c",
+            "Data": {
+                "TxHash": "0xb57ba4dcca86e9cf83d3bb3e19bfe6feb27ba0e9f5518cf839a5b230728a6862",
+                "From": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21",
+                "Nonce": 110,
+                "Account": "0x007d1b1ea335e8e4a74c0be781d828dc7db934b1",
+                "Amount": 88,
+                "Price": 10,
+                "Code": ""
+            }
         }
-]
+    ]
+}
 ```
 ***
 
@@ -2051,11 +2058,12 @@ This method dump heap for profiling and returns the file path.
 
 | Type | Template|
 |-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}` |
+| RPC | `{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[string,bool],"id":2}` |
 
 ##### Parameters
 
-none
+- `fileName`:`string` file name, default value "heap.dump"
+- `gcBeforeDump`:`bool` gc before dump
 
 ##### Returns
 
@@ -2064,7 +2072,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' url
+curl -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":["",true],"id":2}' localhost:8037
 
 // Result
 {
@@ -2091,13 +2099,13 @@ none
 
 - `StartHeight`:`int64` start height
 - `EndHeight`:`int64` end height
-- `Count`:`int` tps
+- `Count`:`int` transactions count
 - `Duration`:`int` elapsed time from start height to end height
 
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
+curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getTPS","params":[],"id":2}' localhost:8037
 
 // Result
 {
