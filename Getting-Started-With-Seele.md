@@ -6,42 +6,48 @@
   - Install [Go v1.10](https://golang.org/doc/install) or higher, [Git](https://git-scm.com/downloads), and the [C compiler](#gcc-install-newbie-guide)(if you have not installed GO, Git or C compiler please follow README). 
   - Clone the go-seele repository to the [GOPATH](https://github.com/golang/go/wiki/SettingGOPATH) directory :
 `
-go get -u -v github.com/seeleteam/go-seele/...
+go get -u -v github.com\seeleteam\go-seele\...
 `
 - In `seeleteam\go-seele\cmd\node`, run: `go build`; if you are running this for the first time a node executable object will appear. 
  
-Something you may need to know before running a node:
+		Something you may need to know before running a node:
 
- 1. If you run into the error related to "genesis block hash mismatch", follow the solution located [here](#genesis-block-hash-mismatch).
- 2. If you want to run a light node, just replace node1.json with light_node1.json. Of course, don't forget to start a full node before you do this.
- 3. Unless otherwise stated, the nodes mentioned below refer to the full node.
+		 1. If you run into the error related to "genesis block hash mismatch", follow the solution located [here](#genesis-block-hash-mismatch).  
+		 2. If you want to run a light node, just replace node1.json with light_node1.json. Of course, don't forget to start a full node before you do this.
+		 3. Unless otherwise stated, the nodes mentioned below refer to the full node.
 
+- Get an account:
 
-Running a Node:
+	You will need an account to send transactions, deploy contracts and start mining on the mainnet. See [How to create an account](How-To-Create-An-Account.html) to create your own account. However, if you just want to run a seele node locally or in a test environment, you can skip this step. Some default accounts are provided for testing. 
 
-- In go-seele/cmd/node:
-  - On Windows:
-    - Running a Single Node：
-      - In the cmd window, run: `node start -c .\config\node1.json --accounts .\config\accounts.json`
-      - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
-    - Running Multiple Nodes：
-      - In one cmd window, run: `node start -c .\config\node1.json --accounts .\config\accounts.json`
-      - In a second cmd window, run: `node start -c .\config\node2.json --accounts .\config\accounts.json`
+- Running a Node:
 
-  - On Linux & Mac:
-    - Running a Singular Node：
-      - On terminal, run: `./node start -c ./config/node1.json [--accounts ./config/accounts.json]`
-      - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
-    - Running Multiple Nodes：
-      - In one terminal window, run: `./node start -c ./config/node1.json [--accounts ./config/accounts.json]`
-      - In another terminal window, run: `./node start -c ./config/node2.json [--accounts ./config/accounts.json]`
+  - In go-seele/cmd/node:
+     - On Windows:
+         - Running a Single Node：
+             - In the cmd window, run: `node start -c .\config\node1.json`
+             - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
+         - Running Multiple Nodes：
+             - In one cmd window, run: `node start -c .\config\node1.json`
+             - In a second cmd window, run: `node start -c .\config\node2.json`
 
-    Note: in the config file under the seeleteam/go-seele/cmd/node path, there are 4 different module configurations that you can choose from to start your node. 
+     - On Linux & Mac:
+         - Running a Single Node：
+             - On terminal, run: `./node start -c ./config/node1.json`
+             - By default this will start the miner, not metrics. You can add flags `-m stop` to not start the miner, or `-t true` to [start metrics](#start-metrics).
+         - Running Multiple Nodes：
+             - In one terminal window, run: `./node start -c ./config/node1.json`
+             - In another terminal window, run: `./node start -c ./config/node2.json`
 
-- Custom Configurations:
-  
-   You can choose your own custom module configurations and not use the default module configurations to start your node. The custom configurations are below:
-   (`Notes: you can follow` [Join Seele Network](Join-Seele-TestNet.html) `to join Seele Network`)
+            **Important note:** under seeleteam/go-seele/cmd/node/config, there are 4 node configurations (with filename node*.json) that can be used as examples. To use your own account to interact with the mainnet, make sure you use the correct coinbase, p2p private key and shard information in one of these json files. For details, see [How to customize your node configurations](#How to customize your node configurations).
+         
+      If you want to have a quickstart in a test or private blockchain environment, you can use the default node configurations and accounts. For example:
+              
+            ./node start -c ./config/node1.json --accounts ./config/accounts.json
+
+		Note that seeleteam/go-seele/cmd/node/config/accounts.json only contains test accounts, do not use them if you are going to connect to the Seele mainnet. 
+
+ - The node configuration and test accounts are shown as follows. To modify it for your own account, see [How to customize my node configurations](#How to customize my node configurations).
 
 node1.json:
 ```
@@ -117,7 +123,7 @@ accounts.json:
 <th>Explanation</th>
 </tr>
 <tr>
-<th rowspan="5">basic</th>
+<th rowspan="6">basic</th>
 <td>name</td>
 <td>Name of node</td>
 </tr>
@@ -136,6 +142,10 @@ accounts.json:
 <tr>
 <td>coinbase</td>
 <td>Coinbase used to mine</td>
+</tr>
+<tr>
+<td>algorithm</td>
+<td>consensus algorithm of the network</td>
 </tr>
 
 
@@ -175,7 +185,7 @@ accounts.json:
 <td>HTTP RPC's service address.</td>
 </tr>
 <tr>
-<td>crosssorgins</td>
+<td>crossorgins</td>
 <td>Sent to the client's cross-origin resource sharing origin. Note that CORS is a type of forced safety measure by the browser, which is irrelevant to the client's custom HTTP.</td>
 </tr>
 <tr>
@@ -185,19 +195,15 @@ accounts.json:
 
 
 <tr>
-<th rowspan="2">wsserver</th>
+<th rowspan="1">wsserver</th>
 <td>address</td>
 <td>Address of Websocket RPC server.</td>
-</tr>
-<tr>
-<td>pattern</td>
-<td>Pattern to request path.</td>
 </tr>
 
 <tr>
 <th rowspan="3">genesis</th>
-<td>accounts</td>
-<td>Account information of the genesis block, used for testing.</td>
+<td>timestamp</td>
+<td>Timestamp of the genesis block.</td>
 </tr>
 <tr>
 <td>difficult</td>
@@ -213,29 +219,10 @@ accounts.json:
 - Help:
 <a name="help1">
 
-	To run：node -h
-
-	use "node help [<command>]" for detailed usage
-
-	Usage:
-	  node [command]
-
-	Available Commands:
-	  help        Help about any command
-	  key         generate a key pair with specified shard number
-	  start       start the node of Seele
-	  validatekey validate the private key and generate its public key
-
-	Flags:
-	  -a, --addr string   rpc address (default "127.0.0.1:55027")
-	  -h, --help          help for node
-
+	Use "node -h" for a list of available commands. 
+	
 	Use "node [command] --help" for more information about a command.
 </a>
-
-- Others:
-  - To create a public and private key, run in the command window: node key
-  - To create a public key based on the private key,run in the command window: node validatekey -k PRIVATEKEY
 
 ## Create a Full Node Client:
 		
@@ -349,11 +336,11 @@ GLOBAL OPTIONS:
    --help, -h  show help
 ```
 
-## Three common-used commands:
+## Some common-used commands:
 
-- Prepare:
+### 0. Get an account
 
-  [How to create an account](How-To-Create-An-Account.html) will help you to get a Seele account.
+  - [How to create an account](How-To-Create-An-Account.html) will help you get a Seele account.
 
 ### 1. Transfer
 
@@ -544,7 +531,21 @@ The result of `"contract": "0xc3e7b32db87dd5b8d70a78666518c6395d0f0092"` row is 
 	"usedGas": 21696
 }
 ```
+## How to customize your node configurations
+ 
+Under seeleteam/go-seele/cmd/node/config, you can find four node*.json files. You can create your own Seele node by customizing any one of them. 
 
+1. After creating your account ([How to create an account](How-To-Create-An-Account.html)), replace "coinbase" field with your public key.
+
+2. Modify the "shard" field with the correct shard number associated with your account.
+
+3. Create another private-public key pair. Replace "privateKey" field in "p2p" section with your private key. This private key is used for p2p network only and should be different from the private key you use to mine and send transactions. **Do not use private keys associated with your coinbase or any other transaction accounts here!**
+
+4. You could connect to some static nodes in the network by configuration. The format of "staticNodes" field is ["ip:port",...], for example, ["127.0.0.1:8057"]. 
+
+5. If "isDebug" and "printLog" fields are true, the display is in debug mode and log mode when you run the Seele node. Default values should be false.
+
+6. The "networkID", "difficult" and "timestamp" field for nodes in the same network should be the same. Nodes with different values in these field **can not** connect to each other.
 
 ## [GCC](https://gcc.gnu.org/) install newbie guide
 
@@ -552,7 +553,7 @@ Install Document: https://gcc.gnu.org/install/
 
 Download Link: https://gcc.gnu.org/install/binaries.html
 
-Or you can go directly to the [website](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/) to download the release installer. (Recommend)
+Or you can go directly to the [website](https://sourceforge.net/projects/mingw-w64/files/mingw-w64/mingw-w64-release/) to download the release installer. (Recommended)
 
 ## Start Metrics
 
