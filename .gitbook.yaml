@@ -5,4 +5,4 @@ structure:
   summary: Format/SUMMARY.md
 
 redirects:
-  FAQ: FAQ.md
+  FAQ: ./FAQ.md
