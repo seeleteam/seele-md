@@ -1,8 +1,8 @@
 root: ./
 
 structure:
-  readme: README.md
-  summary: ./SUMMARY.md
+  readme: Format/README.md
+  summary: Format/SUMMARY.md
 
 redirects:
-  previous/page: new-folder/page.md
+  FAQ: FAQ.md
