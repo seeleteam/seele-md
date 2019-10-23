@@ -1,4 +1,4 @@
-# Editing seele-md 
+# Updating [seele-md]( https://github.com/seeleteam/seele-md.git) 
 
 ### Workflow
 
@@ -7,15 +7,15 @@ Open [edit window](https://app.gitbook.com/@seeletech/spaces) and [view window](
 
 ### Format 
 
-Formatting Errors will cause errors without details at synchronization. Common possibilities:
-- SUMMARY.md not having the complete `*[]()` format
+Formatting mistakes will halt synchronization. Common possibilities:
+- Incomplete `*[]()` in `SUMMARY.md`
 
-Gitbook looks at `.gitbook.yaml` for
-- root directory: ex `./`
-- introduction page: ex `INTRODUCTION.md`
-- side bar structure: ex `SUMMARY.md`
+Gitbook checks `.gitbook.yaml` for
+- Root directory: ex `./`
+- Introduction page: ex `INTRODUCTION.md`
+- Side-bar structure: ex `SUMMARY.md`
 
-SUMMARY.md must have the following format:
+`SUMMARY.md` must have the following format:
 
 ```markdown
 # Summary
