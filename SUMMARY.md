@@ -20,8 +20,8 @@
 
 ## Developer Resources
 
-* [Test Net]
-* [SDK JS]
-* [SDK JAVA]
-* [API Seele]
-* [API Scan]
+* [Test Net]()
+* [SDK JS]()
+* [SDK JAVA]()
+* [API Seele]()
+* [API Scan]()
