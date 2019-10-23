@@ -140,11 +140,12 @@ none
 - `Shard`:`int` - shard number
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -178,11 +179,12 @@ This method returns the account balance give the account address.
 - `Balance`:`big.Int` - account balance
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -225,11 +227,12 @@ This method submits a transaction to the node.
 - `result`:`bool` - transaction send result
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_addTx","params":[{"Hash": "0x3393e5566cb905d714599f2f888ecc6d223b83403887460fa5b2771e89a0436e","Data": {"From": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21","To":"0x2a87b6504cd00af95a83b9887112016a2a991cf1","Amount": 1,"AccountNonce":0,"Fee": 0,"GasPrice":10, "GasLimit":21000},"Signature":{"Sig":"fAvgVTXDyJZbfv07NYBK4aSolfY4ycBPQRwnQFpHRMc7ooOZw27U50o4TBoRelYX3QCRyvKpbxVlxhu7AnSB6QE="}}],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -256,11 +259,12 @@ This method is used to obtain the account nonce.
 - `result`:`uint64` - account nonce
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -286,11 +290,12 @@ none
 - `result`:`uint64` - block height
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockHeight","params":[],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -361,11 +366,12 @@ This method is used to obtain the block content based on block height or block h
     - `Code`:`string` - transaction code
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlock","params":["",19018,true],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -490,11 +496,12 @@ This method is used to obtain the block content based on block hash.
     - `Code`:`string` - transaction code
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":["0x000002f75910694bf33a9a2f3e0cab454ac4b14ff9d32aee7b59efc20260f00c",true],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -619,11 +626,12 @@ This method is used to obtain the block content based on block height.
     - `Code`:`string` - transaction code
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[19018,true],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -729,11 +737,12 @@ contract SimpleStorage {
 }
 ```
 As you can see, the example is testing the get function.
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_call","params":["0x9df8ed11ea024183bd584480e80952c9b04e0122","0x6d4ce63c",-1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -795,13 +804,13 @@ contract simple_storage_1 {
 }
 ```
 As you can see, this example is testing the get function. In this situation, the height is the block height of the block containing the get transaction.
+- Request
 ```js
-// Request
 TODO
-
-// Result
+```
+- Result
+```js
 TODO
-
 ```
 ***
 
@@ -824,11 +833,12 @@ This method generate the contract method payload.
 - `result`:`string` payload of contract method with args
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_generatePayload","params":["[{\"constant\":false,\"inputs\":[{\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]", "set", ["1"]],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -862,11 +872,12 @@ This method Estimate the gas of a transaction.
 - `result`:uint64 - gas amount
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32","Data": {"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831","Amount": 20000,"AccountNonce": 1,"GasPrice": 10,"GasLimit": 200000,"Payload": ""}}],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -897,11 +908,12 @@ This method is used to obtain the number of transactions in the transaction pool
 - `result`:`int` - transactions count
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922",-1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -927,11 +939,12 @@ This method is used to obtain the number of transactions in the transaction pool
 - `result`:`int` - transactions count
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHeight","params":[-1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -957,10 +970,11 @@ This method is used to obtain the number of transactions in the transaction pool
 - `result`:`int` - transactions count
 
 ##### Example
+- Request
 ```js
-// Request
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037
-// Result
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -995,11 +1009,12 @@ This method is used to obtain the transaction content based on block height or h
 - `payload`:`array` - transaction payload
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockIndex","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922", -1, 1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1042,11 +1057,12 @@ This method is used to obtain the transaction content based on block height and 
 - `payload`:`array` - transaction payload
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeightAndIndex","params":[4202, 1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1089,11 +1105,12 @@ This method is used to obtain the transaction content based on block hash and tr
 - `payload`:`array` - transaction payload
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHashAndIndex","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922", 1],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1139,11 +1156,12 @@ This method returns transaction information by hash.
 - `txIndex`:`int` - transaction index in block
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff"],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1191,11 +1209,12 @@ This method is used to obtain the receipt contents based on transaction hash.
 - `usedGas`:`int` - transaction gas
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff","""],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1242,11 +1261,12 @@ This method is used to obtain the debt contents based on debt hash.
 - `status`:`string` - debt status
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":["0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e"],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1297,11 +1317,12 @@ none
 - `Downloaded`:`uint64` - Synchronization number of times
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}' localhost:8037
-
-//Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1347,11 +1368,12 @@ none
   - `head`:`string` - current block hash of the node
 - `shard`:`uint` - shard id of the node
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getPeersInfo","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1408,11 +1430,12 @@ none
 - `result`:`int` - peer number of node
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getPeerCount","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1438,11 +1461,12 @@ none
 - `result`:`string` - version number
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getNetVersion","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1468,11 +1492,12 @@ none
 - `result`:`int` - version number
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getProtocolVersion","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1498,11 +1523,12 @@ none
 - `result`:`string` - network id
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getNetworkID","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1532,11 +1558,12 @@ This method starts the miner with an input number of threads.
 - `result`:`bool` - start result
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_start","params":[2],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1562,11 +1589,12 @@ none
 - `result`:`bool` - stop result
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_stop","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1592,11 +1620,12 @@ none
 - `result`:`string` - miner status
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_status","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1622,10 +1651,12 @@ none
 - `result`:`string` - coinbase
 
 ##### Example
+- Request
 ```js
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner.getCoinbase","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1650,11 +1681,12 @@ This method is used to set the threads of miner consensus.
 - `result`:`bool` - SetThreads result
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_setThreads","params":[4],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1680,11 +1712,12 @@ This method is used to set the coinbase
 - `result`:`bool` - SetCoinbase result
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_setCoinbase","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1710,11 +1743,12 @@ none
 - `result`:`int` - miner threads
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1740,11 +1774,12 @@ none
 - `result`:`uint64` - hashrate
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getHashrate","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1812,11 +1847,12 @@ This method is used to print block information in dump format based on block hei
     - `Code`:`string` - debt code
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_printBlock","params":[10368],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -1896,11 +1932,12 @@ none
 - `GasLimit`:`int64` - transaction gas limit
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolContent","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1939,11 +1976,12 @@ none
 - `result`:`uint64` - number of transactions
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolTxCount","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -1976,11 +2014,12 @@ none
 - `fee`:`int` - transaction fee
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingTransactions","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 2,
@@ -2024,11 +2063,12 @@ none
 - `Hash`:`string` - debts hash
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingDebts","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 [
         {
                 "Data": {
@@ -2062,11 +2102,12 @@ none
 - `result`:`string` file path
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' url
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc":"2.0",
     "id":2,
@@ -2095,11 +2136,12 @@ none
 - `Duration`:`int` elapsed time from start height to end height
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -2145,11 +2187,12 @@ none
 - `shard`:`int` shard number
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"monitor_nodeInfo","params":[],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
@@ -2190,11 +2233,12 @@ none
 - `peers`:`string` node peers number
 
 ##### Example
+- Request
 ```js
-// Request
 curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"monitor_nodeStats","params":[],"id":1}' localhost:8037
-
-// Result
+```
+- Result
+```js
 {
     "jsonrpc": "2.0",
     "id": 1,
