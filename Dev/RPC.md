@@ -4,7 +4,7 @@ JSON is a lightweight data exchange format. It can represent numbers, strings, o
 JSON-RPC is a stateless, lightweight Remote Procedure Call (RPC) protocol. It defines several data structures and the relevant rules to handle them. JSON-RPC is transmission-agnostic, because it can be used in situations like process, socket, HTTP, or different message transmission environments. It uses JSON(RFC 4627) as the data format.
 
 ## Curl Examples Explained
-The curl options below might return a response where the node complains about the content type, this is because the --data option sets the content type to application/x-www-form-urlencoded . If your node does complain, manually set the header by placing -H "Content-Type: application/json" at the start of the call.
+The curl options below might return a response where the node complains about the content type, this is because the --data option sets the content type to application/x-www-form-urlencoded . 
 
 
 ## JSON-RPC Support
@@ -142,7 +142,7 @@ none
 ##### Example
 ```js
 // Request
-curl  -X POST --data '{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":1}' localhost:8037
 
 // Result
 {
@@ -180,7 +180,7 @@ This method returns the account balance give the account address.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBalance","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -227,7 +227,7 @@ This method submits a transaction to the node.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_addTx","params":[{"Hash": "0x3393e5566cb905d714599f2f888ecc6d223b83403887460fa5b2771e89a0436e","Data": {"From": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21","To":"0x2a87b6504cd00af95a83b9887112016a2a991cf1","Amount": 1,"AccountNonce":0,"Fee": 0,"GasPrice":10, "GasLimit":21000},"Signature":{"Sig":"fAvgVTXDyJZbfv07NYBK4aSolfY4ycBPQRwnQFpHRMc7ooOZw27U50o4TBoRelYX3QCRyvKpbxVlxhu7AnSB6QE="}}],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_addTx","params":[{"Hash": "0x3393e5566cb905d714599f2f888ecc6d223b83403887460fa5b2771e89a0436e","Data": {"From": "0x3b691130ec4166bfc9ec7240217fc8d08903cf21","To":"0x2a87b6504cd00af95a83b9887112016a2a991cf1","Amount": 1,"AccountNonce":0,"Fee": 0,"GasPrice":10, "GasLimit":21000},"Signature":{"Sig":"fAvgVTXDyJZbfv07NYBK4aSolfY4ycBPQRwnQFpHRMc7ooOZw27U50o4TBoRelYX3QCRyvKpbxVlxhu7AnSB6QE="}}],"id":1}' localhost:8037
 
 // Result
 {
@@ -258,7 +258,7 @@ This method is used to obtain the account nonce.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","",-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -288,7 +288,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockHeight","params":[],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockHeight","params":[],"id":1}' localhost:8037
 
 // Result
 {
@@ -363,7 +363,7 @@ This method is used to obtain the block content based on block height or block h
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlock","params":["",19018,true],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlock","params":["",19018,true],"id":1}' localhost:8037
 
 // Result
 {
@@ -492,7 +492,7 @@ This method is used to obtain the block content based on block hash.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":["0x000002f75910694bf33a9a2f3e0cab454ac4b14ff9d32aee7b59efc20260f00c",true],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":["0x000002f75910694bf33a9a2f3e0cab454ac4b14ff9d32aee7b59efc20260f00c",true],"id":1}' localhost:8037
 
 // Result
 {
@@ -621,7 +621,7 @@ This method is used to obtain the block content based on block height.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[19018,true],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[19018,true],"id":1}' localhost:8037
 
 // Result
 {
@@ -731,7 +731,7 @@ contract SimpleStorage {
 As you can see, the example is testing the get function.
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_call","params":["0x9df8ed11ea024183bd584480e80952c9b04e0122","0x6d4ce63c",-1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_call","params":["0x9df8ed11ea024183bd584480e80952c9b04e0122","0x6d4ce63c",-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -826,7 +826,7 @@ This method generate the contract method payload.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_generatePayload","params":["[{\"constant\":false,\"inputs\":[{\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]", "set", ["1"]],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_generatePayload","params":["[{\"constant\":false,\"inputs\":[{\"name\":\"x\",\"type\":\"uint256\"}],\"name\":\"set\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"get\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}]", "set", ["1"]],"id":1}' localhost:8037
 
 // Result
 {
@@ -864,7 +864,7 @@ This method Estimate the gas of a transaction.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32","Data": {"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831","Amount": 20000,"AccountNonce": 1,"GasPrice": 10,"GasLimit": 200000,"Payload": ""}}],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_estimateGas","params":[{"Hash": "0xd02530a4126ecea2787d59bf5e9611907c6043dd900f894554624bd1d25bcb32","Data": {"From": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","To": "0x0ea2a45ab5a909c309439b0e004c61b7b2a3e831","Amount": 20000,"AccountNonce": 1,"GasPrice": 10,"GasLimit": 200000,"Payload": ""}}],"id":1}' localhost:8037
 
 // Result
 {
@@ -899,7 +899,7 @@ This method is used to obtain the number of transactions in the transaction pool
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922",-1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCount","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922",-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -929,7 +929,7 @@ This method is used to obtain the number of transactions in the transaction pool
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHeight","params":[-1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHeight","params":[-1],"id":1}' localhost:8037
 
 // Result
 {
@@ -959,7 +959,7 @@ This method is used to obtain the number of transactions in the transaction pool
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037
 // Result
 {
     "jsonrpc": "2.0",
@@ -997,7 +997,7 @@ This method is used to obtain the transaction content based on block height or h
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockIndex","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922", -1, 1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockIndex","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922", -1, 1],"id":1}' localhost:8037
 
 // Result
 {
@@ -1044,7 +1044,7 @@ This method is used to obtain the transaction content based on block height and 
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeightAndIndex","params":[4202, 1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHeightAndIndex","params":[4202, 1],"id":1}' localhost:8037
 
 // Result
 {
@@ -1091,7 +1091,7 @@ This method is used to obtain the transaction content based on block hash and tr
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHashAndIndex","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922", 1],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByBlockHashAndIndex","params":["0x0000015592fab87d6efa10e63d7722f6f359d90a1aff9e70930b291931c34922", 1],"id":1}' localhost:8037
 
 // Result
 {
@@ -1141,7 +1141,7 @@ This method returns transaction information by hash.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff"],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff"],"id":1}' localhost:8037
 
 // Result
 {
@@ -1193,7 +1193,7 @@ This method is used to obtain the receipt contents based on transaction hash.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff","""],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getReceiptByTxHash","params":["0xbd2ca4f9869c714e589ad6a3b16731c8cb066de40d0e27e220cc1e014577baff","""],"id":1}' localhost:8037
 
 // Result
 {
@@ -1244,7 +1244,7 @@ This method is used to obtain the debt contents based on debt hash.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":["0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e"],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":["0x0da1ed893e7f0ca2558c193b3b82ed20575a6978bea5b14f282309c69fee368e"],"id":1}' localhost:8037
 
 // Result
 {
@@ -1299,7 +1299,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}' localhost:8037
 
 //Result
 {
@@ -1349,7 +1349,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"network_getPeersInfo","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getPeersInfo","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1410,7 +1410,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"network_getPeerCount","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getPeerCount","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1440,7 +1440,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"network_getNetVersion","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getNetVersion","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1470,7 +1470,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"network_getProtocolVersion","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getProtocolVersion","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1500,7 +1500,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"network_getNetworkID","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_getNetworkID","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1534,7 +1534,7 @@ This method starts the miner with an input number of threads.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_start","params":[2],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_start","params":[2],"id":2}' localhost:8037
 
 // Result
 {
@@ -1564,7 +1564,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_stop","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_stop","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1594,7 +1594,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_status","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_status","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1623,7 +1623,7 @@ none
 
 ##### Example
 ```js
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner.getCoinbase","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner.getCoinbase","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1652,7 +1652,7 @@ This method is used to set the threads of miner consensus.
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setThreads","params":[4],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_setThreads","params":[4],"id":2}' localhost:8037
 
 // Result
 {
@@ -1682,7 +1682,7 @@ This method is used to set the coinbase
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_setCoinbase","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_setCoinbase","params":["0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"],"id":2}' localhost:8037
 
 // Result
 {
@@ -1712,7 +1712,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1742,7 +1742,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"miner_getHashrate","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getHashrate","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1814,7 +1814,7 @@ This method is used to print block information in dump format based on block hei
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_printBlock","params":[10368],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_printBlock","params":[10368],"id":2}' localhost:8037
 
 // Result
 {
@@ -1898,7 +1898,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolContent","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolContent","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1941,7 +1941,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolTxCount","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getTxPoolTxCount","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -1978,7 +1978,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingTransactions","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingTransactions","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -2026,7 +2026,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingDebts","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getPendingDebts","params":[],"id":2}' localhost:8037
 
 // Result
 [
@@ -2064,7 +2064,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' url
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' url
 
 // Result
 {
@@ -2097,7 +2097,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
 
 // Result
 {
@@ -2147,7 +2147,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"monitor_nodeInfo","params":[],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"monitor_nodeInfo","params":[],"id":1}' localhost:8037
 
 // Result
 {
@@ -2192,7 +2192,7 @@ none
 ##### Example
 ```js
 // Request
-curl -X POST --data '{"jsonrpc":"2.0","method":"monitor_nodeStats","params":[],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"monitor_nodeStats","params":[],"id":1}' localhost:8037
 
 // Result
 {

@@ -8,19 +8,18 @@
 * [钱包]()
     * [管理账户]()
     * [发送交易]()
-* [帮助](帮助.md)
+* [帮助](CN/帮助.md)
 
 ## English Documentation
 
 * [Mining]()
     * [One click mining]()
 * [Wallet]()
-* [Help](help.md)
+* [Help](EN/help.md)
 
 ## Developer Resources
 
+* [Seele RPC](Dev/RPC.md)
 * [Test Net]()
-* [SDK JS]()
-* [SDK JAVA]()
-* [API Seele]()
-* [API Scan]()
+* [JS    SDK]()
+* [JAVA  SDK]()
