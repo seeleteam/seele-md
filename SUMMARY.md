@@ -16,7 +16,7 @@
 * [Mining]()
     * [One click mining]()
 * [Wallet]()
-* [Help](help.md)
+* [Help]()
 
 ## Developer Resources
 
