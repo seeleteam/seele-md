@@ -15,7 +15,10 @@
 
 * [Mining]()
     * [One click mining]()
-* [Wallet]()
+* [Wallet](EN/wallet/wallet.md)
+    * [Basic](EN/wallet/basic.md)
+    * [Contract](EN/wallet/contract.md)
+    * [Help](EN/wallet/help.md)
 * [Help](EN/help.md)
 
 ## Developer Resources
