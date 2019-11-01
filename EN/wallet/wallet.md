@@ -1,6 +1,6 @@
 # Welcome to SeeleWallet！
 
-![alt](imgs/wallet.ico)
+![seelewallet icon](imgs/wallet.ico)
 
 
 

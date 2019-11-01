@@ -1,6 +1,7 @@
 # Account 
 
 ## Manage Accounts
+
 **Import** 
 
 1. Click [Import Keyfile(s)] (menu > File > Import Keyfile(s)) to open file explorer.
@@ -18,13 +19,13 @@
 
 **Move** 
 
-1. On account display, click [more options] to show more options board.
+1. On account card, click [more options] to show more options board.
 2. On more options board, click [move keyfile] to open file explorer, select move destination.
 3. Click [export] to move keyfile, or [cancel] to close file explorer, then gray area to close options board.
 
 ## Account functions
 
-![alt](imgs/accountCard.png)
+![account card](imgs/accountCard.png)
 
 # Nodes
 
