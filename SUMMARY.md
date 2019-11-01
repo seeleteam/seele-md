@@ -5,7 +5,7 @@
 * [挖矿]()
     * [Windows 一键挖矿]()
     * [Linux 挖矿]()
-* [钱包]()
+* [钱包](CN/wallet/钱包.md)
     * [基本](CN/wallet/基本.md)
     * [合约](CN/wallet/合约.md)
     * [帮助](CN/wallet/帮助.md)
