@@ -29,7 +29,7 @@ Use the following commands in the `build` directory
 
 Generate: generate keypairs using shard numbers
 
-```
+```bash
 $ ./client key --shard 1
 public key:  0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451
 private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
@@ -37,7 +37,7 @@ private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 
 Validate: check privatekey or pulickey validity and key shard number
 
-```
+```bash
 $ ./client getshardnum --account 0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451
 shard number: 1
 $ ./client getshardnum --privatekey 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
@@ -46,7 +46,7 @@ shard number: 1
 
 Save: Create keyfile using privatekey, filename, password
 
-```
+```bash
 ./client savekey --privatekey 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a --file shard1account
 Password:
 Repeat password:
@@ -55,7 +55,7 @@ store key successfully, the key file path is shard1account
 
 Restore: restore privateKey with keyfile and password
 
-```
+```bash
 $ ./client deckeyfile --file shard1account
 Please input your key file password:
 public key:  0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451
@@ -74,7 +74,7 @@ private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 Example with configuring shard1 template.
 
 Before 
-```
+```js
 {
   "basic":{
     ...
@@ -89,7 +89,7 @@ Before
 }
 ```
 after
-```
+```yml
 {
   "basic":{
     ...
@@ -107,11 +107,11 @@ after
 ### Run node 
 
 Run mining node: with 12 threads，using node1.json as configuration file.
-```
+```bash
 ./node start -c ../node1.json --threads 12
 ```
 Run node without mining: 
-```
+```bash
 ./node start -c ../node1.json -m stop
 ```
 
@@ -124,7 +124,7 @@ When node starts, it checks the completeness of its database at a speed of rough
   - shard 4 listening port：8026
   
 Balance:
-```
+```bash
 $ ./client getbalance --account 0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451 -a 104.218.164.169:8027
 {
         "Account": "0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451",
@@ -132,7 +132,7 @@ $ ./client getbalance --account 0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451 -a 10
 }
 ```
 Node info:
-```
+```bash
 $ ./client getinfo -a 127.0.0.1:8027
 {
         "BlockAge": 54, ←seconds since the heighest block created
