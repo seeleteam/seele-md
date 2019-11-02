@@ -21,7 +21,4 @@
 ## Developer
 
 * [Go-seele](Dev/Getting-Started-With-Seele.md)
-    * [client](Dev/go-seele/client.md)
-    * [node](Dev/go-seele/node.md)
-    * [vm](Dev/go-seele/vm.md)
 * [Seele RPC](Dev/RPC.md)
