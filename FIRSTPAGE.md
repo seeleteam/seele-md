@@ -1,4 +1,5 @@
 
+# Seele Wiki
 
 last updated nov 1, 2019
 
@@ -11,5 +12,9 @@ last updated nov 1, 2019
   - [linkedin](https://www.linkedin.com/company/seeletech)
   - [medium](https://medium.com/@SeeleTech)
   - [github](https://github.com/seeleteam)
-- Enthusiasts':
-  - 微信[Seele元一社区](gh_69cb1967a95f)
+- Other:
+  - [Seele元一社区]()微信id: `gh_69cb1967a95f`
+
+![](RSC/Seele-logo.jpg)
+
+### GO GO-SEELE!
