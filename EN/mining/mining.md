@@ -1,12 +1,12 @@
 ### Windows users tryout [seele-one-click-mining](https://github.com/seeleteam/seele-one-click-mining/releases/latest)! 
-- Refer to the readme.txt in zip for user instructions。 
+- Refer to the readme.txt in zip for user instructions.
 
 
 # Mining
 
 ### Download
 
-Download the newest[executables and configuration templates](https://github.com/seeleteam/go-seele/releases/latest). The extracted directory has the following structure
+Download the newest[executables and configuration templates](https://github.com/seeleteam/go-seele/releases/latest). The extracted directory has the following structure:
 
 ```
 mac/linux/win32_v#.#.#
@@ -23,11 +23,11 @@ mac/linux/win32_v#.#.#
     └── vm
 ```
 
-Use the following commands in the `build` directory
+Use the following commands in the `build` directory.
 
 ### Accounts
 
-Generate: generate keypairs using shard numbers
+Generate: generate keypairs using shard numbers.
 
 ```bash
 $ ./client key --shard 1
@@ -35,7 +35,7 @@ public key:  0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451
 private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 ```
 
-Validate: check privatekey or pulickey validity and key shard number
+Validate: check privatekey or pulickey validity and key shard number.
 
 ```bash
 $ ./client getshardnum --account 0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451
@@ -44,7 +44,7 @@ $ ./client getshardnum --privatekey 0x85c7d55a434037336a094575506229d82f771d14e9
 shard number: 1
 ```
 
-Save: Create keyfile using privatekey, filename, password
+Save: Create keyfile using privatekey, filename, password.
 
 ```bash
 $ ./client savekey --privatekey 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a --file shard1account
@@ -53,7 +53,7 @@ Repeat password:
 store key successfully, the key file path is shard1account
 ```
 
-Restore: restore privateKey with keyfile and password
+Restore: restore privateKey with keyfile and password.
 
 ```bash
 $ ./client deckeyfile --file shard1account
@@ -64,16 +64,16 @@ private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 
 ### Configure node.json
 
-1. Change mining account
-  - To mine in shard 1, generate a shard 1 keypaire, then place the publickey in node1.json template
-  - To mine in shard 2, generate a shard 2 keypaire, then place the publickey in node2.json template
+1. Change mining account:
+  - To mine in shard 1, generate a shard 1 keypaire, then place the publickey in node1.json template.
+  - To mine in shard 2, generate a shard 2 keypaire, then place the publickey in node2.json template.
   - Similarly for 3 and 4.
-2. Change node id
+2. Change node id:
   - Generate a keypair whose shard matters not, and fill the template with the privatekey.
 
 Example with configuring shard1 template.
 
-Before 
+Before:
 ```
 {
   "basic":{
@@ -88,7 +88,7 @@ Before
   ...
 }
 ```
-After
+After:
 ```
 {
   "basic":{

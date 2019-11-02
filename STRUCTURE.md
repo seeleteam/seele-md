@@ -22,6 +22,5 @@
 
 * [Go-seele](Dev/Getting-Started-With-Seele.md)
 * [Seele RPC](Dev/RPC.md)
-* [Test Net]()
-* [JS    SDK]()
-* [JAVA  SDK]()
+* [JS    SDK](https://github.com/seeleteam/seele.js#seelejs)
+* [JAVA  SDK](https://github.com/seeleteam/seele-sdk-java#seele-sdk-java)
