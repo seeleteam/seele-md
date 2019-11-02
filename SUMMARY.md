@@ -11,7 +11,7 @@
 
 ## EN
 
-* [Mining]()
+* [Mining](EN/mining/mining.md)
 * [Wallet](EN/wallet/wallet.md)
     * [Basic](EN/wallet/basic.md)
     * [Contract](EN/wallet/contract.md)
@@ -20,7 +20,8 @@
 
 ## Developer
 
+* [Go-seele](Dev/Getting-Started-With-Seele.md)
 * [Seele RPC](Dev/RPC.md)
-* [Test Net]()
+<!-- * [Test Net]()
 * [JS    SDK]()
-* [JAVA  SDK]()
+* [JAVA  SDK]() -->

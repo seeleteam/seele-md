@@ -53,7 +53,7 @@ Repeat password:
 store key successfully, the key file path is shard1account
 ```
 
-restore: 用keyfile和密码还原私钥
+Restore: restore privateKey with keyfile and password
 
 ```
 $ ./client deckeyfile --file shard1account
@@ -62,97 +62,97 @@ public key:  0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451
 private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 ```
 
-### 配置 node.json
+### Configure node.json
 
-1. 修改挖矿账户
-  - 若在片1挖矿，要生成片1的公私钥对，并将片1公钥填入node1.json节点配置模板。
-  - 若在片2挖矿，要生成片2的公私钥对，并将片2公钥填入node2.json节点配置模板。
-  - 片3、4以此类推。
-2. 修改节点id
-  - 生成公私钥对，片数无所谓，取私钥填入挖矿所用的配置文档。
+1. Change mining account
+  - To mine in shard 1, generate a shard 1 keypaire, then place the publickey in node1.json template
+  - To mine in shard 2, generate a shard 2 keypaire, then place the publickey in node2.json template
+  - Similarly for 3 and 4.
+2. Change node id
+  - Generate a keypair whose shard matters not, and fill the template with the privatekey.
 
-片1挖矿配置节点例子：
+Example with configuring shard1 template.
 
-配置前
+Before 
 ```
 {
   "basic":{
     ...
-    "coinbase": "0xcee66ad4a1909f6b5170dec230c1a69bfc2b21d1", ← 挖矿公钥
+    "coinbase": "0xcee66ad4a1909f6b5170dec230c1a69bfc2b21d1", ← publickey for mining
     ...
   },
   "p2p": {
-    "privateKey": "0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479", ← 节点id
+    "privateKey": "0xf65e40c6809643b25ce4df33153da2f3338876f181f83d2281c6ac4a987b1479", ← node id
     ...
   },
   ...
 }
 ```
-配置后
+after
 ```
 {
   "basic":{
     ...
-    "coinbase": "0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451", ← 片1公钥
+    "coinbase": "0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451", ← shard1 account publickey
     ...
   },
   "p2p": {
-    "privateKey": "0xa12b2ef3e40389ef2e0e3130a88674071760a283c5ed53dfeae40a10cdedb9a8", ← 片2私钥
+    "privateKey": "0xa12b2ef3e40389ef2e0e3130a88674071760a283c5ed53dfeae40a10cdedb9a8", ← shard2 privatekey 
     ...
   },
   ...
 }
 ```
 
-### 启动 node 挖矿
+### Run node 
 
-启动挖矿节点：线程数12，用node1.json的配置文档
+Run mining node: with 12 threads，using node1.json as configuration file.
 ```
 ./node start -c ../node1.json --threads 12
 ```
-启动节点、不挖矿：
+Run node without mining: 
 ```
 ./node start -c ../node1.json -m stop
 ```
 
-### 使用 node 服务
+### Using node services
 
-每次节点启动会先检查本地数据库完整性，每秒10000块左右。之后会启动节点服务，用户可以用client来使用各种服务。
-  - 片1的监听端口：8027
-  - 片2的监听端口：8028
-  - 片3的监听端口：8029
-  - 片4的监听端口：8026
+When node starts, it checks the completeness of its database at a speed of roughly 10,000 blocks per second. Then the node will launch its services, which the client executable can access.
+  - shard 1 listening port：8027
+  - shard 2 listening port：8028
+  - shard 3 listening port：8029
+  - shard 4 listening port：8026
   
-余额：
+Balance:
 ```
 $ ./client getbalance --account 0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451 -a 104.218.164.169:8027
 {
         "Account": "0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451",
-        "Balance": 0 ←余额，单位为fan，1seele=1亿fan
+        "Balance": 0 ←balance, fan as unit, 1seele=100million fan
 }
 ```
-节点信息：
+Node info:
 ```
 $ ./client getinfo -a 127.0.0.1:8027
 {
-        "BlockAge": 54, ←最高块距今秒数
-        "Coinbase": "0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451", ←挖矿账户
-        "CurrentBlockHeight": 1225756, ←高度
-        "HeaderHash": "0xa12b2ef3e40389ef2e0e3130a88674071760a283c5ed53dfeae40a10cdedb9a8", ←节点id
-        "MinerStatus": "Stopped", ←是否在挖矿
-        "PeerCnt": "162 (19 54 45 44)", ←连接总节点数（来自片1 2 3 4）
-        "Shard": 1, ←片数
-        "Version": "v1.2.4" ←版本
+        "BlockAge": 54, ←seconds since the heighest block created
+        "Coinbase": "0x43ff8ee89e56de149fd29bedbf8f3f4094cfe451", ←mining acount
+        "CurrentBlockHeight": 1225756, ←height
+        "HeaderHash": "0xa12b2ef3e40389ef2e0e3130a88674071760a283c5ed53dfeae40a10cdedb9a8", ←node id
+        "MinerStatus": "Stopped", ←minging or not
+        "PeerCnt": "162 (19 54 45 44)", ←total peer number（peers connected from 1 2 3 4）
+        "Shard": 1, ←shard number
+        "Version": "v1.2.4" ←version
 }
 
 ```
-直接打`./client`可见可用命令，用`-h`查看命令使用方法，如`./client sendtx -h`查看如何用keyfile做交易。
+Use `./client` to view all available commands, and `-h` to see details of how to use them, for example `./client sendtx -h` to see how to send transactions with keyfile.
 
-# 编译 node
+# Compile node
 
-以下示例为ubuntu和mac命令，
+The following commands work on ubuntu and mac.
 
-### 检查git，gcc，go版本
+### Check git，gcc，go version
 
 ```bash
 $ git --version
@@ -168,8 +168,8 @@ $ go version
 go version go1.10.4 linux/amd64
 ```
 
-### 下载go-seele
- 下载go-seele：首先在根目录里创建路径：~/go/src/github.com/seeleteam。
+### Download go-seele
+ Download go-seele: configure the path ~/go/src/github.com/seeleteam。
 ```bash
 ~$ cd
 ~$ mkdir -p go/src/github.com/seeleteam
@@ -185,7 +185,7 @@ Receiving objects: 100% (10032/10032), 12.25 MiB | 18.45 MiB/s, done.
 Resolving deltas: 100% (5804/5804), done.
 
 ```
-### 编译go-seele：
+### Compile go-seele：
 
 ```bash
 ~/go/src/github.com/seeleteam$ cd go-seele
