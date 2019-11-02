@@ -21,6 +21,7 @@
 ## Developer
 
 * [Go-seele](Dev/Getting-Started-With-Seele.md)
-* [Seele RPC](Dev/RPC.md)
-* [合约](Dev/Seele合约开发与部署流程/基于Seele开发部署合约流程.md)
+* [Seele JSON-RPC](Dev/RPC.md)
+* [Contract JS Demo](Dev/useContract.md)
+* [合约流程](Dev/Seele合约开发与部署流程/基于Seele开发部署合约流程.md)
     * [代币示例](Dev/Seele合约开发与部署流程/基于Seele开发与部署ERC20代币合约示例.md)
