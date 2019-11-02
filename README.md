@@ -8,14 +8,14 @@ Open [edit window](https://app.gitbook.com/@seeletech/spaces) and [view window](
 ### Format 
 
 Formatting mistakes will halt synchronization. Common possibilities:
-- Incomplete `*[]()` in `SUMMARY.md`
+- Incomplete `*[]()` in `STRUCTURE.md`
 
 Gitbook checks `.gitbook.yaml` for
 - Root directory: ex `./`
-- Introduction page: ex `INTRODUCTION.md`
-- Side-bar structure: ex `SUMMARY.md`
+- Introduction page: ex `FIRSTPAGE.md`
+- Side-bar structure: ex `STRUCTURE.md`
 
-`SUMMARY.md` must have the following format:
+`STRUCTURE.md` must have the following format:
 
 ```markdown
 # Summary
