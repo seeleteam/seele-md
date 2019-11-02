@@ -47,7 +47,7 @@ shard number: 1
 Save: Create keyfile using privatekey, filename, password
 
 ```bash
-./client savekey --privatekey 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a --file shard1account
+$ ./client savekey --privatekey 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a --file shard1account
 Password:
 Repeat password:
 store key successfully, the key file path is shard1account
@@ -74,7 +74,7 @@ private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 Example with configuring shard1 template.
 
 Before 
-```js
+```
 {
   "basic":{
     ...
@@ -89,7 +89,7 @@ Before
 }
 ```
 after
-```yml
+```
 {
   "basic":{
     ...
