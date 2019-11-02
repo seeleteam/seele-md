@@ -22,6 +22,6 @@
 
 * [Go-seele](Dev/Getting-Started-With-Seele.md)
 * [Seele RPC](Dev/RPC.md)
-<!-- * [Test Net]()
+* [Test Net]()
 * [JS    SDK]()
-* [JAVA  SDK]() -->
+* [JAVA  SDK]()
