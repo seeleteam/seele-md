@@ -24,10 +24,10 @@ Add -H "Content-Type: application/json"  to your curl statement.
 To avoid this from happening, please make sure your contracts are written correctly before deploying them on Seele. We recommend using Remix, Truffle or other Ethereum IDEs to develop your contracts. Please refer to this link for an example. 
 The following shows how to check the tx receipt of your contract deployment.
 
-![alt](imgs/qa8a.png)
+![](imgs/qa8a.png)
 
 A simple workaround to stop the repeated packing is to send another tx (preferably an account-to-account transfer with a small amount) from the same account where you send out the contract deployment tx. See following for an example.
 
-![alt](imgs/qa8b.png)
+![](imgs/qa8b.png)
 
 This method will increase the nonce of your account and prevent the packing of txs with smaller nonces. We will release a new version to completely avoid this issue in the near future.
