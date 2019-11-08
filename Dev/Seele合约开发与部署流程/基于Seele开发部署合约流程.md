@@ -1,8 +1,8 @@
 # 基于Seele开发部署合约
 
 ## 编辑合约
-你可以基于任何支持solidity的编辑器编写合约。下述将基于[remix在线编辑器](（http://remix.ethereum.org/#optimize=false&evmVersion=null&version=soljson-v0.4.24+commit.e67f0147.js&appVersion=0.7.7）
-)为例，进行说明。
+你可以基于任何支持solidity的编辑器编写合约。下述将基于[remix在线编辑器](（http://remix.ethereum.org/#appVersion=0.7.7&optimize=true&version=soljson-v0.4.24+commit.e67f0147.js）
+)为例，进行说明。注意使用与合约版本一致的编译器。
 
 为了叙述方便，我们使用如下的简单合约示例：
 ```
