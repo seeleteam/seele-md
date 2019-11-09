@@ -104,22 +104,23 @@ client getreceipt --hash 0x80cb46ef3e3350e5c681397444f2b180624a9c1d534927a12e78c
 
 ## 调用合约
 ### 使用sendTx调用合约
-- 通过remix获得方法调用字节码
 
-  使用client sendtx命令调用合约需要提供合约调用方法的payload信息，可以通过remix获得。
-  在remix右下方已部署的合约处，点击左侧小三角可以看到该合约包含的变量和方法。本示例合约包含set和get方法。
-  在set右侧填入参数值，点击set，即可实现函数调用。日志窗口可以看到调用的结果。点击详情可查看调用详情，
-  其中input的值即为方法调用的字节码。本示例调用set，设置变量值为21，如下图所示：
-  
-  ![](callSet.png)
+通过remix获得方法调用字节码
 
-- 使用sendtx调用合约
+使用client sendtx命令调用合约需要提供合约调用方法的payload信息，可以通过remix获得。在remix右下方已部署的合约处，点击左侧小三角可以看到该合约包含的变量和方法。本示例合约包含set和get方法。在set右侧填入参数值，点击set，即可实现函数调用。日志窗口可以看到调用的结果。点击详情可查看调用详情，其中input的值即为方法调用的字节码。本示例调用set，设置变量值为21，如下图所示：
   
-  如下的命令调用上述合约中的set方法，设置变量值为21。其中payload 为从remix获得的字节码，from为发起交易的账户，to为合约地址
+![](callSet.png)
+
+使用sendtx调用合约
+  
+如下的命令调用上述合约中的set方法，设置变量值为21。其中payload 为从remix获得的字节码，from为发起交易的账户，to为合约地址
+  
 ```
 client sendtx --amount 0   --payload 0x60fe47b10000000000000000000000000000000000000000000000000000000000000015 --from 0x987f6215c30f1505e0d42769c5472b410d6bf961.keystore --to 0x47a99059219055cf8277d5d7dff933446edb0012
 ```
+
 执行结果如下：
+
 ```
 account: 0x987f6215c30f1505e0d42769c5472b410d6bf961, transaction nonce: 1
 transaction sent successfully
@@ -141,11 +142,15 @@ transaction sent successfully
 	}
 }
 ```
+
 通过查询receipt信息，可以获取合约调用结果：
+
 ```
 client getreceipt --hash 0x44925f095e067c00660769d2488ab44a6eb9cf3183767d343f3005e7d60e98d6
 ```
+
 得到如下结果：
+
 ```
 {
 	"contract": "0x",
