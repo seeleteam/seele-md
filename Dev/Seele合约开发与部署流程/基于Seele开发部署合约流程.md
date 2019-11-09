@@ -24,8 +24,7 @@ contract SimpleStorage {
 ---
 ## 编译合约
 编写好合约后，可以使用remix的compile功能编译合约，检查合约中可能存在的语法错误。
-在Seele wiki ["Using the contract simulator"](https://seeleteam.github.io/seele-doc/docs/Using-the-contract-simulator.html)
-小节中介绍了如何使用remix获得字节码。
+在[Using the contract simulator](./../Using-the-contract-simulator.md)小节中介绍了如何使用remix获得字节码。
 
 在remix界面中，点击右侧的Run，Environment选择JavaScript VM，可以看到有默认的账户，gas limit，
 下方即为我们编辑的合约名称SimpleStorage。点击Deploy可以测试合约的部署并得到字节码。
@@ -110,8 +109,9 @@ client getreceipt --hash 0x80cb46ef3e3350e5c681397444f2b180624a9c1d534927a12e78c
   使用client sendtx命令调用合约需要提供合约调用方法的payload信息，可以通过remix获得。
   在remix右下方已部署的合约处，点击左侧小三角可以看到该合约包含的变量和方法。本示例合约包含set和get方法。
   在set右侧填入参数值，点击set，即可实现函数调用。日志窗口可以看到调用的结果。点击详情可查看调用详情，
-  其中input的值即为方法调用的字节码。本示例调用set，设置变量值为21，如下图所示：\
-![](callSet.png)
+  其中input的值即为方法调用的字节码。本示例调用set，设置变量值为21，如下图所示：
+  
+  ![](callSet.png)
 
 - 使用sendtx调用合约
   
