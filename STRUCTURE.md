@@ -21,6 +21,7 @@
 ## Developer
 
 * [Go-seele](Dev/Getting-Started-With-Seele.md)
+* [Seele HD Wallet Specification](Dev/SIP.md)
 * [Seele JSON-RPC](Dev/RPC.md)
 * [Contract JS Demo](Dev/useContract.md)
 * [Private Net](Dev/How-to-build-your-own-seele-network.md)
