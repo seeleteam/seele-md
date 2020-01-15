@@ -4,9 +4,9 @@ Author: Tinoma
 Created: 2020-01-15
 ```
 
-## PURPUSE
+## PURPOSE
 
-For compatibility between HD (Hierarchical Deterministic) Wallets that follows the [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) schema, this document aims to specify the rules of address discovery for supporting Seele. 
+For compatibility between HD (Hierarchical Deterministic) Wallets that follows the [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) schema, this document aims to specify the rules of address discovery for supporting Seele.
 
 ## SCHEME
 
