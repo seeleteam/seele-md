@@ -6,7 +6,7 @@ Created: 2020-01-15
 
 ## PURPUSE
 
-For compatibility between HD (Hierarchical Deterministic) Wallet implementations following the [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) standard, this document aims to specify the rules of address discovery for Seele.
+For compatibility between HD (Hierarchical Deterministic) Wallets that follows the [BIP44](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki) schema, this document aims to specify the rules of address discovery for supporting Seele. 
 
 ## SCHEME
 
@@ -31,18 +31,18 @@ For compatibility between HD (Hierarchical Deterministic) Wallet implementations
 // address[2] is chosen for shard 3
 // address[0] is chosen for shard 4
 ```
-| Path                  | Address                                        | Shard |
-| --------------------- | ---------------------------------------------- | ----- |
-| **m/44'/456'/0'/0/0** | **0x05df8b2bf801195092f218dde48c8d41ff280091** | **4** |
-| **m/44'/456'/0'/0/1** | **0x5fc511565316e45e84f3383722a597a01aa80d01** | **1** |
-| **m/44'/456'/0'/0/2** | **0x14130ff8b350230ca326fd468ae8b413efb55891** | **3** |
-| **m/44'/456'/0'/0/3** | **0xac5d5a1fc5ebbea4f2044b33be0587deb333c771** | **2** |
-| m/44'/456'/0'/0/4     | 0x77d455b861210511e727067c9f82c473615956c1     | 3     |
-| m/44'/456'/0'/0/5     | 0xec865343efb6622712fb4df076e71ade650ec5d1     | 2     |
-| m/44'/456'/0'/0/6     | 0x77148aa48613a94e195453a49994f209553e24c1     | 1     |
-| ...                   | ...                                            | ...   |
+| Path                  | Address                    | Shard |
+| --------------------- | -------------------------- | ----- |
+| **m/44'/456'/0'/0/0** | **0x...de48c8d41ff280091** | **4** |
+| **m/44'/456'/0'/0/1** | **0x...722a597a01aa80d01** | **1** |
+| **m/44'/456'/0'/0/2** | **0x...68ae8b413efb55891** | **3** |
+| **m/44'/456'/0'/0/3** | **0x...3be0587deb333c771** | **2** |
+| m/44'/456'/0'/0/4     | 0x...c9f82c473615956c1     | 3     |
+| m/44'/456'/0'/0/5     | 0x...076e71ade650ec5d1     | 2     |
+| m/44'/456'/0'/0/6     | 0x...49994f209553e24c1     | 1     |
+| ...                   | ...                        | ...   |
 
-- JS Implementation Pseudo code
+- JS pseudo code:
 
   ```javascript
   const bip32               = require('bip32');
