@@ -66,6 +66,7 @@ For compatibility between HD (Hierarchical Deterministic) Wallets that follows t
       var addr = { p: null, a: null, s:null }
       var i = 0
       while( addr.s != shard ){
+        addr.i = i
         addr.p = '0x' + rootobj.derivePath(`m/44'/${bip44.SEELE.index}'/0'/0/${i}`).privateKey.toString('hex')
         addr.a = addressOfprivateKey(addr.p)
         addr.s = shardOfAddress(addr.a)
@@ -75,8 +76,36 @@ For compatibility between HD (Hierarchical Deterministic) Wallets that follows t
     }
     return account
   }
-  const mnemonic = "hurdle broccoli blast rug mixed expire soldier able maze heavy jeans equip"
-  accountFromWord(mnemonic)
+  const mnemonic  = "hurdle broccoli blast rug mixed expire soldier able maze heavy jeans equip"
+  const account   = accountFromWord(mnemonic)
+  console.log(account);
+  // expects
+  // [
+  //   {
+  //     s: 1,
+  //     p: '0x6f713371e6d5d513fe66b9f6f5974aec46c0a9a5fdd49d24b48128519e6efb1e',
+  //     a: '0x5fc511565316e45e84f3383722a597a01aa80d01',
+  //     i: 1
+  //   },
+  //   {
+  //     s: 2,
+  //     p: '0xa457b3adedecddacfa1b08f97a6ed8e25b5ed4b1a9692d725c5ed87bd80e36a1',
+  //     a: '0xac5d5a1fc5ebbea4f2044b33be0587deb333c771',
+  //     i: 3
+  //   },
+  //   {
+  //     s: 3,
+  //     p: '0x19350808989722ee84dda5fe20686ca8af5cf7671e5193d3e0cddf039901a3da',
+  //     a: '0x14130ff8b350230ca326fd468ae8b413efb55891',
+  //     i: 2
+  //   },
+  //   {
+  //     s: 4,
+  //     p: '0xb168d0823a616d111ba4abf4c27bb9331d3326dedde270d9b0bc77b767c6744e',
+  //     a: '0x05df8b2bf801195092f218dde48c8d41ff280091',
+  //     i: 0
+  //   }
+  // ]
   ```
 
 ## REFERENCE
