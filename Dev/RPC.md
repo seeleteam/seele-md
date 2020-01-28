@@ -67,10 +67,10 @@ Currently, there are several RPCs with different namespaces：
 |[GetTransactionByHash](#getTransactionbyhash)| &#x2713; | &#x2713; | &#x2713; ||
 |[GetDebtByHash](#getdebtbyhash)| &#x2713; ||| &#x2713; |
 |[GetGasPrice](#getgasprice)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetGasPrice](#GetTransactionsFrom)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetGasPrice](#GetTransactionsTo)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetGasPrice](#GetAccountTransactions)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetGasPrice](#GetBlockTransactionsByHeight)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTransactionsFrom](#GetTransactionsFrom)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetTransactionsTo](#GetTransactionsTo)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetAccountTransactions](#GetAccountTransactions)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetBlockTransactionsByHeight](#GetBlockTransactionsByHeight)| &#x2713; | &#x2713; | &#x2713; ||
 
 - [download](#download)
 
