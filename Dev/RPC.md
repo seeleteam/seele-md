@@ -66,6 +66,11 @@ Currently, there are several RPCs with different namespaces：
 |[GetReceiptByTxHash](#getreceiptbytxhash)| &#x2713; | &#x2713; | &#x2713; ||
 |[GetTransactionByHash](#getTransactionbyhash)| &#x2713; | &#x2713; | &#x2713; ||
 |[GetDebtByHash](#getdebtbyhash)| &#x2713; ||| &#x2713; |
+|[GetGasPrice](#getgasprice)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetGasPrice](#GetTransactionsFrom)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetGasPrice](#GetTransactionsTo)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetGasPrice](#GetAccountTransactions)| &#x2713; | &#x2713; | &#x2713; ||
+|[GetGasPrice](#GetBlockTransactionsByHeight)| &#x2713; | &#x2713; | &#x2713; ||
 
 - [download](#download)
 
@@ -82,6 +87,7 @@ Currently, there are several RPCs with different namespaces：
 |[GetNetVersion](#getnetversion)| &#x2713; | &#x2713; || &#x2713; |
 |[GetProtocolVersion](#getprotocolversion)| &#x2713; | &#x2713; || &#x2713; |
 |[GetNetworkID](#getnetworkid)| &#x2713; | &#x2713; || &#x2713; |
+|[IsListening](#IsListening)| &#x2713; | &#x2713; || &#x2713; |
 
 - [miner](#miner)
 
@@ -91,10 +97,13 @@ Currently, there are several RPCs with different namespaces：
 |[Stop](#stop)| &#x2713; ||| &#x2713; |
 |[Status](#status)| &#x2713; ||| &#x2713; |
 |[GetCoinbase](#getcoinbase)| &#x2713; ||| &#x2713; |
+|[GetTarget](#GetTarget)| &#x2713; ||| &#x2713; |
+|[GetWork](#GetWork)| &#x2713; ||| &#x2713; |
 |[SetThreads](#setthreads)| &#x2713; ||| &#x2713; |
 |[SetCoinbase](#setcoinbase)| &#x2713; ||| &#x2713; |
 |[GetThreads](#getthreads)| &#x2713; ||&#x2713;||
 |[GetHashrate](#gethashrate)| &#x2713; ||&#x2713;||
+
 - [debug](#debug)
 
 | Command | Full | Light | public | private |
@@ -1291,6 +1300,316 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 }
 ```
 ***
+#### GetGasPrice
+
+This method returns the tx gas price.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getGasPrice","params":[string],"id":1}` |
+
+##### Parameters
+
+- `hash`:`string` - hash value in hex
+
+##### Returns
+
+- `gasPrice`:`Int` - transaction gas price
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getGasPrice","params":["0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"],"id":1}' localhost:8037
+```
+- Result
+```js
+{
+	"gasPrice": 10
+}
+```
+Or (if transaction is not found)
+```js
+{
+	"error": "the transaction not found"
+}
+```
+***
+
+#### GetTransactionsFrom
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `account`:`string` - from account
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionsFrom","params":["0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1","",177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasPrice" : 10,
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "amount" : 100000000,
+            "payload" : "",
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "accountNonce" : 0,
+            "gasLimit" : 21000,
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
+         }
+      }
+   ]
+```
+***
+
+#### GetTransactionsTo
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `account`:`string` - from account
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionsTo","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasLimit" : 21000,
+            "accountNonce" : 0,
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "amount" : 100000000,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "gasPrice" : 10,
+            "payload" : "",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
+         }
+      }
+]
+```
+***
+
+
+#### GetAccountTransactions
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `account`:`string` - from account
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getAccountTransactions","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasLimit" : 21000,
+            "accountNonce" : 0,
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "amount" : 100000000,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "gasPrice" : 10,
+            "payload" : "",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
+         }
+      }
+]
+```
+***
+
+#### GetBlockTransactionsByHeight
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
+
+##### Parameters
+
+<!-- - `account`:`string` - from account -->
+<!-- - `hexHash`:`string` - hex form of a block hash -->
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHeight","params":[177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasPrice" : 0,
+            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasLimit" : 0,
+            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5",
+            "amount" : 600000000,
+            "payload" : "",
+            "from" : "0x0000000000000000000000000000000000000000"
+         }
+      },
+      {
+         "transaction 2" : {
+            "payload" : "",
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasPrice" : 10,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
+            "amount" : 100000000,
+            "gasLimit" : 21000
+         }
+      }
+   ]
+```
+***
+
+#### GetBlockTransactionsByHash
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHash","params":[string],"id":1}` |
+
+##### Parameters
+
+<!-- - `account`:`string` - from account -->
+<!-- - `hexHash`:`string` - hex form of a block hash -->
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHash","params":["0x1220bd0253ac24aff8152ea19ad50e6724bac08f914630cea1e901ba19dbe021"],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasPrice" : 0,
+            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasLimit" : 0,
+            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5",
+            "amount" : 600000000,
+            "payload" : "",
+            "from" : "0x0000000000000000000000000000000000000000"
+         }
+      },
+      {
+         "transaction 2" : {
+            "payload" : "",
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasPrice" : 10,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
+            "amount" : 100000000,
+            "gasLimit" : 21000
+         }
+      }
+   ]
+```
+***
 
 ### download
 RPC collection provided for internal inquiry of blockchain node synchronization state.
@@ -1537,6 +1856,37 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 ```
 ***
 
+#### IsListening
+
+This method returns whether the node network is listening or not.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"network_isListening","params":[],"id":2}` |
+
+##### Parameters
+
+none
+
+##### Returns
+
+- `result`:`bool` - listening status
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"network_isListening","params":[],"id":2}' localhost:8037
+```
+- Result
+```js
+{
+   "id" : 2,
+   "jsonrpc" : "2.0",
+   "result" : true
+}
+```
+***
+
 ### miner
 RPC collection provided for internal inquiry of miner information.
 ***
@@ -1653,7 +2003,7 @@ none
 ##### Example
 - Request
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner.getCoinbase","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getCoinbase","params":[],"id":2}' localhost:8037
 ```
 - Result
 ```js
@@ -1663,6 +2013,121 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
     "result": "0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21"
 }
 ```
+***
+
+#### GetTarget
+
+This method is used to obtain current SPOW mining difficulty.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"miner_getTarget","params":[],"id":2}` |
+
+##### Parameters
+
+none
+
+##### Returns
+
+- `result`:`string` - current SPOW mining difficulty
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getTarget","params":[],"id":2}' localhost:8037
+```
+- Result
+```js
+{
+   "jsonrpc" : "2.0",
+   "id" : 2,
+   "result" : "569762050"
+}
+```
+***
+
+
+#### GetWork
+
+This method return miner current mining task.
+
+| Type | Template|
+|-------|-------|
+| RPC | `{"jsonrpc":"2.0","method":"miner_getWork","params":[],"id":2}` |
+
+##### Parameters
+
+- `threads`:`int` - miner threads
+
+##### Returns
+
+- `result`:`bool` - SetThreads result
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"miner_getWork","params":[4],"id":2}' localhost:8037
+```
+- Result
+```js
+{
+   "result" : {
+      "debts" : null,
+      "txs" : [
+         {
+            "Data" : {
+               "GasPrice" : 0,
+               "From" : "0x0000000000000000000000000000000000000000",
+               "Type" : 1,
+               "Timestamp" : 1580171186,
+               "Payload" : "",
+               "AccountNonce" : 0,
+               "Amount" : 600000000,
+               "GasLimit" : 0,
+               "To" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1"
+            },
+            "Signature" : {
+               "Sig" : ""
+            },
+            "Hash" : "0x3a3aa0d94085291262dbd7a177cd451d694618a6315692a68cf22cc6db98a89f"
+         }
+      ],
+      "receipts" : [
+         {
+            "TxHash" : "0x3a3aa0d94085291262dbd7a177cd451d694618a6315692a68cf22cc6db98a89f",
+            "TotalFee" : 0,
+            "Result" : null,
+            "PostState" : "0x09976f41a4a82d87a60450f5701264aca52544b89731f86707a7f970e01b3df8",
+            "Logs" : null,
+            "UsedGas" : 0,
+            "Failed" : false,
+            "ContractAddress" : null
+         }
+      ],
+      "header" : {
+         "Witness" : null,
+         "ReceiptHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+         "DebtHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+         "SecondWitness" : null,
+         "PreviousBlockHash" : "0xe84c9437d787e93676f891d9da54056272a8b460f7b057ea6a343bc3089f6c12",
+         "CreateTimestamp" : 1580171186,
+         "TxHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+         "Creator" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+         "TxDebtHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
+         "Difficulty" : 8769846,
+         "ExtraData" : null,
+         "Height" : 3021,
+         "StateHash" : "0x09976f41a4a82d87a60450f5701264aca52544b89731f86707a7f970e01b3df8",
+         "Consensus" : 0
+      },
+      "coinbase" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1"
+   },
+   "jsonrpc" : "2.0",
+   "id" : 2
+}
+```
+***
+
 
 #### SetThreads
 
@@ -2251,3 +2716,4 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 }
 ```
 ***
+
