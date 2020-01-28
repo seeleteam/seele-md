@@ -2720,7 +2720,7 @@ none
 - Request
 
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_getTPS","params":[],"id":2}' localhost:8037
 ```
 - Result
 
