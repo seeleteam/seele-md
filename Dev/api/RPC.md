@@ -1,29 +1,32 @@
 # Seele JSON-RPC
+
+*( node version >= v1.3.0 )*
+
 JSON is a lightweight data exchange format. It can represent numbers, strings, ordered value sequences and key-value pairs.
 
 JSON-RPC is a stateless, lightweight Remote Procedure Call (RPC) protocol. It defines several data structures and the relevant rules to handle them. JSON-RPC is transmission-agnostic, because it can be used in situations like process, socket, HTTP, or different message transmission environments. It uses JSON(RFC 4627) as the data format.
 
 ## Curl Examples Explained
-The curl options below might return a response where the node complains about the content type, this is because the --data option sets the content type to application/x-www-form-urlencoded . 
+The curl options below might return a response where the node complains about the content type, this is because the --data option sets the content type to application/x-www-form-urlencoded .
 
 
 ## JSON-RPC Support
-| Type | Supported? |
-|-------|:------------:|
-| JSON-RPC 1.0 | &#x2713; |
-| JSON-RPC 2.0 | &#x2713; |
-| Batch Requests | &#x2713; |
-| HTTP | &#x2713; |
-| WS | &#x2713; |
+| Type           | Supported? |
+| -------------- |:----------:|
+| JSON-RPC 1.0   |  &#x2713;  |
+| JSON-RPC 2.0   |  &#x2713;  |
+| Batch Requests |  &#x2713;  |
+| HTTP           |  &#x2713;  |
+| WS             |  &#x2713;  |
 
 ## JSON-RPC Port
 Default port:
 
-| Client | Type | Address |
-|-------|-------|:------------|
-| Go | jsonrpc-2.0 |http://localhost:8027 |
-| Go | http |http://localhost:8037 |
-| Go | websocket |http://localhost:8047 |
+| Client | Type        | Address               |
+| ------ | ----------- |:--------------------- |
+| Go     | jsonrpc-2.0 | http://localhost:8027 |
+| Go     | http        | http://localhost:8037 |
+| Go     | websocket   | http://localhost:8047 |
 
 ## JSON-RPC List
 Currently, there are several RPCs with different namespaces：
@@ -38,91 +41,91 @@ Currently, there are several RPCs with different namespaces：
 ## JSON-RPC Contents
 - [seele](#seele)
 
-| Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
-|[GetInfo](#getinfo)| &#x2713; || &#x2713; ||
-|[GetBalance](#getbalance)| &#x2713; | &#x2713; | &#x2713; ||
-|[AddTx](#addtx)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetAccountNonce](#getaccountnonce)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockHeight](#getblockheight)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlock](#getblock)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockByHash](#getblockbyhash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockByHeight](#getblockbyheight)| &#x2713; | &#x2713; | &#x2713; ||
-|[Call](#call)| &#x2713; || &#x2713; ||
-|[GetLogs](#getlogs)| &#x2713; || &#x2713; ||
-|[GetCode](#getcode)| &#x2713; || &#x2713; ||
-|[GeneratePayload](#generatepayload)| &#x2713; || &#x2713; ||
-|[EstimateGas](#estimategas)| &#x2713; || &#x2713; ||
-|[GetBlockTransactionCount](#getblocktransactioncount)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTransactionCountByHeight](#getblockTransactioncountbyheight)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTransactionCountByHash](#getBlockTransactionCountByHash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionByBlockIndex](#getTransactionbyblockindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionByBlockHeightAndIndex](#getTransactionbyblockheightandindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionByBlockHashAndIndex](#getTransactionbyblockhashandindex)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetReceiptByTxHash](#getreceiptbytxhash)| &#x2713; | &#x2713; | &#x2713; ||
+| Command                                                                     |   Full   |  Light   |  public  | private |
+| --------------------------------------------------------------------------- |:--------:|:--------:|:--------:|:-------:|
+| [GetInfo](#getinfo)                                                         | &#x2713; |          | &#x2713; |         |
+| [GetBalance](#getbalance)                                                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [AddTx](#addtx)                                                             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetAccountNonce](#getaccountnonce)                                         | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockHeight](#getblockheight)                                           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlock](#getblock)                                                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockByHash](#getblockbyhash)                                           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockByHeight](#getblockbyheight)                                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [Call](#call)                                                               | &#x2713; |          | &#x2713; |         |
+| [GetLogs](#getlogs)                                                         | &#x2713; |          | &#x2713; |         |
+| [GetCode](#getcode)                                                         | &#x2713; |          | &#x2713; |         |
+| [GeneratePayload](#generatepayload)                                         | &#x2713; |          | &#x2713; |         |
+| [EstimateGas](#estimategas)                                                 | &#x2713; |          | &#x2713; |         |
+| [GetBlockTransactionCount](#getblocktransactioncount)                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionCountByHeight](#getblockTransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionCountByHash](#getBlockTransactionCountByHash)           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockIndex](#getTransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockHeightAndIndex](#getTransactionbyblockheightandindex) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockHashAndIndex](#getTransactionbyblockhashandindex)     | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetReceiptByTxHash](#getreceiptbytxhash)                                   | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [txpool](#txpool)
 
-| Command | Full | Light | public | private |
-|-------------------------------|:-------:|:-------:|:-------:|:-------:|
-|[GetTxPoolContent](#gettxpoolcontent)| &#x2713; | &#x2713; | &#x2713;||
-|[GetTxPoolTxCount](#gettxpooltxcount)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetPendingTxs](#getpendingtxs)| &#x2713; | &#x2713; | &#x2713;||
-|[GetPendingDebts](#getpendingdebts)| &#x2713; ||&#x2713;|  |
-|[GetTransactionByHash](#getTransactionbyhash)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetDebtByHash](#getdebtbyhash)| &#x2713; ||&#x2713;|  |
-|[GetGasPrice](#getgasprice)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionsFrom](#GetTransactionsFrom)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetTransactionsTo](#GetTransactionsTo)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetAccountTransactions](#GetAccountTransactions)| &#x2713; | &#x2713; | &#x2713; ||
-|[GetBlockTransactionsByHeight](#GetBlockTransactionsByHeight)| &#x2713; | &#x2713; | &#x2713; ||
+| Command                                                       |   Full   |  Light   |  public  | private |
+| ------------------------------------------------------------- |:--------:|:--------:|:--------:|:-------:|
+| [GetTxPoolContent](#gettxpoolcontent)                         | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTxPoolTxCount](#gettxpooltxcount)                         | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetPendingTxs](#getpendingtxs)                               | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetPendingDebts](#getpendingdebts)                           | &#x2713; |          | &#x2713; |         |
+| [GetTransactionByHash](#getTransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetDebtByHash](#getdebtbyhash)                               | &#x2713; |          | &#x2713; |         |
+| [GetGasPrice](#getgasprice)                                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsFrom](#GetTransactionsFrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsTo](#GetTransactionsTo)                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetAccountTransactions](#GetAccountTransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHeight](#GetBlockTransactionsByHeight) | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [download](#download)
 
-| Command | Full | Light | public | private |
-|-------------|:-------:|:-------:|:-------:|:-------:|
-|[IsSyncing](#issyncing)| &#x2713; ||&#x2713;||
-|[GetStatus](#getstatus)| &#x2713; ||&#x2713;||
+| Command                 |   Full   | Light |  public  | private |
+| ----------------------- |:--------:|:-----:|:--------:|:-------:|
+| [IsSyncing](#issyncing) | &#x2713; |       | &#x2713; |         |
+| [GetStatus](#getstatus) | &#x2713; |       | &#x2713; |         |
 
 - [network](#network)
 
-| Command | Full | Light | public | private |
-|---------------------------|:-------:|:-------:|:-------:|:-------:|
-|[GetPeersInfo](#getpeersinfo)| &#x2713; | &#x2713; |&#x2713;|  |
-|[GetPeerCount](#getpeercount)| &#x2713; | &#x2713; |&#x2713;| |
-|[GetNetVersion](#getnetversion)| &#x2713; | &#x2713; |&#x2713;||
-|[GetProtocolVersion](#getprotocolversion)| &#x2713; | &#x2713; |&#x2713;||
-|[GetNetworkID](#getnetworkid)| &#x2713; | &#x2713; |&#x2713;||
-|[IsListening](#IsListening)| &#x2713; | &#x2713; |&#x2713;||
+| Command                                   |   Full   |  Light   |  public  | private |
+| ----------------------------------------- |:--------:|:--------:|:--------:|:-------:|
+| [GetPeersInfo](#getpeersinfo)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetPeerCount](#getpeercount)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetNetVersion](#getnetversion)           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetProtocolVersion](#getprotocolversion) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetNetworkID](#getnetworkid)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [IsListening](#IsListening)               | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [miner](#miner)
 
-| Command | Full | Light | public | private |
-|-------|:-------:|:-------:|:-------:|:-------:|
-|[Start](#start)| &#x2713; ||| &#x2713; |
-|[Stop](#stop)| &#x2713; ||| &#x2713; |
-|[Status](#status)| &#x2713; ||| &#x2713; |
-|[GetCoinbase](#getcoinbase)| &#x2713; ||| &#x2713; |
-|[GetTarget](#GetTarget)| &#x2713; ||| &#x2713; |
-|[GetWork](#GetWork)| &#x2713; ||| &#x2713; |
-|[SetThreads](#setthreads)| &#x2713; ||| &#x2713; |
-|[SetCoinbase](#setcoinbase)| &#x2713; ||| &#x2713; |
-|[GetThreads](#getthreads)| &#x2713; ||&#x2713;||
+| Command                     |   Full   | Light | public | private  |
+| --------------------------- |:--------:|:-----:|:------:|:--------:|
+| [Start](#start)             | &#x2713; |       |        | &#x2713; |
+| [Stop](#stop)               | &#x2713; |       |        | &#x2713; |
+| [Status](#status)           | &#x2713; |       |        | &#x2713; |
+| [GetCoinbase](#getcoinbase) | &#x2713; |       |        | &#x2713; |
+| [GetTarget](#GetTarget)     | &#x2713; |       |        | &#x2713; |
+| [GetWork](#GetWork)         | &#x2713; |       |        | &#x2713; |
+| [SetThreads](#setthreads)   | &#x2713; |       |        | &#x2713; |
+| [SetCoinbase](#setcoinbase) | &#x2713; |       |        | &#x2713; |
+| [GetThreads](#getthreads)   | &#x2713; |       |        | &#x2713; |
 
 - [debug](#debug)
 
-| Command | Full | Light | public | private |
-|-----------------------------|:-------:|:-------:|:-------:|:-------:|
-|[PrintBlock](#printblock)| &#x2713; ||| &#x2713; |
-|[DumpHeap](#dumpheap)| &#x2713; ||| &#x2713; |
-|[GetTPS](#gettps)| &#x2713; ||| &#x2713; |
+| Command                   |   Full   | Light | public | private  |
+| ------------------------- |:--------:|:-----:|:------:|:--------:|
+| [PrintBlock](#printblock) | &#x2713; |       |        | &#x2713; |
+| [DumpHeap](#dumpheap)     | &#x2713; |       |        | &#x2713; |
+| [GetTPS](#gettps)         | &#x2713; |       |        | &#x2713; |
 
 - [monitor](#monitor)
 
-| Command | Full | Light | public | private |
-|-----------------|:-------:|:-------:|:-------:|:-------:|
-|[NodeInfo](#nodeinfo)| &#x2713; || &#x2713; ||
-|[NodeStats](#nodestats)| &#x2713; || &#x2713; ||
+| Command                 |   Full   | Light |  public  | private |
+| ----------------------- |:--------:|:-----:|:--------:|:-------:|
+| [NodeInfo](#nodeinfo)   | &#x2713; |       | &#x2713; |         |
+| [NodeStats](#nodestats) | &#x2713; |       | &#x2713; |         |
 
 ### seele
 RPC collection provided for public for blockchain node and transaction manipulation.
@@ -133,9 +136,9 @@ RPC collection provided for public for blockchain node and transaction manipulat
 
 This method returns the node information.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":2}` |
+| Type | Template                                                        |
+| ---- | --------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getInfo","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -182,9 +185,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the account balance given the account address.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBalance","params":[string,string ,uint64],"id":1}` |
+| Type | Template                                                                                |
+| ---- | --------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBalance","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -221,9 +224,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method submits a transaction to the node.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_addTx","params":[types.Transaction],"id":1}` |
+| Type | Template                                                                       |
+| ---- | ------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_addTx","params":[types.Transaction],"id":1}` |
 
 ##### Parameters
 
@@ -268,9 +271,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the account nonce.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":[string,string ,uint64],"id":1}` |
+| Type | Template                                                                                     |
+| ---- | -------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getAccountNonce","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -303,9 +306,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the height of the blockchain.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockHeight","params":[],"id":1}` |
+| Type | Template                                                               |
+| ---- | ---------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockHeight","params":[],"id":1}` |
 
 ##### Parameters
 
@@ -336,9 +339,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the block content based on block height or block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlock","params":[string,string,bool],"id":1}` |
+| Type | Template                                                                           |
+| ---- | ---------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlock","params":[string,string,bool],"id":1}` |
 
 ##### Parameters
 
@@ -469,9 +472,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the block content based on block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":[string,bool],"id":1}` |
+| Type | Template                                                                          |
+| ---- | --------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockByHash","params":[string,bool],"id":1}` |
 
 ##### Parameters
 
@@ -601,9 +604,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the block content based on block height.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[string,bool],"id":1}` |
+| Type | Template                                                                            |
+| ---- | ----------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockByHeight","params":[string,bool],"id":1}` |
 
 ##### Parameters
 
@@ -715,9 +718,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to execute a given transaction on a statedb of a given block height. It does not affect the statedb or blockchain and is useful for executing and retrieving values. However, the height currently does not support optional and will remove the from parameter in the next version or more.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_call ","params":[CallRequest],"id":1}` |
+| Type | Template                                                                 |
+| ---- | ------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_call ","params":[CallRequest],"id":1}` |
 
 ##### Parameters
 
@@ -782,15 +785,15 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method gets the event logs by block height, the contract address, and the event name.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getLogs ","params":[GetLogsRequest],"id":1}` |
+| Type | Template                                                                       |
+| ---- | ------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getLogs ","params":[GetLogsRequest],"id":1}` |
 
 ##### Parameters
 
 - `height`:`int64` - block height (default: -1)
 - `contract`:`string` - contract address
-- `abi`:`string` - contract abi 
+- `abi`:`string` - contract abi
 - `event`:`string` - event name
 
 ##### Returns
@@ -845,9 +848,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method gets the contract code by block height and contract address.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getCode ","params":[string, int64],"id":1}` |
+| Type | Template                                                                      |
+| ---- | ----------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getCode ","params":[string, int64],"id":1}` |
 
 ##### Parameters
 
@@ -875,9 +878,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method generates the contract method payload.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_generatePayload","params":[string, string, []string],"id":1}` |
+| Type | Template                                                                                        |
+| ---- | ----------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_generatePayload","params":[string, string, []string],"id":1}` |
 
 ##### Parameters
 
@@ -910,9 +913,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method estimates the gas of a transaction.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_estimateGas","params":[types.Transaction],"id":1}` |
+| Type | Template                                                                             |
+| ---- | ------------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_estimateGas","params":[types.Transaction],"id":1}` |
 
 ##### Parameters
 
@@ -951,9 +954,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the number of transactions in the block based on block height or hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionCount","params":[string,int64],"id":1}` |
+| Type | Template                                                                                     |
+| ---- | -------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionCount","params":[string,int64],"id":1}` |
 
 ##### Parameters
 
@@ -985,9 +988,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the number of transactions in the block based on block height.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHeight","params":[int64],"id":1}` |
+| Type | Template                                                                                      |
+| ---- | --------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHeight","params":[int64],"id":1}` |
 
 ##### Parameters
 
@@ -1018,9 +1021,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the number of transactions in the block based on block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHash","params":[string],"id":1}` |
+| Type | Template                                                                                     |
+| ---- | -------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1034,7 +1037,8 @@ This method is used to obtain the number of transactions in the block based on b
 - Request
 
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037```
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037
+```
 - Result
 
 ```js
@@ -1050,9 +1054,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the transaction content based on block height or hash and transaction index.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getTransactionByBlockIndex","params":[string,int,int],"id":1}` |
+| Type | Template                                                                                         |
+| ---- | ------------------------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionByBlockIndex","params":[string,int,int],"id":1}` |
 
 ##### Parameters
 
@@ -1101,9 +1105,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the transaction content based on block height and transaction index.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getTransactionByBlockHeightAndIndex","params":[int,int],"id":1}` |
+| Type | Template                                                                                           |
+| ---- | -------------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionByBlockHeightAndIndex","params":[int,int],"id":1}` |
 
 ##### Parameters
 
@@ -1151,9 +1155,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the transaction content based on block hash and transaction index.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getTransactionByBlockHashAndIndex","params":[string,int],"id":1}` |
+| Type | Template                                                                                            |
+| ---- | --------------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionByBlockHashAndIndex","params":[string,int],"id":1}` |
 
 ##### Parameters
 
@@ -1201,9 +1205,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the receipt contents based on transaction hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"seele_getReceiptByTxHash","params":[string,string],"id":1}` |
+| Type | Template                                                                                |
+| ---- | --------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getReceiptByTxHash","params":[string,string],"id":1}` |
 
 ##### Parameters
 
@@ -1254,9 +1258,9 @@ RPC collection provided for internal use for transaction pool inquiry manipulati
 
 This method returns transaction information by hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":[string],"id":1}` |
+| Type | Template                                                                            |
+| ---- | ----------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTransactionByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1317,9 +1321,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the debt contents based on debt hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":[string],"id":1}` |
+| Type | Template                                                                     |
+| ---- | ---------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getDebtByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1379,9 +1383,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the tx gas price.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getGasPrice","params":[string],"id":1}` |
+| Type | Template                                                                   |
+| ---- | -------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getGasPrice","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1415,9 +1419,9 @@ Or (if transaction is not found)
 
 This method returns transactions from one account at specific height or block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
+| Type | Template                                                                                          |
+| ---- | ------------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1465,9 +1469,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns transactions from one account at specific height or block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
+| Type | Template                                                                                        |
+| ---- | ----------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1516,9 +1520,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns transactions from one account at specific height or block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
+| Type | Template                                                                                             |
+| ---- | ---------------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1566,9 +1570,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns transactions from one account at specific height or block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
+| Type | Template                                                                                    |
+| ---- | ------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1628,9 +1632,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns transactions from one account at specific height or block hash.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHash","params":[string],"id":1}` |
+| Type | Template                                                                                  |
+| ---- | ----------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1690,9 +1694,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the transaction pool content.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTxPoolContent","params":[],"id":2}` |
+| Type | Template                                                                  |
+| ---- | ------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTxPoolContent","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -1744,9 +1748,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the number of transactions in the transaction pool.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getTxPoolTxCount","params":[],"id":2}` |
+| Type | Template                                                                  |
+| ---- | ------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTxPoolTxCount","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -1773,13 +1777,13 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 ```
 ***
 
-#### GetPendingTxs
+#### GetPendingTransactions
 
 This method is used to obtain pending transactions in the transaction pool.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getPendingTransactions","params":[],"id":2}` |
+| Type | Template                                                                        |
+| ---- | ------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getPendingTransactions","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -1828,9 +1832,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain pending transactions in the transaction pool.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"txpool_getPendingDebts","params":[],"id":2}` |
+| Type | Template                                                                 |
+| ---- | ------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"txpool_getPendingDebts","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -1882,9 +1886,9 @@ RPC collection provided for internal inquiry of blockchain node synchronization 
 
 This method returns synchronization information.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}` |
+| Type | Template                                                             |
+| ---- | -------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"download_getStatus","params":[],"id":2}` |
 
 ##### Parameters
 none
@@ -1924,9 +1928,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the synchronization status.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"download_isSyncing","params":[],"id":2}` |
+| Type | Template                                                             |
+| ---- | -------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"download_isSyncing","params":[],"id":2}` |
 
 ##### Parameters
 none
@@ -1962,9 +1966,9 @@ RPC collection provided for internal inquiry of network node information.
 
 This method returns the information of peer nodes.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"network_getPeersInfo","params":[],"id":2}` |
+| Type | Template                                                               |
+| ---- | ---------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"network_getPeersInfo","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2034,9 +2038,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the number of peer nodes.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"network_getPeerCount","params":[],"id":2}` |
+| Type | Template                                                               |
+| ---- | ---------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"network_getPeerCount","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2067,9 +2071,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the network version.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"network_getNetVersion","params":[],"id":2}` |
+| Type | Template                                                                |
+| ---- | ----------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"network_getNetVersion","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2100,9 +2104,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the protocol version.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"network_getProtocolVersion","params":[],"id":2}` |
+| Type | Template                                                                     |
+| ---- | ---------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"network_getProtocolVersion","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2133,9 +2137,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the network id.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"network_getNetworkID","params":[],"id":2}` |
+| Type | Template                                                               |
+| ---- | ---------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"network_getNetworkID","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2166,9 +2170,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns whether the node network is listening or not.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"network_isListening","params":[],"id":2}` |
+| Type | Template                                                              |
+| ---- | --------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"network_isListening","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2201,9 +2205,9 @@ RPC collection provided for internal inquiry of miner information.
 
 This method starts the miner with an input number of threads.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_start","params":[int],"id":2}` |
+| Type | Template                                                         |
+| ---- | ---------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_start","params":[int],"id":2}` |
 
 ##### Parameters
 
@@ -2234,9 +2238,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method stops the miner.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_stop","params":[],"id":2}` |
+| Type | Template                                                     |
+| ---- | ------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_stop","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2267,9 +2271,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the miner status.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_status","params":[],"id":2}` |
+| Type | Template                                                       |
+| ---- | -------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_status","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2300,9 +2304,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain the node coinbase.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_getCoinbase","params":[],"id":2}` |
+| Type | Template                                                            |
+| ---- | ------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_getCoinbase","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2333,9 +2337,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to obtain current SPOW mining difficulty.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_getTarget","params":[],"id":2}` |
+| Type | Template                                                          |
+| ---- | ----------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_getTarget","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2365,9 +2369,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method return miner current mining task.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_getWork","params":[],"id":2}` |
+| Type | Template                                                        |
+| ---- | --------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_getWork","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2447,9 +2451,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to set the threads of miner consensus.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_setThreads","params":[],"id":2}` |
+| Type | Template                                                           |
+| ---- | ------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_setThreads","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2480,9 +2484,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to set the coinbase
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_setCoinbase","params":["string"],"id":2}` |
+| Type | Template                                                                    |
+| ---- | --------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_setCoinbase","params":["string"],"id":2}` |
 
 ##### Parameters
 
@@ -2513,9 +2517,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method is used to get the threads of miner consensus.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}` |
+| Type | Template                                                           |
+| ---- | ------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"miner_getThreads","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2550,9 +2554,9 @@ RPC collection provided for internal debugging.
 
 This method is used to print block information in dump format based on block height.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"debug_printBlock","params":[int64],"id":2}` |
+| Type | Template                                                                |
+| ---- | ----------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"debug_printBlock","params":[int64],"id":2}` |
 
 ##### Parameters
 
@@ -2668,9 +2672,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method dump heap for profiling and returns the file path.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}` |
+| Type | Template                                                         |
+| ---- | ---------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2684,7 +2688,7 @@ none
 - Request
 
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' url
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
 ```
 - Result
 
@@ -2701,9 +2705,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns TPS of seele node.
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"debug_getTPS","params":[],"id":2}` |
+| Type | Template                                                       |
+| ---- | -------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"debug_getTPS","params":[],"id":2}` |
 
 ##### Parameters
 
@@ -2747,9 +2751,9 @@ node monitor.
 
 This method returns the node information of the node
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"monitor_nodeInfo","params":[],"id":1}` |
+| Type | Template                                                           |
+| ---- | ------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"monitor_nodeInfo","params":[],"id":1}` |
 
 ##### Parameters
 
@@ -2802,9 +2806,9 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 
 This method returns the information of the node
 
-| Type | Template|
-|-------|-------|
-| RPC | `{"jsonrpc":"2.0","method":"monitor_nodeStats","params":[],"id":1}` |
+| Type | Template                                                            |
+| ---- | ------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"monitor_nodeStats","params":[],"id":1}` |
 
 ##### Parameters
 
@@ -2838,4 +2842,3 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 }
 ```
 ***
-

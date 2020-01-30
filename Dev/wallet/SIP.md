@@ -1,3 +1,5 @@
+# Seele HD Wallet Specification
+
 ```yml
 Title: Seele HD Wallet Specification
 Author: Tinoma
@@ -11,6 +13,7 @@ For compatibility between HD (Hierarchical Deterministic) Wallets that follows t
 ## SCHEME
 
 - Specification:
+
 | Field         | Value | Comments                                                                          |
 | ------------- | ----- | --------------------------------------------------------------------------------- |
 | purpose       | 44'   | BIP44 purpose.                                                                    |
@@ -20,6 +23,7 @@ For compatibility between HD (Hierarchical Deterministic) Wallets that follows t
 | address_index | x     | Find the first address encountered in each shard. Four addresses in total.        |
 
 - Example:
+
 ```javascript
 {
     mnemonic: "hurdle broccoli blast rug mixed expire soldier able maze heavy jeans equip"
@@ -31,6 +35,7 @@ For compatibility between HD (Hierarchical Deterministic) Wallets that follows t
 // address[2] is chosen for shard 3
 // address[0] is chosen for shard 4
 ```
+
 | Path                  | Address                    | Shard |
 | --------------------- | -------------------------- | ----- |
 | **m/44'/456'/0'/0/0** | **0x...de48c8d41ff280091** | **4** |
@@ -44,69 +49,69 @@ For compatibility between HD (Hierarchical Deterministic) Wallets that follows t
 
 - JS pseudo code:
 
-  ```javascript
-  const bip32               = require('bip32');
-  const bip39               = require('bip39');
-  const bip44               = require('bip44');
-  // return seele address from privateKey
-  function addressOfprivateKey(privateKey){...}
-  // return seele shard from address
-  function shardOfAddress(address){...}
-  //
-  function accountFromWord(word){
-    var seed = bip39.mnemonicToSeedSync(word).toString('hex')
-    return accountFromSeed(seed)
-  }
+```javascript
+const bip32               = require('bip32');
+const bip39               = require('bip39');
+const bip44               = require('bip44');
+// return seele address from privateKey
+function addressOfprivateKey(privateKey){...}
+// return seele shard from address
+function shardOfAddress(address){...}
+//
+function accountFromWord(word){
+  var seed = bip39.mnemonicToSeedSync(word).toString('hex')
+  return accountFromSeed(seed)
+}
 
-  function accountFromSeed(seed){
-    var seedbuf = Buffer.from(seed, 'hex')
-    var rootobj = bip32.fromSeed(seedbuf)
-    var account = []
-    for ( var shard = 1 ; shard <= 4 ; shard++ ){
-      var addr = { p: null, a: null, s:null }
-      var i = 0
-      while( addr.s != shard ){
-        addr.i = i
-        addr.p = '0x' + rootobj.derivePath(`m/44'/${bip44.SEELE.index}'/0'/0/${i}`).privateKey.toString('hex')
-        addr.a = addressOfprivateKey(addr.p)
-        addr.s = shardOfAddress(addr.a)
-        i++;
-      }
-      account.push(addr)
+function accountFromSeed(seed){
+  var seedbuf = Buffer.from(seed, 'hex')
+  var rootobj = bip32.fromSeed(seedbuf)
+  var account = []
+  for ( var shard = 1 ; shard <= 4 ; shard++ ){
+    var addr = { p: null, a: null, s:null }
+    var i = 0
+    while( addr.s != shard ){
+      addr.i = i
+      addr.p = '0x' + rootobj.derivePath(`m/44'/${bip44.SEELE.index}'/0'/0/${i}`).privateKey.toString('hex')
+      addr.a = addressOfprivateKey(addr.p)
+      addr.s = shardOfAddress(addr.a)
+      i++;
     }
-    return account
+    account.push(addr)
   }
-  const mnemonic  = "hurdle broccoli blast rug mixed expire soldier able maze heavy jeans equip"
-  const account   = accountFromWord(mnemonic)
-  console.log(account);
-  // expects
-  // [
-  //   {
-  //     s: 1,
-  //     p: '0x6f713371e6d5d513fe66b9f6f5974aec46c0a9a5fdd49d24b48128519e6efb1e',
-  //     a: '0x5fc511565316e45e84f3383722a597a01aa80d01',
-  //     i: 1
-  //   },
-  //   {
-  //     s: 2,
-  //     p: '0xa457b3adedecddacfa1b08f97a6ed8e25b5ed4b1a9692d725c5ed87bd80e36a1',
-  //     a: '0xac5d5a1fc5ebbea4f2044b33be0587deb333c771',
-  //     i: 3
-  //   },
-  //   {
-  //     s: 3,
-  //     p: '0x19350808989722ee84dda5fe20686ca8af5cf7671e5193d3e0cddf039901a3da',
-  //     a: '0x14130ff8b350230ca326fd468ae8b413efb55891',
-  //     i: 2
-  //   },
-  //   {
-  //     s: 4,
-  //     p: '0xb168d0823a616d111ba4abf4c27bb9331d3326dedde270d9b0bc77b767c6744e',
-  //     a: '0x05df8b2bf801195092f218dde48c8d41ff280091',
-  //     i: 0
-  //   }
-  // ]
-  ```
+  return account
+}
+const mnemonic  = "hurdle broccoli blast rug mixed expire soldier able maze heavy jeans equip"
+const account   = accountFromWord(mnemonic)
+console.log(account);
+// expects
+// [
+//   {
+//     s: 1,
+//     p: '0x6f713371e6d5d513fe66b9f6f5974aec46c0a9a5fdd49d24b48128519e6efb1e',
+//     a: '0x5fc511565316e45e84f3383722a597a01aa80d01',
+//     i: 1
+//   },
+//   {
+//     s: 2,
+//     p: '0xa457b3adedecddacfa1b08f97a6ed8e25b5ed4b1a9692d725c5ed87bd80e36a1',
+//     a: '0xac5d5a1fc5ebbea4f2044b33be0587deb333c771',
+//     i: 3
+//   },
+//   {
+//     s: 3,
+//     p: '0x19350808989722ee84dda5fe20686ca8af5cf7671e5193d3e0cddf039901a3da',
+//     a: '0x14130ff8b350230ca326fd468ae8b413efb55891',
+//     i: 2
+//   },
+//   {
+//     s: 4,
+//     p: '0xb168d0823a616d111ba4abf4c27bb9331d3326dedde270d9b0bc77b767c6744e',
+//     a: '0x05df8b2bf801195092f218dde48c8d41ff280091',
+//     i: 0
+//   }
+// ]
+```
 
 ## REFERENCE
 

@@ -1,8 +1,8 @@
 root: ./
 
 structure:
-  readme: FIRSTPAGE.md
-  summary: STRUCTURE.md
+  readme: README.md
+  summary: SUMMARY.md
 
 redirects:
   FAQ: FAQ.md
