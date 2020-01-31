@@ -1,0 +1,66 @@
+How To Create An Account
+========================
+
+Create account by Seele Node
+----------------------------
+
+You can create a Seele account by Seele Node.
+
+`Setting Up a
+Node <Getting-Started-With-Seele.html#setting-up-a-node>`__ will help
+you acquire a Seele Node.
+
+-  Generate a Seele account on shard 1:
+
+.. code:: js
+
+   // Request
+   node key --shard 1
+
+   // Response
+   public key:  0xb4153ca4090a11af1984cdf20b0d0cbed5ff97a1
+   private key: 0x28f74ba46964f6bd09be55654d58eacea72b57449d5636a8c347c15a9104f
+
+Currently, Seele has **4** shards. You can choose shard number from 1 to
+4 for your account.
+
+Create account by Seele Client
+------------------------------
+
+You can also create a Seele account by a full node client or a light
+node client.
+
+`Create a Full Node
+Client <Getting-Started-With-Seele.html#create-a-full-node-client>`__
+will help you on how to acquire a full node client.
+
+`Create a Light Node
+Client <Getting-Started-With-Seele.html#create-a-light-node-client>`__
+will help you on how to acquire a light node client.
+
+-  Generate a Seele account on shard 1:
+
+.. code:: js
+
+   // Request
+   client key --shard 1
+
+   // Response
+   public key:  0xb4153ca4090a11af1984cdf20b0d0cbed5ff97a1
+   private key: 0x28f74ba46964f6bd09be55654d58eacea72b57449d5636a8c347c15a9104f
+
+Generate keyfile for account
+----------------------------
+
+-  Sometimes you may need to store the account private key to a file,
+   command:
+
+.. code:: js
+
+   // Request
+   client savekey --privatekey 0x28f74ba46964f6bd09be55654d58eacea72b57449d5636a8c347c15a9104fbc3 --file .keystore-shard1
+
+   // Response
+   Password:
+   Repeat password:
+   store key successful

@@ -1,0 +1,35 @@
+Seele transaction fee
+=====================
+
+While the major currency unit of Seele is **seele**, we use **fan** as
+the smallest unit. 1 seele = 100,000,000 fan. When you send transactions
+in Seele, the transaction amount and price is measured in **fan**.
+
+Note that transaction amount and transaction fee are different. The
+transaction amount is the amount transferred from the sender to the
+receiver. The transaction fee is calculated by
+
+``fee = price * gas``
+
+and is paid to the block miners. The price is provided by the sender and
+gas depends on the transaction itself.
+
+Gas
+---
+
+The gas for different types of transaction is listed in the following:
+
++-------------------+-------------------+------------------------------+
+|                   | within a shard    | cross-shard                  |
++===================+===================+==============================+
+| **normal          | 21000             | 63000                        |
+| transaction**     |                   |                              |
++-------------------+-------------------+------------------------------+
+| **contract        | 21000 + gas for   | Not applicable               |
+| transaction**     | the contract      |                              |
+|                   | payload + gas     |                              |
+|                   | used for contract |                              |
+|                   | execution         |                              |
++-------------------+-------------------+------------------------------+
+
+Currently, cross-shard contract is not supported.

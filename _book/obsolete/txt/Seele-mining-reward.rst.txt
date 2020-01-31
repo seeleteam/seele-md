@@ -1,0 +1,14 @@
+Seele mining reward
+===================
+
+A miner gets reward for mining a block. We define one “Seele year” as
+the time needed to produce 3,150,000 blocks in one shard. In different
+“years”, the mining reward differs.
+
+================ ====== ====== ====== ====== ====== ====== ====== ====== ======
+\                Year 1 Year 2 Year 3 Year 4 Year 5 Year 6 Year 7 Year 8 Year 9
+================ ====== ====== ====== ====== ====== ====== ====== ====== ======
+**block reward** 6      4      3      2.5    2      2      1.5    1.5    1.5
+================ ====== ====== ====== ====== ====== ====== ====== ====== ======
+
+(the reward unit: seele).
