@@ -57,6 +57,10 @@ Currently, there are several RPCs with different namespaces：
 | [GeneratePayload](#generatepayload)                                         | &#x2713; |          | &#x2713; |         |
 | [EstimateGas](#estimategas)                                                 | &#x2713; |          | &#x2713; |         |
 | [GetBlockTransactionCount](#getblocktransactioncount)                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsFrom](#gettransactionsfrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsTo](#gettransactionsto)                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetAccountTransactions](#getaccounttransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHeight](#getblocktransactionsbyheight) | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHeight](#getblocktransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHash](#getblocktransactioncountbyhash)           | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetTransactionByBlockIndex](#gettransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
@@ -75,10 +79,6 @@ Currently, there are several RPCs with different namespaces：
 | [GetTransactionByHash](#gettransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetDebtByHash](#getdebtbyhash)                               | &#x2713; |          | &#x2713; |         |
 | [GetGasPrice](#getgasprice)                                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsFrom](#gettransactionsfrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsTo](#gettransactionsto)                       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetAccountTransactions](#getaccounttransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionsByHeight](#getblocktransactionsbyheight) | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [download](#download)
 
