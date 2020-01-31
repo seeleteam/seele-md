@@ -57,11 +57,11 @@ Currently, there are several RPCs with different namespaces：
 | [GeneratePayload](#generatepayload)                                         | &#x2713; |          | &#x2713; |         |
 | [EstimateGas](#estimategas)                                                 | &#x2713; |          | &#x2713; |         |
 | [GetBlockTransactionCount](#getblocktransactioncount)                       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionCountByHeight](#getblockTransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionCountByHash](#getBlockTransactionCountByHash)           | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionByBlockIndex](#getTransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionByBlockHeightAndIndex](#getTransactionbyblockheightandindex) | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionByBlockHashAndIndex](#getTransactionbyblockhashandindex)     | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionCountByHeight](#getblocktransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionCountByHash](#getblocktransactioncountbyhash)           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockIndex](#gettransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockHeightAndIndex](#gettransactionbyblockheightandindex) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockHashAndIndex](#gettransactionbyblockhashandindex)     | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetReceiptByTxHash](#getreceiptbytxhash)                                   | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [txpool](#txpool)
@@ -72,13 +72,13 @@ Currently, there are several RPCs with different namespaces：
 | [GetTxPoolTxCount](#gettxpooltxcount)                         | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetPendingTxs](#getpendingtxs)                               | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetPendingDebts](#getpendingdebts)                           | &#x2713; |          | &#x2713; |         |
-| [GetTransactionByHash](#getTransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByHash](#gettransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetDebtByHash](#getdebtbyhash)                               | &#x2713; |          | &#x2713; |         |
 | [GetGasPrice](#getgasprice)                                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsFrom](#GetTransactionsFrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsTo](#GetTransactionsTo)                       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetAccountTransactions](#GetAccountTransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionsByHeight](#GetBlockTransactionsByHeight) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsFrom](#gettransactionsfrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsTo](#gettransactionsto)                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetAccountTransactions](#getaccounttransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHeight](#getblocktransactionsbyheight) | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [download](#download)
 
@@ -96,7 +96,7 @@ Currently, there are several RPCs with different namespaces：
 | [GetNetVersion](#getnetversion)           | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetProtocolVersion](#getprotocolversion) | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetNetworkID](#getnetworkid)             | &#x2713; | &#x2713; | &#x2713; |         |
-| [IsListening](#IsListening)               | &#x2713; | &#x2713; | &#x2713; |         |
+| [IsListening](#Islistening)               | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [miner](#miner)
 
@@ -106,8 +106,8 @@ Currently, there are several RPCs with different namespaces：
 | [Stop](#stop)               | &#x2713; |       |        | &#x2713; |
 | [Status](#status)           | &#x2713; |       |        | &#x2713; |
 | [GetCoinbase](#getcoinbase) | &#x2713; |       |        | &#x2713; |
-| [GetTarget](#GetTarget)     | &#x2713; |       |        | &#x2713; |
-| [GetWork](#GetWork)         | &#x2713; |       |        | &#x2713; |
+| [GetTarget](#gettarget)     | &#x2713; |       |        | &#x2713; |
+| [GetWork](#getwork)         | &#x2713; |       |        | &#x2713; |
 | [SetThreads](#setthreads)   | &#x2713; |       |        | &#x2713; |
 | [SetCoinbase](#setcoinbase) | &#x2713; |       |        | &#x2713; |
 | [GetThreads](#getthreads)   | &#x2713; |       |        | &#x2713; |
