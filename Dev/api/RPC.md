@@ -61,6 +61,8 @@ Currently, there are several RPCs with different namespaces：
 | [GetTransactionsTo](#gettransactionsto)                       | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetAccountTransactions](#getaccounttransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionsByHeight](#getblocktransactionsbyheight) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHash](#getblocktransactionsbyhash) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactions](#getblocktransactions) | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHeight](#getblocktransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHash](#getblocktransactioncountbyhash)           | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetTransactionByBlockIndex](#gettransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
@@ -1421,7 +1423,7 @@ This method returns transactions from one account at specific height or block ha
 
 | Type | Template                                                                                          |
 | ---- | ------------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1444,7 +1446,7 @@ This method returns transactions from one account at specific height or block ha
 ##### Example
 - Request
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionsFrom","params":["0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1","",177],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getTransactionsFrom","params":["0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1","",177],"id":1}' localhost:8037
 ```
 - Result
 ```js
@@ -1471,7 +1473,7 @@ This method returns transactions from one account at specific height or block ha
 
 | Type | Template                                                                                        |
 | ---- | ----------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"txpool_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1494,7 +1496,7 @@ This method returns transactions from one account at specific height or block ha
 ##### Example
 - Request
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getTransactionsTo","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getTransactionsTo","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
 ```
 - Result
 ```js
@@ -1522,7 +1524,7 @@ This method returns transactions from one account at specific height or block ha
 
 | Type | Template                                                                                             |
 | ---- | ---------------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"txpool_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1545,7 +1547,7 @@ This method returns transactions from one account at specific height or block ha
 ##### Example
 - Request
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getAccountTransactions","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountTransactions","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
 ```
 - Result
 ```js
@@ -1566,13 +1568,78 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 ```
 ***
 
+#### GetBlockTransactions
+
+This method returns transactions at specific height or block hash.
+
+| Type | Template                                                                                             |
+| ---- | ---------------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactions","params":[string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactions","params":["",177],"id":1}' localhost:8037
+```
+- Result
+```js
+{
+   "result" : [
+      {
+         "transaction 1" : {
+            "amount" : 600000000,
+            "gasPrice" : 0,
+            "payload" : "",
+            "gasLimit" : 0,
+            "accountNonce" : 0,
+            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "from" : "0x0000000000000000000000000000000000000000",
+            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5"
+         }
+      },
+      {
+         "transaction 2" : {
+            "amount" : 100000000,
+            "gasPrice" : 10,
+            "payload" : "",
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
+            "gasLimit" : 21000,
+            "accountNonce" : 0
+         }
+      }
+   ],
+   "jsonrpc" : "2.0",
+   "id" : 1
+}
+```
+***
+
 #### GetBlockTransactionsByHeight
 
 This method returns transactions from one account at specific height or block hash.
 
 | Type | Template                                                                                    |
 | ---- | ------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
 
 ##### Parameters
 
@@ -1595,7 +1662,7 @@ This method returns transactions from one account at specific height or block ha
 ##### Example
 - Request
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHeight","params":[177],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHeight","params":[177],"id":1}' localhost:8037
 ```
 - Result
 ```js
@@ -1634,7 +1701,7 @@ This method returns transactions from one account at specific height or block ha
 
 | Type | Template                                                                                  |
 | ---- | ----------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHash","params":[string],"id":1}` |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHash","params":[string],"id":1}` |
 
 ##### Parameters
 
@@ -1657,7 +1724,7 @@ This method returns transactions from one account at specific height or block ha
 ##### Example
 - Request
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"txpool_getBlockTransactionsByHash","params":["0x1220bd0253ac24aff8152ea19ad50e6724bac08f914630cea1e901ba19dbe021"],"id":1}' localhost:8037
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHash","params":["0x1220bd0253ac24aff8152ea19ad50e6724bac08f914630cea1e901ba19dbe021"],"id":1}' localhost:8037
 ```
 - Result
 ```js
