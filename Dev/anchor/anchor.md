@@ -3,14 +3,14 @@
 ## Pages:
 1. Node Page
   - mainnet nodes : cur & bac
-  - subnet nodes : cur & bac 
+  - subnet nodes : cur & bac
 2. Account Page
   - Main chain Accounts
     - //transaction line
-    - //contract methods lines ... 
+    - //contract methods lines ...
     - //contract call/events lines
-    - //subchain line 
-      - Subchain Account 
+    - //subchain line
+      - Subchain Account
   - top few transactions
 3. Contract Page
   - general contracts
@@ -22,12 +22,12 @@
     - done
 5. Events Page
   - Subscriptions
-  - 
+  -
 
-## Cell description
+## Cell description:
   - Node
-    - shard: updatable, 
-    - ipport: fixed, 
+    - shard: updatable,
+    - ipport: fixed,
     - version: updatable
     - peers: updatable
     - height: updatable
@@ -42,7 +42,7 @@
       - Beginning of line shows the shard nature of transaction.
   - Employ:
     1. Enter password on **[keyfile version]** to unlock.
-    0. Contract line: select **[contract]**, **[method]**, and enter **[parameters]**, click **[estimate]**; 
+    0. Contract line: select **[contract]**, **[method]**, and enter **[parameters]**, click **[estimate]**;
     0. Click **[send]**.
     - ps:
       - Add frequent methods with contract line shardnumber
@@ -51,15 +51,10 @@
       - automate challenge/relay/respond/rollback using contract name
   - Call:
     1. Go to contract page
-    0. 
+    0.
 
 
 # Keel (chain explorer)
 
 <!-- **[]** -->
 <!-- **** -->
-
-
-
-
-

@@ -2,15 +2,15 @@
 
 ## Setting Up a Node
 
-- Preparations: 
-  - Install [Go v1.10](https://golang.org/doc/install) or higher, [Git](https://git-scm.com/downloads), and the [C compiler](#gcc-install-newbie-guide)(if you have not installed GO, Git or C compiler please follow README). 
+- Preparations:
+  - Install [Go v1.10](https://golang.org/doc/install) or higher, [Git](https://git-scm.com/downloads), and the [C compiler](#gcc-install-newbie-guide)(if you have not installed GO, Git or C compiler please follow README).
   - Clone the go-seele repository to the [GOPATH](https://github.com/golang/go/wiki/SettingGOPATH) directory :
 `
 go get -u -v github.com\seeleteam\go-seele\...
 `
-- In `seeleteam\go-seele\cmd\node`, run: `go build`; if you are running this for the first time a node executable object will appear. 
- 
-		Something you may need to know before running a node:
+- In `seeleteam\go-seele\cmd\node`, run: `go build`; if you are running this for the first time a node executable object will appear.
+
+	-	Something you may need to know before running a node:
 
 		 1. If you run into the error related to "genesis block hash mismatch", follow the solution located [here](#genesis-block-hash-mismatch).  
 		 2. If you want to run a light node, just replace node1.json with light_node1.json. Of course, don't forget to start a full node before you do this.
@@ -18,7 +18,7 @@ go get -u -v github.com\seeleteam\go-seele\...
 
 - Get an account:
 
-	You will need an account to send transactions, deploy contracts and start mining on the mainnet. See [How to create an account](How-To-Create-An-Account.html) to create your own account. However, if you just want to run a seele node locally or in a test environment, you can skip this step. Some default accounts are provided for testing. 
+	You will need an account to send transactions, deploy contracts and start mining on the mainnet. See [How to create an account](How-To-Create-An-Account.html) to create your own account. However, if you just want to run a seele node locally or in a test environment, you can skip this step. Some default accounts are provided for testing.
 
 - Running a Node:
 
@@ -40,12 +40,12 @@ go get -u -v github.com\seeleteam\go-seele\...
              - In another terminal window, run: `./node start -c ./config/node2.json`
 
             **Important note:** under seeleteam/go-seele/cmd/node/config, there are 4 node configurations (with filename node*.json) that can be used as examples. To use your own account to interact with the mainnet, make sure you use the correct coinbase, p2p private key and shard information in one of these json files. For details, see [How to customize your node configurations](#How to customize your node configurations).
-         
+
       If you want to have a quickstart in a test or private blockchain environment, you can use the default node configurations and accounts. For example:
-              
+
             ./node start -c ./config/node1.json --accounts ./config/accounts.json
 
-		Note that seeleteam/go-seele/cmd/node/config/accounts.json only contains test accounts, do not use them if you are going to connect to the Seele mainnet. 
+		Note that seeleteam/go-seele/cmd/node/config/accounts.json only contains test accounts, do not use them if you are going to connect to the Seele mainnet.
 
  - The node configuration and test accounts are shown as follows. To modify it for your own account, see [How to customize my node configurations](#How to customize my node configurations).
 
@@ -219,15 +219,15 @@ accounts.json:
 - Help:
 <a name="help1">
 
-	Use "node -h" for a list of available commands. 
-	
+	Use "node -h" for a list of available commands.
+
 	Use "node [command] --help" for more information about a command.
 </a>
 
 ## Create a Full Node Client:
-		
+
 - Preparations:
-  - Install go v1.10 or higher and the C compiler (if you haven't install GO, Git or C compiler please follow README). 
+  - Install go v1.10 or higher and the C compiler (if you haven't install GO, Git or C compiler please follow README).
   - In `seeleteam\go-seele\cmd\client`, run: `go build`. If you are running this for the first time, a client executable object will appear.
 
 - Running a Full Node Client:
@@ -286,9 +286,9 @@ GLOBAL OPTIONS:
 ```
 
 ## Create a Light Node Client:
-		
+
 - Preparations:
-  - Install go v1.10 or higher and the C compiler. 
+  - Install go v1.10 or higher and the C compiler.
   - In `seeleteam\go-seele\cmd\client\light`, run: `go build`. If you are running this for the first time, a client executable object will appear.
 
 - Running a Light Node Client:
@@ -353,10 +353,10 @@ GLOBAL OPTIONS:
   client sendtx --amount 10000 --price 1 --gas 2 --from .keystore-shard-1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 --to 0xb286933bccbec9ca1cd92257d12d12ebab9b1201
 
   // Response (If we want use coherent name as savekey step in “How To Create An Account”, it is recommended to use .keystore-shard1& It is .keystore-shard1 not .keystore-shard-1)
-  
-  In seeleteam/go-seele/cmd/node: 
 
-  Please input your key file password: 
+  In seeleteam/go-seele/cmd/node:
+
+  Please input your key file password:
   account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 current nonce: 0, sending nonce: 0
   transaction sent successfully
   {
@@ -419,7 +419,7 @@ By the way, if tx is not packed by the miner or the miner is packing, you may se
 client sendtx --amount 0 --from .keystore-shard-1-0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 --payload 0x608060405234801561001057600080fd5b50600560008190555060df806100276000396000f3006080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806360fe47b114604e5780636d4ce63c146078575b600080fd5b348015605957600080fd5b5060766004803603810190808035906020019092919050505060a0565b005b348015608357600080fd5b50608a60aa565b6040518082815260200191505060405180910390f35b8060008190555050565b600080549050905600a165627a7a723058207f6dc43a0d648e9f5a0cad5071cde46657de72eb87ab4cded53a7f1090f51e6d0029
 
   // Response
-Please input your key file password: 
+Please input your key file password:
 account 0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21 current nonce: 0, sending nonce: 0
 transaction sent successfully
 {
@@ -439,8 +439,8 @@ transaction sent successfully
 	}
 }
   ```
-  
-If you display `get error when call rpc balance is not enough, account:0xb4153ca4090a11af1984cdf20b0d0cbed5ff97a1, balance:10, amount:0, fee:123`, that's right, I deliberately, quickly fill the money. 
+
+If you display `get error when call rpc balance is not enough, account:0xb4153ca4090a11af1984cdf20b0d0cbed5ff97a1, balance:10, amount:0, fee:123`, that's right, I deliberately, quickly fill the money.
 
   - Query the contract deploy result
 
@@ -532,8 +532,8 @@ The result of `"contract": "0xc3e7b32db87dd5b8d70a78666518c6395d0f0092"` row is 
 }
 ```
 ## How to customize your node configurations
- 
-Under seeleteam/go-seele/cmd/node/config, you can find four node*.json files. You can create your own Seele node by customizing any one of them. 
+
+Under seeleteam/go-seele/cmd/node/config, you can find four node*.json files. You can create your own Seele node by customizing any one of them.
 
 1. After creating your account ([How to create an account](How-To-Create-An-Account.html)), replace "coinbase" field with your public key.
 
@@ -541,7 +541,7 @@ Under seeleteam/go-seele/cmd/node/config, you can find four node*.json files. Yo
 
 3. Create another private-public key pair. Replace "privateKey" field in "p2p" section with your private key. This private key is used for p2p network only and should be different from the private key you use to mine and send transactions. **Do not use private keys associated with your coinbase or any other transaction accounts here!**
 
-4. You could connect to some static nodes in the network by configuration. The format of "staticNodes" field is ["ip:port",...], for example, ["127.0.0.1:8057"]. 
+4. You could connect to some static nodes in the network by configuration. The format of "staticNodes" field is ["ip:port",...], for example, ["127.0.0.1:8057"].
 
 5. If "isDebug" and "printLog" fields are true, the display is in debug mode and log mode when you run the Seele node. Default values should be false.
 
@@ -616,4 +616,4 @@ ERRO[0000] NewSeeleService genesis.Initialize err. genesis block hash mismatch  
 genesis block hash mismatch
 ```
 
-You can just delete the .seele/node1 folder and restart. The absolute path to the .seele folder is in the logs printed above. 
+You can just delete the .seele/node1 folder and restart. The absolute path to the .seele folder is in the logs printed above.

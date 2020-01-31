@@ -1,0 +1,43 @@
+{"jsonrpc":"2.0","id":1,"result":{"Coinbase":"0xcee66ad4a1909f6b5170dec230c1a69bfc2b21d1","CurrentBlockHeight":31692,"HeaderHash":"0x04bec503ff44cdc7cff215754ec21c34b15b6daf659d4f788b26e13ad44f826c","Shard":1,"MinerStatus":"Stopped","Version":"v1.2.7","BlockAge":25758368,"PeerCnt":"3 (1 2 0 0)"}}
+{"jsonrpc":"2.0","id":1,"result":{"Account":"0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21","Balance":0}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"Tx already exists"}}
+{"jsonrpc":"2.0","id":1,"result":0}
+{"jsonrpc":"2.0","id":1,"result":31692}
+{"jsonrpc":"2.0","id":1,"result":{"debts":[],"hash":"0x430216878d75c4beeb5218158e9920a664e5e883a8311600dd4cb21c91b8d9a2","header":{"PreviousBlockHash":"0x359e1148e8eb8bb2bc0e7878fff034cba775df8338a71d65e3c0b48668f11c45","Creator":"0xd63a23ba710c16fb121f53a4e38163a23c053e31","StateHash":"0xe0a7e462dda0df064521581ef482c43460a8ae4a313f42513b6f67f688e3f5fd","TxHash":"0x1555ed359bcc999483174709a48218f0c1871756441025937fc45f85bf11dc99","ReceiptHash":"0xc1da588af38fb099399b8b2f8d98183c2934d903a973a90f326a9ce1115e3c1e","TxDebtHash":"0x0000000000000000000000000000000000000000000000000000000000000000","DebtHash":"0x0000000000000000000000000000000000000000000000000000000000000000","Difficulty":5990106,"Height":19018,"CreateTimestamp":1554386780,"Witness":"NTkwOTMxOTAwNTgwMDIzMDA4NQ==","SecondWitness":"NTkwOTMxOTAwNTgwMDQxODM3NQ==","Consensus":0,"ExtraData":""},"totalDifficulty":108806815827,"transactions":[{"accountNonce":0,"amount":600000000,"from":"0x0000000000000000000000000000000000000000","gasLimit":0,"gasPrice":0,"hash":"0x48e3e648f8231bd3b48e356ead95412511e0576aa5be3614da4a57d7badb80e9","payload":"","to":"0xd63a23ba710c16fb121f53a4e38163a23c053e31"}],"txDebts":[]}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","id":1,"result":{"debts":[],"hash":"0x430216878d75c4beeb5218158e9920a664e5e883a8311600dd4cb21c91b8d9a2","header":{"PreviousBlockHash":"0x359e1148e8eb8bb2bc0e7878fff034cba775df8338a71d65e3c0b48668f11c45","Creator":"0xd63a23ba710c16fb121f53a4e38163a23c053e31","StateHash":"0xe0a7e462dda0df064521581ef482c43460a8ae4a313f42513b6f67f688e3f5fd","TxHash":"0x1555ed359bcc999483174709a48218f0c1871756441025937fc45f85bf11dc99","ReceiptHash":"0xc1da588af38fb099399b8b2f8d98183c2934d903a973a90f326a9ce1115e3c1e","TxDebtHash":"0x0000000000000000000000000000000000000000000000000000000000000000","DebtHash":"0x0000000000000000000000000000000000000000000000000000000000000000","Difficulty":5990106,"Height":19018,"CreateTimestamp":1554386780,"Witness":"NTkwOTMxOTAwNTgwMDIzMDA4NQ==","SecondWitness":"NTkwOTMxOTAwNTgwMDQxODM3NQ==","Consensus":0,"ExtraData":""},"totalDifficulty":108806815827,"transactions":[{"accountNonce":0,"amount":600000000,"from":"0x0000000000000000000000000000000000000000","gasLimit":0,"gasPrice":0,"hash":"0x48e3e648f8231bd3b48e356ead95412511e0576aa5be3614da4a57d7badb80e9","payload":"","to":"0xd63a23ba710c16fb121f53a4e38163a23c053e31"}],"txDebts":[]}}
+{"jsonrpc":"2.0","id":1,"result":{"contract":"0x","failed":false,"poststate":"0x7a3b2b36310dcd55244be79a6c6ab3140fc9a4e6fd7cce8e46d4e1ca1fce7512","result":"0x","totalFee":21272,"txhash":"0x50affbf54cd27dcdd2fda532c775d0683ceb80fe61d3a3d8f12e6486275765ef","usedGas":21272}}
+{"jsonrpc":"2.0","id":1,"result":"0x60fe47b10000000000000000000000000000000000000000000000000000000000000001"}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"failed to process tx via svm ===\u003e failed to validate tx against statedb ===\u003e balance is not enough, account:0x4c10f2cd2159bb432094e3be7e17904c2b4aeb21, balance:0, amount:20000, fee:2000000, cost:2020000"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","id":1,"result":1}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"index out of block transaction list range, the max index is 0"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","error":{"code":-32600,"message":"invalid character '\"' after array element"}}
+{"jsonrpc":"2.0","id":1,"error":{"code":-32000,"message":"leveldb: not found"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method download_getStatus does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method network_getPeersInfo does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method network_getPeerCount does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method network_getNetVersion does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method network_getProtocolVersion does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method network_getNetworkID does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_start does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_stop does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_status does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_getCoinbase does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_setThreads does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_setCoinbase does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"result":1}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method miner_getHashrate does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_printBlock does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_getTxPoolContent does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_getTxPoolTxCount does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_getPendingTransactions does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_getPendingDebts does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_dumpHeap does not exist/is not available"}}
+{"jsonrpc":"2.0","id":2,"error":{"code":-32601,"message":"The method debug_getTPS does not exist/is not available"}}
+{"jsonrpc":"2.0","id":1,"result":{"name":"Test monitor","node":"seele node1","port":0,"netVersion":"1.0","protocol":"1.0","api":"No","os":"darwin","os_v":"amd64","client":"1.0","canUpdateHistory":true,"shard":1}}
+{"jsonrpc":"2.0","id":1,"result":{"active":true,"syncing":true,"mining":false,"peers":39}}

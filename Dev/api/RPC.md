@@ -1,4 +1,7 @@
 # Seele JSON-RPC
+
+*( node version >= v1.3.0 )*
+
 JSON is a lightweight data exchange format. It can represent numbers, strings, ordered value sequences and key-value pairs.
 
 JSON-RPC is a stateless, lightweight Remote Procedure Call (RPC) protocol. It defines several data structures and the relevant rules to handle them. JSON-RPC is transmission-agnostic, because it can be used in situations like process, socket, HTTP, or different message transmission environments. It uses JSON(RFC 4627) as the data format.
@@ -55,10 +58,10 @@ Currently, there are several RPCs with different namespaces：
 | [EstimateGas](#estimategas)                                                 | &#x2713; |          | &#x2713; |         |
 | [GetBlockTransactionCount](#getblocktransactioncount)                       | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHeight](#getblocktransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionCountByHash](#getBlockTransactionCountByHash)           | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionByBlockIndex](#getTransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionByBlockHeightAndIndex](#getTransactionbyblockheightandindex) | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionByBlockHashAndIndex](#getTransactionbyblockhashandindex)     | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionCountByHash](#getblocktransactioncountbyhash)           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockIndex](#gettransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockHeightAndIndex](#gettransactionbyblockheightandindex) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByBlockHashAndIndex](#gettransactionbyblockhashandindex)     | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetReceiptByTxHash](#getreceiptbytxhash)                                   | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [txpool](#txpool)
@@ -69,13 +72,13 @@ Currently, there are several RPCs with different namespaces：
 | [GetTxPoolTxCount](#gettxpooltxcount)                         | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetPendingTxs](#getpendingtxs)                               | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetPendingDebts](#getpendingdebts)                           | &#x2713; |          | &#x2713; |         |
-| [GetTransactionByHash](#getTransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionByHash](#gettransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetDebtByHash](#getdebtbyhash)                               | &#x2713; |          | &#x2713; |         |
 | [GetGasPrice](#getgasprice)                                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsFrom](#GetTransactionsFrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsTo](#GetTransactionsTo)                       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetAccountTransactions](#GetAccountTransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionsByHeight](#GetBlockTransactionsByHeight) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsFrom](#gettransactionsfrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsTo](#gettransactionsto)                       | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetAccountTransactions](#getaccounttransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHeight](#getblocktransactionsbyheight) | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [download](#download)
 
@@ -93,21 +96,21 @@ Currently, there are several RPCs with different namespaces：
 | [GetNetVersion](#getnetversion)           | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetProtocolVersion](#getprotocolversion) | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetNetworkID](#getnetworkid)             | &#x2713; | &#x2713; | &#x2713; |         |
-| [IsListening](#IsListening)               | &#x2713; | &#x2713; | &#x2713; |         |
+| [IsListening](#islistening)               | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [miner](#miner)
 
-| Command                     |   Full   | Light |  public  | private  |
-| --------------------------- |:--------:|:-----:|:--------:|:--------:|
-| [Start](#start)             | &#x2713; |       |          | &#x2713; |
-| [Stop](#stop)               | &#x2713; |       |          | &#x2713; |
-| [Status](#status)           | &#x2713; |       |          | &#x2713; |
-| [GetCoinbase](#getcoinbase) | &#x2713; |       |          | &#x2713; |
-| [GetTarget](#GetTarget)     | &#x2713; |       |          | &#x2713; |
-| [GetWork](#GetWork)         | &#x2713; |       |          | &#x2713; |
-| [SetThreads](#setthreads)   | &#x2713; |       |          | &#x2713; |
-| [SetCoinbase](#setcoinbase) | &#x2713; |       |          | &#x2713; |
-| [GetThreads](#getthreads)   | &#x2713; |       | &#x2713; |          |
+| Command                     |   Full   | Light | public | private  |
+| --------------------------- |:--------:|:-----:|:------:|:--------:|
+| [Start](#start)             | &#x2713; |       |        | &#x2713; |
+| [Stop](#stop)               | &#x2713; |       |        | &#x2713; |
+| [Status](#status)           | &#x2713; |       |        | &#x2713; |
+| [GetCoinbase](#getcoinbase) | &#x2713; |       |        | &#x2713; |
+| [GetTarget](#gettarget)     | &#x2713; |       |        | &#x2713; |
+| [GetWork](#getwork)         | &#x2713; |       |        | &#x2713; |
+| [SetThreads](#setthreads)   | &#x2713; |       |        | &#x2713; |
+| [SetCoinbase](#setcoinbase) | &#x2713; |       |        | &#x2713; |
+| [GetThreads](#getthreads)   | &#x2713; |       |        | &#x2713; |
 
 - [debug](#debug)
 
@@ -1034,7 +1037,8 @@ This method is used to obtain the number of transactions in the block based on b
 - Request
 
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037```
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionCountByHash","params":["0x0000004c0336e63f76e7bd2b7888514eff47b3528df67ca6ee95edb9dff79c00"],"id":1}' localhost:8037
+```
 - Result
 
 ```js
@@ -1773,7 +1777,7 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 ```
 ***
 
-#### GetPendingTxs
+#### GetPendingTransactions
 
 This method is used to obtain pending transactions in the transaction pool.
 
@@ -2684,7 +2688,7 @@ none
 - Request
 
 ```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' url
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"debug_dumpHeap","params":[],"id":2}' localhost:8037
 ```
 - Result
 
