@@ -1,8 +1,0 @@
-root: ./
-
-structure:
-  readme: FIRSTPAGE.md
-  summary: STRUCTURE.md
-
-redirects:
-  FAQ: FAQ.md
