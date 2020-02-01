@@ -14,7 +14,7 @@ Seele's API is comprised of remote and local functions:
 
 - Executed locally, implemented by language specific SDK's.
 - references:
-  - [seele-sdk-javascript](https://seele.pro/docs/jsdoc/index.html) (v1.0.5)
+  - [seele-sdk-javascript](https://seele.pro/docs/jsdoc/index.html) 
   - [seele-sdk-java](https://github.com/seeleteam/seele-sdk-java) (beta)
   - seele-sdk-python (TODO)
   - seele-sdk-go (TODO)
