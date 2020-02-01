@@ -57,12 +57,12 @@ Currently, there are several RPCs with different namespaces：
 | [GeneratePayload](#generatepayload)                                         | &#x2713; |          | &#x2713; |         |
 | [EstimateGas](#estimategas)                                                 | &#x2713; |          | &#x2713; |         |
 | [GetBlockTransactionCount](#getblocktransactioncount)                       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsFrom](#gettransactionsfrom)                   | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTransactionsTo](#gettransactionsto)                       | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetAccountTransactions](#getaccounttransactions)             | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionsByHeight](#getblocktransactionsbyheight) | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactionsByHash](#getblocktransactionsbyhash) | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetBlockTransactions](#getblocktransactions) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsFrom](#gettransactionsfrom)                                 | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTransactionsTo](#gettransactionsto)                                     | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetAccountTransactions](#getaccounttransactions)                           | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHeight](#getblocktransactionsbyheight)               | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactionsByHash](#getblocktransactionsbyhash)                   | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetBlockTransactions](#getblocktransactions)                               | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHeight](#getblocktransactioncountbyheight)       | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetBlockTransactionCountByHash](#getblocktransactioncountbyhash)           | &#x2713; | &#x2713; | &#x2713; |         |
 | [GetTransactionByBlockIndex](#gettransactionbyblockindex)                   | &#x2713; | &#x2713; | &#x2713; |         |
@@ -72,15 +72,15 @@ Currently, there are several RPCs with different namespaces：
 
 - [txpool](#txpool)
 
-| Command                                                       |   Full   |  Light   |  public  | private |
-| ------------------------------------------------------------- |:--------:|:--------:|:--------:|:-------:|
-| [GetTxPoolContent](#gettxpoolcontent)                         | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetTxPoolTxCount](#gettxpooltxcount)                         | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetPendingTxs](#getpendingtxs)                               | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetPendingDebts](#getpendingdebts)                           | &#x2713; |          | &#x2713; |         |
-| [GetTransactionByHash](#gettransactionbyhash)                 | &#x2713; | &#x2713; | &#x2713; |         |
-| [GetDebtByHash](#getdebtbyhash)                               | &#x2713; |          | &#x2713; |         |
-| [GetGasPrice](#getgasprice)                                   | &#x2713; | &#x2713; | &#x2713; |         |
+| Command                                       |   Full   |  Light   |  public  | private |
+| --------------------------------------------- |:--------:|:--------:|:--------:|:-------:|
+| [GetTxPoolContent](#gettxpoolcontent)         | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetTxPoolTxCount](#gettxpooltxcount)         | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetPendingTxs](#getpendingtxs)               | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetPendingDebts](#getpendingdebts)           | &#x2713; |          | &#x2713; |         |
+| [GetTransactionByHash](#gettransactionbyhash) | &#x2713; | &#x2713; | &#x2713; |         |
+| [GetDebtByHash](#getdebtbyhash)               | &#x2713; |          | &#x2713; |         |
+| [GetGasPrice](#getgasprice)                   | &#x2713; | &#x2713; | &#x2713; |         |
 
 - [download](#download)
 
@@ -1251,6 +1251,345 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 ```
 ***
 
+#### GetTransactionsFrom
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template                                                                                         |
+| ---- | ------------------------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `account`:`string` - from account
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getTransactionsFrom","params":["0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1","",177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasPrice" : 10,
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "amount" : 100000000,
+            "payload" : "",
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "accountNonce" : 0,
+            "gasLimit" : 21000,
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
+         }
+      }
+   ]
+```
+***
+
+#### GetTransactionsTo
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template                                                                                       |
+| ---- | ---------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `account`:`string` - from account
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getTransactionsTo","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasLimit" : 21000,
+            "accountNonce" : 0,
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "amount" : 100000000,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "gasPrice" : 10,
+            "payload" : "",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
+         }
+      }
+]
+```
+***
+
+
+#### GetAccountTransactions
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template                                                                                            |
+| ---- | --------------------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `account`:`string` - from account
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountTransactions","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasLimit" : 21000,
+            "accountNonce" : 0,
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "amount" : 100000000,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "gasPrice" : 10,
+            "payload" : "",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
+         }
+      }
+]
+```
+***
+
+#### GetBlockTransactions
+
+This method returns transactions at specific height or block hash.
+
+| Type | Template                                                                                   |
+| ---- | ------------------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactions","params":[string ,uint64],"id":1}` |
+
+##### Parameters
+
+- `hexHash`:`string` - hex form of a block hash
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactions","params":["",177],"id":1}' localhost:8037
+```
+- Result
+```js
+{
+   "result" : [
+      {
+         "transaction 1" : {
+            "amount" : 600000000,
+            "gasPrice" : 0,
+            "payload" : "",
+            "gasLimit" : 0,
+            "accountNonce" : 0,
+            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "from" : "0x0000000000000000000000000000000000000000",
+            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5"
+         }
+      },
+      {
+         "transaction 2" : {
+            "amount" : 100000000,
+            "gasPrice" : 10,
+            "payload" : "",
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
+            "gasLimit" : 21000,
+            "accountNonce" : 0
+         }
+      }
+   ],
+   "jsonrpc" : "2.0",
+   "id" : 1
+}
+```
+***
+
+#### GetBlockTransactionsByHeight
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template                                                                                   |
+| ---- | ------------------------------------------------------------------------------------------ |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
+
+##### Parameters
+
+<!-- - `account`:`string` - from account -->
+<!-- - `hexHash`:`string` - hex form of a block hash -->
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHeight","params":[177],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasPrice" : 0,
+            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasLimit" : 0,
+            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5",
+            "amount" : 600000000,
+            "payload" : "",
+            "from" : "0x0000000000000000000000000000000000000000"
+         }
+      },
+      {
+         "transaction 2" : {
+            "payload" : "",
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasPrice" : 10,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
+            "amount" : 100000000,
+            "gasLimit" : 21000
+         }
+      }
+   ]
+```
+***
+
+#### GetBlockTransactionsByHash
+
+This method returns transactions from one account at specific height or block hash.
+
+| Type | Template                                                                                 |
+| ---- | ---------------------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHash","params":[string],"id":1}` |
+
+##### Parameters
+
+<!-- - `account`:`string` - from account -->
+<!-- - `hexHash`:`string` - hex form of a block hash -->
+- `height` :`uint64` - height of a block
+
+##### Returns
+
+- `transaction index`:`string` - transaction index
+- `from`:`string` - transaction provider
+- `amount`:`Int` - transaction amount
+- `payload`:`array` - transaction payload
+- `to`:`string` - transaction receiver
+- `accountNonce`:`unit64` - account nonce
+- `gasLimit`:`Int` - transaction gas limit
+- `hash`:`string` - transaction hash
+
+
+##### Example
+- Request
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHash","params":["0x1220bd0253ac24aff8152ea19ad50e6724bac08f914630cea1e901ba19dbe021"],"id":1}' localhost:8037
+```
+- Result
+```js
+[
+      {
+         "transaction 1" : {
+            "gasPrice" : 0,
+            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasLimit" : 0,
+            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5",
+            "amount" : 600000000,
+            "payload" : "",
+            "from" : "0x0000000000000000000000000000000000000000"
+         }
+      },
+      {
+         "transaction 2" : {
+            "payload" : "",
+            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
+            "accountNonce" : 0,
+            "gasPrice" : 10,
+            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
+            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
+            "amount" : 100000000,
+            "gasLimit" : 21000
+         }
+      }
+   ]
+```
+***
 
 ### txpool
 RPC collection provided for internal use for transaction pool inquiry manipulation.
@@ -1414,346 +1753,6 @@ Or (if transaction is not found)
 {
 	"error": "the transaction not found"
 }
-```
-***
-
-#### GetTransactionsFrom
-
-This method returns transactions from one account at specific height or block hash.
-
-| Type | Template                                                                                          |
-| ---- | ------------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionsFrom","params":[string,string ,uint64],"id":1}` |
-
-##### Parameters
-
-- `account`:`string` - from account
-- `hexHash`:`string` - hex form of a block hash
-- `height` :`uint64` - height of a block
-
-##### Returns
-
-- `transaction index`:`string` - transaction index
-- `from`:`string` - transaction provider
-- `amount`:`Int` - transaction amount
-- `payload`:`array` - transaction payload
-- `to`:`string` - transaction receiver
-- `accountNonce`:`unit64` - account nonce
-- `gasLimit`:`Int` - transaction gas limit
-- `hash`:`string` - transaction hash
-
-
-##### Example
-- Request
-```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getTransactionsFrom","params":["0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1","",177],"id":1}' localhost:8037
-```
-- Result
-```js
-[
-      {
-         "transaction 1" : {
-            "gasPrice" : 10,
-            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "amount" : 100000000,
-            "payload" : "",
-            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
-            "accountNonce" : 0,
-            "gasLimit" : 21000,
-            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
-         }
-      }
-   ]
-```
-***
-
-#### GetTransactionsTo
-
-This method returns transactions from one account at specific height or block hash.
-
-| Type | Template                                                                                        |
-| ---- | ----------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"seele_getTransactionsTo","params":[string,string ,uint64],"id":1}` |
-
-##### Parameters
-
-- `account`:`string` - from account
-- `hexHash`:`string` - hex form of a block hash
-- `height` :`uint64` - height of a block
-
-##### Returns
-
-- `transaction index`:`string` - transaction index
-- `from`:`string` - transaction provider
-- `amount`:`Int` - transaction amount
-- `payload`:`array` - transaction payload
-- `to`:`string` - transaction receiver
-- `accountNonce`:`unit64` - account nonce
-- `gasLimit`:`Int` - transaction gas limit
-- `hash`:`string` - transaction hash
-
-
-##### Example
-- Request
-```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getTransactionsTo","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
-```
-- Result
-```js
-[
-      {
-         "transaction 1" : {
-            "gasLimit" : 21000,
-            "accountNonce" : 0,
-            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "amount" : 100000000,
-            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
-            "gasPrice" : 10,
-            "payload" : "",
-            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
-         }
-      }
-]
-```
-***
-
-
-#### GetAccountTransactions
-
-This method returns transactions from one account at specific height or block hash.
-
-| Type | Template                                                                                             |
-| ---- | ---------------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"seele_getAccountTransactions","params":[string,string ,uint64],"id":1}` |
-
-##### Parameters
-
-- `account`:`string` - from account
-- `hexHash`:`string` - hex form of a block hash
-- `height` :`uint64` - height of a block
-
-##### Returns
-
-- `transaction index`:`string` - transaction index
-- `from`:`string` - transaction provider
-- `amount`:`Int` - transaction amount
-- `payload`:`array` - transaction payload
-- `to`:`string` - transaction receiver
-- `accountNonce`:`unit64` - account nonce
-- `gasLimit`:`Int` - transaction gas limit
-- `hash`:`string` - transaction hash
-
-
-##### Example
-- Request
-```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getAccountTransactions","params":["0x75b86ef99c31bb858032d46bd533b18356c61aa1","",177],"id":1}' localhost:8037
-```
-- Result
-```js
-[
-      {
-         "transaction 1" : {
-            "gasLimit" : 21000,
-            "accountNonce" : 0,
-            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "amount" : 100000000,
-            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
-            "gasPrice" : 10,
-            "payload" : "",
-            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b"
-         }
-      }
-]
-```
-***
-
-#### GetBlockTransactions
-
-This method returns transactions at specific height or block hash.
-
-| Type | Template                                                                                             |
-| ---- | ---------------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactions","params":[string ,uint64],"id":1}` |
-
-##### Parameters
-
-- `hexHash`:`string` - hex form of a block hash
-- `height` :`uint64` - height of a block
-
-##### Returns
-
-- `transaction index`:`string` - transaction index
-- `from`:`string` - transaction provider
-- `amount`:`Int` - transaction amount
-- `payload`:`array` - transaction payload
-- `to`:`string` - transaction receiver
-- `accountNonce`:`unit64` - account nonce
-- `gasLimit`:`Int` - transaction gas limit
-- `hash`:`string` - transaction hash
-
-
-##### Example
-- Request
-```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactions","params":["",177],"id":1}' localhost:8037
-```
-- Result
-```js
-{
-   "result" : [
-      {
-         "transaction 1" : {
-            "amount" : 600000000,
-            "gasPrice" : 0,
-            "payload" : "",
-            "gasLimit" : 0,
-            "accountNonce" : 0,
-            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "from" : "0x0000000000000000000000000000000000000000",
-            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5"
-         }
-      },
-      {
-         "transaction 2" : {
-            "amount" : 100000000,
-            "gasPrice" : 10,
-            "payload" : "",
-            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
-            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
-            "gasLimit" : 21000,
-            "accountNonce" : 0
-         }
-      }
-   ],
-   "jsonrpc" : "2.0",
-   "id" : 1
-}
-```
-***
-
-#### GetBlockTransactionsByHeight
-
-This method returns transactions from one account at specific height or block hash.
-
-| Type | Template                                                                                    |
-| ---- | ------------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHeight","params":[uint64],"id":1}` |
-
-##### Parameters
-
-<!-- - `account`:`string` - from account -->
-<!-- - `hexHash`:`string` - hex form of a block hash -->
-- `height` :`uint64` - height of a block
-
-##### Returns
-
-- `transaction index`:`string` - transaction index
-- `from`:`string` - transaction provider
-- `amount`:`Int` - transaction amount
-- `payload`:`array` - transaction payload
-- `to`:`string` - transaction receiver
-- `accountNonce`:`unit64` - account nonce
-- `gasLimit`:`Int` - transaction gas limit
-- `hash`:`string` - transaction hash
-
-
-##### Example
-- Request
-```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHeight","params":[177],"id":1}' localhost:8037
-```
-- Result
-```js
-[
-      {
-         "transaction 1" : {
-            "gasPrice" : 0,
-            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "accountNonce" : 0,
-            "gasLimit" : 0,
-            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5",
-            "amount" : 600000000,
-            "payload" : "",
-            "from" : "0x0000000000000000000000000000000000000000"
-         }
-      },
-      {
-         "transaction 2" : {
-            "payload" : "",
-            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "accountNonce" : 0,
-            "gasPrice" : 10,
-            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
-            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
-            "amount" : 100000000,
-            "gasLimit" : 21000
-         }
-      }
-   ]
-```
-***
-
-#### GetBlockTransactionsByHash
-
-This method returns transactions from one account at specific height or block hash.
-
-| Type | Template                                                                                  |
-| ---- | ----------------------------------------------------------------------------------------- |
-| RPC  | `{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHash","params":[string],"id":1}` |
-
-##### Parameters
-
-<!-- - `account`:`string` - from account -->
-<!-- - `hexHash`:`string` - hex form of a block hash -->
-- `height` :`uint64` - height of a block
-
-##### Returns
-
-- `transaction index`:`string` - transaction index
-- `from`:`string` - transaction provider
-- `amount`:`Int` - transaction amount
-- `payload`:`array` - transaction payload
-- `to`:`string` - transaction receiver
-- `accountNonce`:`unit64` - account nonce
-- `gasLimit`:`Int` - transaction gas limit
-- `hash`:`string` - transaction hash
-
-
-##### Example
-- Request
-```js
-curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"seele_getBlockTransactionsByHash","params":["0x1220bd0253ac24aff8152ea19ad50e6724bac08f914630cea1e901ba19dbe021"],"id":1}' localhost:8037
-```
-- Result
-```js
-[
-      {
-         "transaction 1" : {
-            "gasPrice" : 0,
-            "to" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "accountNonce" : 0,
-            "gasLimit" : 0,
-            "hash" : "0xecc860869602e90b6f170e0106459fb243a637b49d5cf732b8f4526998bac1c5",
-            "amount" : 600000000,
-            "payload" : "",
-            "from" : "0x0000000000000000000000000000000000000000"
-         }
-      },
-      {
-         "transaction 2" : {
-            "payload" : "",
-            "from" : "0xe5260a5fa3ac4b0df6287d6b197d6b3cd5befef1",
-            "accountNonce" : 0,
-            "gasPrice" : 10,
-            "to" : "0x75b86ef99c31bb858032d46bd533b18356c61aa1",
-            "hash" : "0xff5db63c516ddd0bd428bc464ef09add60647007ca2f3afc584be7a98e0cf52b",
-            "amount" : 100000000,
-            "gasLimit" : 21000
-         }
-      }
-   ]
 ```
 ***
 
