@@ -14,7 +14,7 @@ Seele's API is comprised of remote and local functions:
 
 - Executed locally, implemented by language specific SDK's.
 - references:
-  - [seele-sdk-javascript](https://seele.pro/docs/jsdoc/index.html) 
+  - [seele-sdk-javascript](https://seele.pro/docs/jsdoc/index.html)
   - [seele-sdk-java](https://github.com/seeleteam/seele-sdk-java) (beta)
   - seele-sdk-python (TODO)
   - seele-sdk-go (TODO)
@@ -28,7 +28,7 @@ Seele currently has two javascript SDKs: [seeleteam.js](https://www.npmjs.com/pa
 | --------------------- |:-----------------:|:--------------------:|
 | rpc: node <=v1.2.7    | &#x2713;(v1.6.8+) |  &#x2713;(v1.1.0+)   |
 | rpc: node >=v1.3.0    | &#x2713;(v2.0.0+) |  &#x2713;(v2.1.0+)   |
-| Key functions         |     &#x2713;      |       &#x2713;       |
+| Account functions     |     &#x2713;      |       &#x2713;       |
 | Tx functions          |     &#x2713;      |       &#x2713;       |
 | Keystore functions    |                   |       &#x2713;       |
 | Mnemonic & HD         |                   |       &#x2713;       |
