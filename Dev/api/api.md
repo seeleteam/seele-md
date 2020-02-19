@@ -36,3 +36,5 @@ Seele currently has two javascript SDKs: [seeleteam.js](https://www.npmjs.com/pa
 | Subscription          |                   |       &#x2713;       |
 | Doc (jsdoc or sphinx) |                   |       &#x2713;       |
 | Testing (mocha)       |                   |       &#x2713;       |
+
+\* Update to the latest npm and node.js versions to use seele-sdk-javascript.
