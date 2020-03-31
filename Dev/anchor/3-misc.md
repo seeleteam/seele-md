@@ -1,0 +1,23 @@
+- 0326 no balance in subchain coinbase:
+  - `seeleteam/go-seele-sub/core/genesis.go` there is `func getStateDB` where you can edit Masteraccounts
+- 0326 can't trade out with user's own account
+  - Use the master account
+- 0327 when calling for getaccountinfo, the height must be greater than 20.
+- 0328 remember to change p2p privatekey when configuring local environments
+- 0330 Addresss Assignments
+  - master: main
+  - mint: main, sub
+  - melt: main, sub
+  - roll: sub
+  - Ops: main, sub
+  - go-seele-sub:
+     - Masteraccounts: []?
+    - feeaccount: ?
+  - sub_node.json (sub configuration):
+    - rootaccounts: [mint_sub, melt_sub, roll_sub]
+    - validators: [Ops_sub...]
+  - conf.json (contract constructor):
+    - _ops: [Ops_main...]
+    - _refundAccounts: [Ops_sub...]
+  - main_node.json (main configuration):
+    - 

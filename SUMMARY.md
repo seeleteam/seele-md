@@ -42,6 +42,7 @@
     * [seele-anchor-cli]()
       * [User Guide](Dev/anchor/0-user.md)
       * [Test Guide](Dev/anchor/1-test.md)
+      * [Help](Dev/anchor/3-misc.md)
       * [Configurate](Dev/anchor/2-conf.md)
     * [Contract](Dev/anchor/subchain_contract.md)
     * [Subchain Network](Dev/anchor/subchain_start.md)
