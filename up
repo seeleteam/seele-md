@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+
+if [ -z "$1" ]
+then
+      echo "\$1 is empty"
+else
+      # echo "\$1 is $1"
+      git add .;
+      git commit -m "$1";
+      git push;
+fi
