@@ -42,6 +42,8 @@ Default port:
 | [GetRecentTxMerkleInfo](#getrecenttxmerkleinfo) | &#x2713; |       | &#x2713; |         |
 | [GetAccountTx](#getaccounttx)                   | &#x2713; |       | &#x2713; |         |
 | [GetUpdatedAccountInfo](#getupdatedaccountinfo) | &#x2713; |       | &#x2713; |         |
+| [GetFee](#getfee)                               | &#x2713; |       | &#x2713; |         |
+| [GetRelayInterval](#getrelayinterval)           | &#x2713; |       | &#x2713; |         |
 
 ### subchain
 This RPC collection provides information of the subchain.
@@ -455,6 +457,81 @@ curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","metho
 	{
 		"balances":"yoCHPiwoQ5FSUgI=",
 		"updated accounts":"+D+Ux4mVoYVpuvXg94fD2NVahYYC44GU7u23biPNJ5iFQ4MvegnKjoC33BGUjNQu6/fMyFWzA+i7p1Z0yPPQ8eE="
+	}
+}
+```
+***
+
+#### GetFee
+This method returns the number of verifers and their fee income given the height of relay block.
+
+| Type | Template                                                                |
+| ---- | ----------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"subchain_getFee","params":[uint64],"id":1}` |
+
+##### Parameters
+
+- `height`:`uint64` - block height, should be the height of a relay block
+
+##### Returns
+
+- `fee`: `big.Int` - the fee income of each verifier from height - relayInterval + 1 to height
+- `verNum`: `big.Int` - the number of verifiers from height - relayInterval + 1 to height
+
+
+##### Example
+- Request
+
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"subchain_getFee","params":[40],"id":1}' localhost:8031
+```
+
+- Result
+
+```js
+{
+	"jsonrpc":"2.0",
+	"id":1,
+	"result":
+	{
+		"fee":9358,
+		"verNum":3
+	}
+}
+```
+***
+
+#### GetRelayInterval
+This method returns the relay interval of the subchain.
+
+| Type | Template                                                                    |
+| ---- | --------------------------------------------------------------------------- |
+| RPC  | `{"jsonrpc":"2.0","method":"subchain_getRelayInterval","params":[],"id":1}` |
+
+##### Parameters
+
+None
+
+##### Returns
+
+- `Result`: `uint64` - relay block interval
+
+##### Example
+- Request
+
+```js
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"subchain_getRelayInterval","params":[],"id":1}' localhost:8031
+```
+
+- Result
+
+```js
+{
+	"jsonrpc":"2.0",
+	"id":1,
+	"result":
+	{
+		"result":20,
 	}
 }
 ```
