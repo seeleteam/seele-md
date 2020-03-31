@@ -44,7 +44,7 @@ anc show      # show results
 
 ## Flow Chart summary
 
-![](flow.svg)
+![](flow.png)
 
 ## User
 
