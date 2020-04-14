@@ -7,16 +7,15 @@
 - no more than 6 verifiers are recommended for current subchain version (beta version)
 
 ### Download
-
+(Instead, [Download & Build From Souce](https://github.com/seeleteam/go-seele-sub/blob/master/README.md))
 Download the newest [executables and configuration templates](https://github.com/seeleteam/go-seele-sub/releases/latest). The extracted directory has the following structure:
-
 ```
 mac/linux/win32_v#.#.#
 ├── node1.json //shard1 config template
 ├── node2.json //shard2 config template
 ├── node3.json //shard3 config template
 ├── node4.json //shard4 config template
-└── build
+└── build 
     ├── client //client executable: for using node services
     ├── discovery
     ├── light
@@ -24,7 +23,6 @@ mac/linux/win32_v#.#.#
     ├── tool
     └── vm
 ```
-
 Use the following commands in the `build` directory.
 
 ### Accounts
@@ -79,16 +77,16 @@ private key: 0x85c7d55a434037336a094575506229d82f771d14e9ba6e8c8ffc6e5c1f21de8a
 3. Change node id:
    - Generate a keypair whose shard matters not, and fill the "privateKey" in "P2P" with the privatekey.
 
-(Note: for the next steps, please first find the infos of the subchain will join at https://github.com/seeleteam/go-seele-sub/projects)
+(Note: for the next steps, please first find the infos of the subchain will join at [subchain projects](https://github.com/seeleteam/go-seele-sub/projects); Creator needs to follow the template to publish subchain infos.)
 
 4. Configure the networkID:
-   - Change "netwokID" in "P2P" to your networkID you will join.
+   - Change "netwokID" in "P2P" to your networkID you will join. 
 
 5. Configure genesis informations:
    (Note: All infomations here are based on the setting of the subchain you will join and may vary with different subchain)
    - rootaccounts: [mintAccount, meltAccount, challengeAccount].
    - supply: total initiated supply of the subchain will join.
-   - validators: initiated operators.
+   - validators: initiated operators. 
 
 Example with configuring shard1 template.
 ```
@@ -108,27 +106,24 @@ Example with configuring shard1 template.
    "genesis": {
     ...
     "rootaccounts": ["0xdbf307e58046933e0062d6d4397aaf0c67acffa1","0xdbf307e58046933e0062d6d4397aaf0c67acffa1","0xdbf307e58046933e0062d6d4397aaf0c67acffa1"],
-    "supply": 1000000,
+    "supply": 1000000, 
     "validators":["0x5cb277c269f789aefcfbf28902aa1f517a3c15e1","0x7460dde5d3da978dd719aa5c6e35b7b8564682d1"]
   }
 }
 ```
 
+### Run node 
 
-### Run node
-
-Operator:
+Operator (Verifier):
 Run voting node: using node1.json as configuration file.
 ```bash
 ./node substart -s your_config_folder/node1.json -v start
 ```
 Normal User:
-Run node without voting:
+Run node without voting: 
 ```bash
 ./node substart -s your_config_folder/node1.json -v stop
 ```
-
-
 
 # Practical-Byzantine-Fault-Tolerance-In-Details
 Practical-Byzantine-Fault-Tolerance-In-Details
@@ -167,7 +162,7 @@ However, the dynamic extraData would cause an issue on block hash calculation. S
 <h2>Proposer Selection</h2>
 
 Since each proposal is similar and each verifier will have equal oppotunity to propose. We use two policies for Proposer Selection: Round Robin and Sticky property.
-
+   
    ![RoundRobin](https://user-images.githubusercontent.com/29580346/65648417-0bb60c00-dfb7-11e9-8bf8-5d9f75243db0.png)
    * Round Robin: Proposer will be changed for a new block or Round Change request.
    * Sticky: Only when a round change the proposer will change. (Proposer will keep same for one round).
@@ -194,7 +189,7 @@ Here are what a state and how it works in details:</br>
          *	Block proposal is from the valid proposer.
          *	Block header is valid.
          *	Block proposal's sequence and round match the verifier's state.
-
+    
 2. PRE-PREPARED --> PREPARED: (PREPARE phase)
    * Verifier broadcasts PREPARE message to other verifiers.
    * Verifier received 2F + 1 of valid PREPARE messages to enter PREPARED state.<br/>
@@ -209,14 +204,14 @@ Here are what a state and how it works in details:</br>
       * Messages are from valid Verifiers.
       * Sequence and Round matched.
       * BlockHash matched.
-
+ 
  4. COMMITTED --> SEAL COMMITTED: (SEAL phase)
       * Verifier received 2F + + 1 commitments signatures to <strong>extraData</strong> and insert the block into blockchain.
       * Verifier enter SEAL COMMITTED state when insertion succeeds.
-
+   
  5. SEAL COMMITTED --> NEW ROUND: (NEXT ROUND phase)
       * Verifiers calculate/pick a new proposer and start a new round
-
+         
 
 <h2>Round Change (Round Management)</h2>
 
@@ -225,12 +220,12 @@ Conditions will trigger round change:
    * Invalid PREPARE Message
    * Block Insertion Fails
    * Catchup (not shown in the picture above): jumps out of round change loop when it receives verified block(s) through peer synchronization.
-
+   
 How Round Change works:</br>
   1. When a verifier notices that one of the above conditions applies, it broadcasts a ROUND CHANGE message along with the proposed round number and waits for ROUND CHANGE messages from other validators. The proposed round number is selected based on following condition:
       * If the verifier has received ROUND CHANGE messages from its peers, it picks the largest round number which has F + 1 of ROUND CHANGE messages.
       * Otherwise, it picks 1 + current round number as the proposed round number.
-
+   
  2. Whenever a verifier receives F + 1 of ROUND CHANGE messages on the same proposed round number, it compares the received one with its own. If the received is larger, the verifier broadcasts ROUND CHANGE message again with the received number.
  3. Upon receiving 2F + 1 of ROUND CHANGE messages on the same proposed round number, the verifier exits the round change loop, calculates the new proposer, and then enters NEW ROUND state.
 
@@ -240,3 +235,4 @@ How Round Change works:</br>
    * Verifiers vote on one block with "for" or "against", once a proposal meets the majority votes will come into effect immediately.
    * A effective proposal will entails discarding all pending votes, and reset state to start a new round.
    * Concurrent proposals are allowed and votes are tallied live as chain proceedes.
+   
